@@ -1,0 +1,208 @@
+:root {
+    --color-primary: #48C9B0;
+    --color-white: #fff;
+    --color-text-primary: #101828;
+    --color-text-secondary: #5A5A5D;
+    --color-text-label: #344054;
+    --color-text-input: #333333;
+    --color-border: #344054;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.main-layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+}
+
+.main-layout__left-panel {
+    flex: 50%;
+    background-color: #fff;
+    height: 100%;
+    display: flex;           
+    justify-content: center; 
+    align-items: center;     
+}
+
+.main-layout__right-panel {
+    flex: 50%;
+    background-color: var(--color-primary);
+    height: 100%;
+    display: flex;           
+    justify-content: center; 
+    align-items: center;  
+}
+
+.brand-logo {
+    max-width: 65%;       
+    height: auto; 
+}
+
+.login-section {
+    display: flex;           
+    justify-content: right; 
+    align-items: right;
+    flex-direction: column;
+    padding: 10px;
+    width: 50%;
+}
+
+.login-section__subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    margin: 0;
+    padding: 0;
+}
+
+.login-section__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+    padding: 0;
+}
+
+.login-section__form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.login-section__form-label {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--color-text-label);
+    padding-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-section__form-input {
+    border: 1px solid var(--color-white);
+    background-color: var(--color-primary);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    color: var(--color-white);
+    transition: border-color 0.3s ease;
+}
+
+.login-section__form-input::placeholder {
+    color: var(--color-text-input);
+    font-size: 11px;
+}
+
+.login-section__form-input:focus {
+    border-color: var(--color-border);
+    color: #343434;
+    border-width: 1px; 
+}
+
+.login-section__submit-button {
+    border-radius: 8px;
+    background-color: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--color-primary);
+    font-weight: 600; 
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.login-section__submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-shadow);
+}
+
+/* Media Queries para Responsividade */
+
+/* Tablets */
+@media screen and (max-width: 1024px) {
+    .login-section {
+        width: 70%;
+    }
+
+    .brand-logo {
+        max-width: 80%;
+    }
+}
+
+/* Tablets Pequenos e Celulares Grandes */
+@media screen and (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .main-layout__left-panel,
+    .main-layout__right-panel {
+        flex: none;
+        height: 50vh;
+    }
+
+    .login-section {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .brand-logo {
+        max-width: 60%;
+    }
+}
+
+/* Celulares */
+@media screen and (max-width: 480px) {
+    .main-layout__left-panel,
+    .main-layout__right-panel {
+        height: auto;
+        min-height: 50vh;
+    }
+
+    .login-section {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .login-section__title {
+        font-size: 20px;
+    }
+
+    .login-section__subtitle {
+        font-size: 14px;
+    }
+
+    .login-section__form-label {
+        font-size: 11px;
+    }
+
+    .login-section__form-input {
+        padding: 8px;
+    }
+
+    .brand-logo {
+        max-width: 70%;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media screen and (max-width: 320px) {
+    .login-section {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .login-section__title {
+        font-size: 18px;
+    }
+
+    .login-section__subtitle {
+        font-size: 12px;
+    }
+} 
