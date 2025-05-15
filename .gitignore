@@ -4,29 +4,41 @@
 
 # dependencies
 /frontend/node_modules
+/node_modules
 
 # build output
 /frontend/dist
+/dist
 
 # environment variables
 /frontend/.env
 /frontend/.env.*.local
+/.env
+/.env.*.local
 
 # IDEs and editors
 /frontend/.vscode
 /frontend/.idea
+/.vscode
+/.idea
 
 # macOS
 /frontend/.DS_Store
+/.DS_Store
 
 # Logs
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
 /frontend/pnpm-debug.log*
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+/pnpm-debug.log*
 
 # TypeScript
 /frontend/*.tsbuildinfo
+/*.tsbuildinfo
 
 ############################
 # BACK-END (Spring Boot)
@@ -35,25 +47,35 @@
 # Maven / Gradle
 /backend/target/
 /backend/build/
+/target/
+/build/
 
 # Eclipse
 /backend/.classpath
 /backend/.project
 /backend/.settings/
+/.classpath
+.project
+.settings/
 
 # IntelliJ
 /backend/.idea/
+/.idea/
+/*.iml
 **/*.iml
 
 # VS Code
 /backend/.vscode/
+/.vscode
 
 # OS
 /backend/.DS_Store
 
 # Logs
 /backend/logs/
-*.log
+/backend/*.log
+/logs/
+/*.log
 
 # Environment variables
 /backend/.env
@@ -62,8 +84,14 @@
 /backend/h2db.mv.db
 /backend/h2db.trace.db
 /backend/*.db
+/h2db.mv.db
+/h2db.trace.db
+/*.db
 
 # Others
 /backend/.gradle
 /backend/.mvn
 /backend/.spring-boot-devtools.properties
+/.gradle
+/.mvn
+/.spring-boot-devtools.properties
