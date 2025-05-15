@@ -1,0 +1,69 @@
+############################
+# FRONT-END (React + Vite)
+############################
+
+# dependencies
+/frontend/node_modules
+
+# build output
+/frontend/dist
+
+# environment variables
+/frontend/.env
+/frontend/.env.*.local
+
+# IDEs and editors
+/frontend/.vscode
+/frontend/.idea
+
+# macOS
+/frontend/.DS_Store
+
+# Logs
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/pnpm-debug.log*
+
+# TypeScript
+/frontend/*.tsbuildinfo
+
+############################
+# BACK-END (Spring Boot)
+############################
+
+# Maven / Gradle
+/backend/target/
+/backend/build/
+
+# Eclipse
+/backend/.classpath
+/backend/.project
+/backend/.settings/
+
+# IntelliJ
+/backend/.idea/
+**/*.iml
+
+# VS Code
+/backend/.vscode/
+
+# OS
+/backend/.DS_Store
+
+# Logs
+/backend/logs/
+*.log
+
+# Environment variables
+/backend/.env
+
+# Local database / runtime files
+/backend/h2db.mv.db
+/backend/h2db.trace.db
+/backend/*.db
+
+# Others
+/backend/.gradle
+/backend/.mvn
+/backend/.spring-boot-devtools.properties
