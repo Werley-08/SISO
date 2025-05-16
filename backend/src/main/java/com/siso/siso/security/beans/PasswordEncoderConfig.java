@@ -1,4 +1,4 @@
-package com.siso.siso.security;
+package com.siso.siso.security.beans;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
