@@ -2,8 +2,8 @@ package com.siso.siso.model;
 
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,9 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
+@DiscriminatorValue("ADMIN")
 @Entity
-@Table(name = "administrador")
 public class Administrador extends Usuario{
 
     public Administrador(Integer id, String nome, String username, String senha, Role role, Status status, String telefone, String rua, String bairro, String cidade, String numeroCasa) {

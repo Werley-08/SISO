@@ -1,6 +1,6 @@
 package com.siso.siso.security.filter;
 
-import com.siso.siso.repository.interfaces.IAdministradorRepository;
+import com.siso.siso.repository.interfaces.IUsuarioRepository;
 import com.siso.siso.security.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,13 +19,13 @@ import java.io.IOException;
 public class SecurityFilter extends OncePerRequestFilter {
 
     private final TokenService tokenService;
-    private final IAdministradorRepository administradorRepository;
+    private final IUsuarioRepository usuarioRepository;
 
     @Autowired
     public SecurityFilter(TokenService tokenService,
-                          IAdministradorRepository administradorRepository) {
+                          IUsuarioRepository usuarioRepository) {
         this.tokenService = tokenService;
-        this.administradorRepository = administradorRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         var token = this.recoverToken(request);
         if(token != null) {
             var username = tokenService.validateToken(token);
-            UserDetails user = administradorRepository.findByUsername(username);
+            UserDetails user = usuarioRepository.findByUsername(username);
 
             var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(auth);

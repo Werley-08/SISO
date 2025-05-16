@@ -1,4 +1,4 @@
-CREATE TABLE administrador(
+CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -9,5 +9,6 @@ CREATE TABLE administrador(
     rua VARCHAR(100) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
-    numero_casa VARCHAR(10) NOT NULL
+    numero_casa VARCHAR(10) NOT NULL,
+    especialidade VARCHAR(100) -- apenas profissionais da saúde usam
 );

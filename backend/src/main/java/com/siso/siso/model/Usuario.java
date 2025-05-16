@@ -18,7 +18,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role")
+@Table(name = "usuarios")
 public abstract class Usuario implements UserDetails{
 
     @Id
@@ -35,7 +38,7 @@ public abstract class Usuario implements UserDetails{
     private String senha;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20, insertable = false, updatable = false)
     private Role role;
 
     @Enumerated(EnumType.STRING)

@@ -1,6 +1,6 @@
 package com.siso.siso.security.service;
 
-import com.siso.siso.repository.interfaces.IAdministradorRepository;
+import com.siso.siso.repository.interfaces.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsuarioService implements UserDetailsService{
 
-    private final IAdministradorRepository administradorRepository;
+    private final IUsuarioRepository usuarioRepository;
 
     @Autowired
-    public UsuarioService(IAdministradorRepository administradorRepository){
-        this.administradorRepository = administradorRepository;
+    public UsuarioService(IUsuarioRepository usuarioRepository){
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return administradorRepository.findByUsername(username);
+        return usuarioRepository.findByUsername(username);
     }
 }
