@@ -1,11 +1,9 @@
 package com.siso.siso.repository;
 
-import com.siso.siso.model.Usuario;
+import com.siso.siso.model.Administrador;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
-
-
+public interface AdministradorRepository extends JpaRepository<Administrador, Integer>{
 }
