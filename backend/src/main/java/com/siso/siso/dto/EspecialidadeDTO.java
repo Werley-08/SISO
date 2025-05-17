@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EspecialidadeDAO {
+public class EspecialidadeDTO {
     private String nome;
 
 
