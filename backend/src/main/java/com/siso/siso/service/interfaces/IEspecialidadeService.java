@@ -5,4 +5,6 @@ import com.siso.siso.model.Especialidade;
 public interface IEspecialidadeService {
 
     Especialidade cadastrarEspecialidade(Especialidade especialidade);
+
+    Especialidade editarEspecialidade(Especialidade especialidade);
 }

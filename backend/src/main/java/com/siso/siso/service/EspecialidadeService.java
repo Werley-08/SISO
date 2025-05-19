@@ -24,5 +24,13 @@ public class EspecialidadeService implements IEspecialidadeService {
         return especialidadeRepository.save(especialidade);
     }
 
+    @Override
+    public Especialidade editarEspecialidade(Especialidade especialidade) {
+        if(!especialidadeRepository.findById(especialidade.getNome()).isPresent()){
+            throw new IllegalArgumentException("Não existe especialidade cadastrada com esse nome");
+        }
+
+    }
+
 
 }
