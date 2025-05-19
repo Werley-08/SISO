@@ -1,16 +1,37 @@
 @import '../../styles/variables.css';
 
-.sidebar-dropdown {
+.sidebar-dropdown-container {
     position: relative;
     width: 100%;
+    padding: var(--spacing-sm);
 }
 
-.dropdown-button {
+.sidebar-dropdown-button {
+    background-color: var(--color-white);
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-fast);
+    min-width: 200px;
+    width: 100%;
     position: relative;
     padding-right: 40px !important;
 }
 
-.dropdown-arrow {
+.sidebar-dropdown-button:hover {
+    background-color: var(--color-hover-bg);
+}
+
+.sidebar-dropdown-button:hover .sidebar-option-icon svg,
+.sidebar-dropdown-button:hover .sidebar-option-text {
+    color: var(--color-primary);
+    fill: var(--color-primary);
+}
+
+.sidebar-dropdown-arrow {
     position: absolute;
     right: var(--spacing-lg);
     display: flex;
@@ -19,22 +40,28 @@
     transition: transform var(--transition-fast);
 }
 
-.dropdown-arrow svg {
-    width: 16px;
-    height: 16px;
+.sidebar-dropdown-arrow svg {
+    width: 18px;
     fill: var(--color-icon);
     transition: fill var(--transition-fast);
 }
 
-.dropdown-arrow.open {
+.sidebar-dropdown-arrow.open {
     transform: rotate(180deg);
 }
 
-.dropdown-button.active .dropdown-arrow svg {
+.sidebar-dropdown-button.active {
+    background-color: var(--color-hover-bg);
+}
+
+.sidebar-dropdown-button.active .sidebar-option-text,
+.sidebar-dropdown-button.active .sidebar-option-icon svg,
+.sidebar-dropdown-button.active .sidebar-dropdown-arrow svg {
+    color: var(--color-primary);
     fill: var(--color-primary);
 }
 
-.dropdown-options {
+.sidebar-dropdown-menu {
     position: relative;
     background-color: var(--color-white);
     border-radius: var(--border-radius-md);
@@ -45,12 +72,12 @@
     opacity: 0;
 }
 
-.dropdown-options.open {
+.sidebar-dropdown-menu.open {
     max-height: 200px;
     opacity: 1;
 }
 
-.dropdown-option {
+.sidebar-dropdown-item {
     width: 100%;
     padding: var(--spacing-md) var(--spacing-lg);
     text-align: left;
@@ -63,17 +90,7 @@
     transition: background-color var(--transition-fast);
 }
 
-.dropdown-option:hover {
+.sidebar-dropdown-item:hover {
     background-color: var(--color-hover-bg);
     color: var(--color-primary);
-}
-
-.dropdown-button.active {
-    background-color: var(--color-hover-bg);
-}
-
-.dropdown-button.active .text,
-.dropdown-button.active .icon svg {
-    color: var(--color-primary);
-    fill: var(--color-primary);
 } 

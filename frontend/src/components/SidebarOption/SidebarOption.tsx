@@ -8,10 +8,10 @@ interface SidebarOptionProps {
 const SidebarOption = ({ icon, text } : SidebarOptionProps) => {
 
     return (
-        <div className="sidebaropcion">
-            <button className="opcion">
-                <span className="icon">{icon}</span>
-                <span className="text" >{text}</span>
+        <div className="sidebar-option-wrapper">
+            <button className="sidebar-option-button">
+                <span className="sidebar-option-icon">{icon}</span>
+                <span className="sidebar-option-text">{text}</span>
             </button>
         </div>
     );

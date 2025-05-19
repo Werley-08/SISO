@@ -7,6 +7,7 @@ import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard-ic
 import { ReactComponent as PacientIcon } from "../../assets/icons/Paciente-icon.svg"
 import { ReactComponent as UserIcon } from "../../assets/icons/Usuario-icon.svg"
 import { ReactComponent as ScheduleIcon } from "../../assets/icons/Agendamentos-icon.svg"
+import { ReactComponent as LogoutIcon } from "../../assets/icons/Logout-icon.svg"
 
 const Sidebar = () => {
 
@@ -22,34 +23,34 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="sidebar">
-            <div className="main-layout-inside">
-                <div className="logo-layout">
-                    <img className="logo" src={logo}/>
+        <div className="sidebar-container">
+            <div className="sidebar-content">
+                <div className="sidebar-logo-container">
+                    <img className="sidebar-logo" src={logo} alt="SISO Logo"/>
                 </div>
 
-                <div className="sidebar-options">
-                    <div className="option">
+                <div className="sidebar-menu">
+                    <div className="menu-item">
                         <SidebarOption icon={<DashboardIcon />} text="Dashboard"/>
                     </div>
-                    <div className="option">
+                    <div className="menu-item">
                         <SidebarOption icon={<PacientIcon />} text="Pacientes"/>
                     </div>
-                    <div className="option">
+                    <div className="menu-item">
                         <SidebarDropdown 
                             icon={<UserIcon />} 
                             text="Usuários" 
                             options={dropdownOptions}
                         />
                     </div>
-                    <div className="option">
+                    <div className="menu-item">
                         <SidebarOption icon={<ScheduleIcon />} text="Agendamentos"/>
                     </div>
                 </div>
 
-                <div className="footer">
-                    <div className="option">
-                        <SidebarLogout icon={<DashboardIcon />} text="Logout"/>
+                <div className="sidebar-footer">
+                    <div className="menu-item">
+                        <SidebarLogout icon={<LogoutIcon />} text="Logout"/>
                     </div>
                 </div>
             </div>

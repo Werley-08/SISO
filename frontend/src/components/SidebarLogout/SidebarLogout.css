@@ -1,48 +1,49 @@
 @import '../../styles/variables.css';
 
-.sidebaropcion {
+.sidebar-logout-wrapper {
     padding: var(--spacing-sm);
     width: 100%;
 }
 
-.opcionLogout {
+.sidebar-logout-button {
     background-color: var(--color-icon);
     border: none;
     display: flex;
     align-items: center;
     padding: var(--spacing-md) var(--spacing-lg);
     cursor: pointer;
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-sm);
     transition: background-color var(--transition-fast);
     min-width: 200px;
     width: 100%;
 }
 
-.opcionLogout:hover {
+.sidebar-logout-button:hover {
     background-color: var(--color-hover-bg);
 }
 
-.opcionLogout:hover .iconLogout svg,
-.opcionLogout:hover .textLogout {
+.sidebar-logout-button:hover .sidebar-logout-icon svg,
+.sidebar-logout-button:hover .sidebar-logout-text {
     color: var(--color-icon);
     fill: var(--color-icon);
 }
 
-.iconLogout {
-    width: 20px;
+.sidebar-logout-icon {
+    width: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: var(--spacing-sm);
 }
 
-.iconLogout svg {
-    width: 20px;
+.sidebar-logout-icon svg {
+    width: 18px;
     color: var(--color-white);
     fill: var(--color-white);
 }
 
-.textLogout {
+.sidebar-logout-text {
+    margin-top: 5px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-white);

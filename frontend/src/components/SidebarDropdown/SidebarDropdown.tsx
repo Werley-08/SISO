@@ -15,25 +15,25 @@ const SidebarDropdown: React.FC<SidebarDropdownProps> = ({ icon, text, options }
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="sidebaropcion">
+        <div className="sidebar-dropdown-container">
             <button 
-                className={`opcion dropdown-button ${isOpen ? 'active' : ''}`}
+                className={`sidebar-dropdown-button ${isOpen ? 'active' : ''}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <div className="icon">
+                <div className="sidebar-option-icon">
                     {icon}
                 </div>
-                <span className="text">{text}</span>
-                <div className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>
+                <span className="sidebar-option-text">{text}</span>
+                <div className={`sidebar-dropdown-arrow ${isOpen ? 'open' : ''}`}>
                     <ArrowIcon />
                 </div>
             </button>
             
-            <div className={`dropdown-options ${isOpen ? 'open' : ''}`}>
+            <div className={`sidebar-dropdown-menu ${isOpen ? 'open' : ''}`}>
                 {options.map((option, index) => (
                     <button
                         key={index}
-                        className="dropdown-option"
+                        className="sidebar-dropdown-item"
                         onClick={() => {
                             option.onClick();
                             setIsOpen(false);
