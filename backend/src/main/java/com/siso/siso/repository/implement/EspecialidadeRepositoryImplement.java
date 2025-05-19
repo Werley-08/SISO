@@ -24,7 +24,12 @@ public class EspecialidadeRepositoryImplement implements IEspecialidadeRepositor
     }
 
     @Override
-    public Optional<Especialidade> findById(String nome){
-        return especialidadeRepository.findById(nome);
+    public Optional<Especialidade> findById(int id){
+        return especialidadeRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Especialidade> findByNome(String nome){
+        return especialidadeRepository.findByNome(nome);
     }
 }

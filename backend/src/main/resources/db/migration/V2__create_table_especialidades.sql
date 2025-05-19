@@ -1,3 +1,4 @@
 create table especialidades(
-    nome VARCHAR(100) PRIMARY KEY NOT NULL
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
 );
