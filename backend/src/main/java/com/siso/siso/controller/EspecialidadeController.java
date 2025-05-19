@@ -22,15 +22,12 @@ public class EspecialidadeController {
 
     @PostMapping("/cadastrar")
     public EspecialidadeDTO cadastrarEspecialidade(@RequestBody EspecialidadeDTO especialidadeDTO) {
-        return toDTO(especialidadeService.cadastrarEspecialidade(toModel(especialidadeDTO)))
-       
+        return toDTO(especialidadeService.cadastrarEspecialidade(toModel(especialidadeDTO)));
+
     }
 
-    @PutMapping("/editar")
-    public EspecialidadeDTO editarEspecialidade(@RequestBody EspecialidadeDTO especialidadeDTO) {
-        Especialidade especialidade = toModel(especialidadeDTO);
-
-        Especialidade especialidadeEditada = especialidadeService.editarEspecialidade(especialidade);
-        return toDTO(especialidadeEditada);
+    @PutMapping("/editar/{id}")
+    public EspecialidadeDTO editarEspecialidade(@PathVariable int id , @RequestBody EspecialidadeDTO especialidadeDTO) {
+        return toDTO(especialidadeService.editarEspecialidade(id, toModel(especialidadeDTO)));
     }
 }

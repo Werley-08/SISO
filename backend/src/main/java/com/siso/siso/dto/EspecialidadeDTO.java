@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EspecialidadeDTO {
+    private int id;
     private String nome;
 
 

@@ -6,5 +6,5 @@ public interface IEspecialidadeService {
 
     Especialidade cadastrarEspecialidade(Especialidade especialidade);
 
-    Especialidade editarEspecialidade(Especialidade especialidade);
+    Especialidade editarEspecialidade(int id, Especialidade especialidade);
 }
