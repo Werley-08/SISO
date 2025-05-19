@@ -1,48 +1,49 @@
 @import '../../styles/variables.css';
 
-.sidebaropcion {
+.sidebar-option-wrapper {
     padding: var(--spacing-sm);
     width: 100%;
 }
 
-.opcion {
+.sidebar-option-button {
     background-color: var(--color-white);
     border: none;
     display: flex;
     align-items: center;
     padding: var(--spacing-md) var(--spacing-lg);
     cursor: pointer;
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-sm);
     transition: background-color var(--transition-fast);
     min-width: 200px;
     width: 100%;
 }
 
-.opcion:hover {
+.sidebar-option-button:hover {
     background-color: var(--color-hover-bg);
 }
 
-.opcion:hover .icon svg,
-.opcion:hover .text {
+.sidebar-option-button:hover .sidebar-option-icon svg,
+.sidebar-option-button:hover .sidebar-option-text {
     color: var(--color-primary);
     fill: var(--color-primary);
 }
 
-.icon {
-    width: 20px;
+.sidebar-option-icon {
+    width: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: var(--spacing-sm);
 }
 
-.icon svg {
-    width: 20px;
+.sidebar-option-icon svg {
+    width: 18px;
     color: var(--color-icon);
     fill: var(--color-icon);
 }
 
-.text {
+.sidebar-option-text {
+    margin-top: 5px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     color: var(--color-icon);

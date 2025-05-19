@@ -8,10 +8,10 @@ interface SidebarOptionProps {
 const SidebarLogout = ({ icon, text } : SidebarOptionProps) => {
 
     return (
-        <div className="sidebaropcion">
-            <button className="opcionLogout">
-                <span className="iconLogout">{icon}</span>
-                <span className="textLogout" >{text}</span>
+        <div className="sidebar-logout-wrapper">
+            <button className="sidebar-logout-button">
+                <span className="sidebar-logout-icon">{icon}</span>
+                <span className="sidebar-logout-text">{text}</span>
             </button>
         </div>
     );
