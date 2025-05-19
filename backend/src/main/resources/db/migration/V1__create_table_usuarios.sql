@@ -10,5 +10,5 @@ CREATE TABLE usuarios (
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
     numero_casa VARCHAR(10) NOT NULL,
-    especialidade VARCHAR(100) -- apenas profissionais da saúde usam
+    especialidade VARCHAR(100)
 );
