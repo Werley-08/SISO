@@ -1,0 +1,96 @@
+@import '../../styles/variables.css';
+
+.sidebar-dropdown-container {
+    position: relative;
+    width: 100%;
+    padding: var(--spacing-sm);
+}
+
+.sidebar-dropdown-button {
+    background-color: var(--color-white);
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-fast);
+    min-width: 200px;
+    width: 100%;
+    position: relative;
+    padding-right: 40px !important;
+}
+
+.sidebar-dropdown-button:hover {
+    background-color: var(--color-hover-bg);
+}
+
+.sidebar-dropdown-button:hover .sidebar-option-icon svg,
+.sidebar-dropdown-button:hover .sidebar-option-text {
+    color: var(--color-primary);
+    fill: var(--color-primary);
+}
+
+.sidebar-dropdown-arrow {
+    position: absolute;
+    right: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast);
+}
+
+.sidebar-dropdown-arrow svg {
+    width: 18px;
+    fill: var(--color-icon);
+    transition: fill var(--transition-fast);
+}
+
+.sidebar-dropdown-arrow.open {
+    transform: rotate(180deg);
+}
+
+.sidebar-dropdown-button.active {
+    background-color: var(--color-hover-bg);
+}
+
+.sidebar-dropdown-button.active .sidebar-option-text,
+.sidebar-dropdown-button.active .sidebar-option-icon svg,
+.sidebar-dropdown-button.active .sidebar-dropdown-arrow svg {
+    color: var(--color-primary);
+    fill: var(--color-primary);
+}
+
+.sidebar-dropdown-menu {
+    position: relative;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    margin-top: var(--spacing-xs);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    max-height: 0;
+    opacity: 0;
+}
+
+.sidebar-dropdown-menu.open {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.sidebar-dropdown-item {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    transition: background-color var(--transition-fast);
+}
+
+.sidebar-dropdown-item:hover {
+    background-color: var(--color-hover-bg);
+    color: var(--color-primary);
+} 

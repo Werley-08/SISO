@@ -1,14 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import logo from '../../assets/images/SISO---LogoLOGO---2.png';
 
 const Login = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log('Login:', login, 'Password:', password);
+        navigate('/GerenciamentoDeUsuarios');
     };
 
     return (
