@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 public class Administrador extends Usuario{
 
-    public Administrador(Integer id, String nome, String username, String senha, Role role, Status status, String telefone, String rua, String bairro, String cidade, String numeroCasa) {
-        super(id, nome, username, senha, role, status, telefone, rua, bairro, cidade, numeroCasa);
+    public Administrador(Integer id, String nome, String username, String senha, Role role, Status status, String telefone, String rua, String bairro, String cidade, String numero_casa) {
+        super(id, nome, username, senha, role, status, telefone, rua, bairro, cidade, numero_casa);
     }
 }

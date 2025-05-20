@@ -38,7 +38,7 @@ public abstract class Usuario implements UserDetails{
     private String senha;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20, insertable = false, updatable = false)
+    @Column(nullable = false, length = 50, insertable = false, updatable = false)
     private Role role;
 
     @Enumerated(EnumType.STRING)

@@ -1,7 +1,6 @@
 package com.siso.siso.controller;
 
 import com.siso.siso.dto.EspecialidadeDTO;
-import com.siso.siso.model.Especialidade;
 import com.siso.siso.service.interfaces.IEspecialidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
