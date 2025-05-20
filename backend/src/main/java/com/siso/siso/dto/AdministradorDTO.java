@@ -1,4 +1,4 @@
-package com.siso.siso.dto.create;
+package com.siso.siso.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateAdministradorDTO{
+public class AdministradorDTO {
 
     private String nome;
     private String username;

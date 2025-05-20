@@ -1,14 +1,14 @@
-package com.siso.siso.mapper.create;
+package com.siso.siso.mapper;
 
-import com.siso.siso.dto.create.CreateAdministradorDTO;
+import com.siso.siso.dto.AdministradorDTO;
 import com.siso.siso.model.Administrador;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
 
-public interface CreateAdministradorMapper{
+public interface AdministradorMapper {
 
-    static CreateAdministradorDTO toDTO(Administrador administrador){
-        return new CreateAdministradorDTO(
+    static AdministradorDTO toDTO(Administrador administrador){
+        return new AdministradorDTO(
                 administrador.getNome(),
                 administrador.getUsername(),
                 administrador.getSenha(),
@@ -20,7 +20,7 @@ public interface CreateAdministradorMapper{
         );
     }
 
-    static Administrador toModel(CreateAdministradorDTO createAdministradorDTO){
+    static Administrador toModel(AdministradorDTO createAdministradorDTO){
          return new Administrador(
                  null,
                  createAdministradorDTO.getNome(),

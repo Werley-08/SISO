@@ -5,8 +5,8 @@ import com.siso.siso.service.interfaces.IEspecialidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static com.siso.siso.mapper.create.EspecialidadeMapper.toDTO;
-import static com.siso.siso.mapper.create.EspecialidadeMapper.toModel;
+import static com.siso.siso.mapper.EspecialidadeMapper.toDTO;
+import static com.siso.siso.mapper.EspecialidadeMapper.toModel;
 
 @RestController
 @RequestMapping("api/especialidade")
