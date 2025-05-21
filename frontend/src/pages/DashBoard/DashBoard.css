@@ -1,14 +1,14 @@
-.main-layout {
+.dashboard-container {
     display: flex;
     flex-direction: row;
 }
 
-.main-layout__sidebar {
+.dashboard-container__sidebar {
 
 
 }
 
-.main-layout__left-panel {
+.dashboard-container__content {
 
 
 }

@@ -4,12 +4,12 @@ import './GerenciamentoDeProfissionalDaSaude.css'
 const GerenciamentoDeProfissionalDaSaude = () => {
 
     return (
-        <div className="main-layout">
-            <div className="main-layout__sidebar">
+        <div className="profissional-container">
+            <div className="profissional-container__sidebar">
                 <Sidebar />
             </div>
 
-            <div className="main-layout__left-panel">
+            <div className="profissional-container__content">
 
             </div>
         </div>

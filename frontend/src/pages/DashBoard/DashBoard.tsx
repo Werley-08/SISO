@@ -4,12 +4,12 @@ import './DashBoard.css'
 const DashBoard = () => {
 
     return (
-        <div className="main-layout">
-            <div className="main-layout__sidebar">
+        <div className="dashboard-container">
+            <div className="dashboard-container__sidebar">
                 <Sidebar />
             </div>
 
-            <div className="main-layout__left-panel">
+            <div className="dashboard-container__content">
 
             </div>
         </div>

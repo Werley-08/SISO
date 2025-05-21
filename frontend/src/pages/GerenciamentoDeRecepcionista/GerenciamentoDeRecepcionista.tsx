@@ -4,12 +4,12 @@ import './GerenciamentoDeRecepcionista.css'
 const GerenciamentoDeRecepcionista = () => {
 
     return (
-        <div className="main-layout">
-            <div className="main-layout__sidebar">
+        <div className="recepcionista-container">
+            <div className="recepcionista-container__sidebar">
                 <Sidebar />
             </div>
 
-            <div className="main-layout__left-panel">
+            <div className="recepcionista-container__content">
 
             </div>
         </div>

@@ -1,14 +1,14 @@
-.main-layout {
+.profissional-container {
     display: flex;
     flex-direction: row;
 }
 
-.main-layout__sidebar {
+.profissional-container__sidebar {
 
 
 }
 
-.main-layout__left-panel {
+.profissional-container__content {
 
 
 }
