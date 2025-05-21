@@ -6,7 +6,7 @@
 }
 
 .sidebar-logout-button {
-    background-color: var(--color-icon);
+    background-color: var(--cor10);
     border: none;
     display: flex;
     align-items: center;
@@ -19,13 +19,13 @@
 }
 
 .sidebar-logout-button:hover {
-    background-color: var(--color-hover-bg);
+    background-color: var(--cor2);
 }
 
 .sidebar-logout-button:hover .sidebar-logout-icon svg,
 .sidebar-logout-button:hover .sidebar-logout-text {
-    color: var(--color-icon);
-    fill: var(--color-icon);
+    color: var(--cor10);
+    fill: var(--cor10);
 }
 
 .sidebar-logout-icon {
@@ -38,13 +38,13 @@
 
 .sidebar-logout-icon svg {
     width: 18px;
-    color: var(--color-white);
-    fill: var(--color-white);
+    color: var(--cor3);
+    fill: var(--cor3);
 }
 
 .sidebar-logout-text {
     margin-top: 5px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-white);
+    color: var(--cor3);
 }

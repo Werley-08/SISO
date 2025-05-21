@@ -80,15 +80,15 @@
 }
 
 .login-section__form-input {
-    border: 1px solid var(--color-white);
-    background-color: var(--color-primary);
+    border: 1px solid var(--cor3);
+    background-color: var(--cor1);
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
     outline: none;
-    color: var(--color-white);
+    color: var(--cor3);
     transition: border-color 0.3s ease;
 }
 
@@ -98,16 +98,16 @@
 }
 
 .login-section__form-input:focus {
-    border-color: var(--color-border);
+    border-color: var(--cor8);
     color: #343434;
     border-width: 1px; 
 }
 
 .login-section__submit-button {
     border-radius: 8px;
-    background-color: var(--color-white);
-    border-color: var(--color-white);
-    color: var(--color-primary);
+    background-color: var(--cor3);
+    border-color: var(--cor3);
+    color: var(--cor1);
     font-weight: 600; 
     font-family: 'Poppins', sans-serif;
     padding: 10px 20px;
@@ -119,7 +119,7 @@
 
 .login-section__submit-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--color-shadow);
+    box-shadow: 0 4px 8px var(--cor9);
 }
 
 /* Media Queries para Responsividade */
