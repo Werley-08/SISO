@@ -13,6 +13,14 @@ import { useNavigate } from 'react-router-dom'
 const Sidebar = () => {
     const navigate = useNavigate();
 
+    const handleLogoClick = () => {
+        navigate('/Dashboard');
+    };
+
+    const handleDashboardClick = () => {
+        navigate('/Dashboard');
+    };
+
     const dropdownOptions = [
         {
             text: "Recepcionista",
@@ -28,12 +36,22 @@ const Sidebar = () => {
         <div className="sidebar-container">
             <div className="sidebar-content">
                 <div className="sidebar-logo-container">
-                    <img className="sidebar-logo" src={logo} alt="SISO Logo"/>
+                    <img 
+                        className="sidebar-logo" 
+                        src={logo} 
+                        alt="SISO Logo"
+                        onClick={handleLogoClick}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </div>
 
                 <div className="sidebar-menu">
                     <div className="menu-item">
-                        <SidebarOption icon={<DashboardIcon />} text="Dashboard"/>
+                        <SidebarOption 
+                            icon={<DashboardIcon />} 
+                            text="Dashboard"
+                            onClick={handleDashboardClick}
+                        />
                     </div>
                     <div className="menu-item">
                         <SidebarOption icon={<PacientIcon />} text="Pacientes"/>

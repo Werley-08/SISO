@@ -1,5 +1,17 @@
 @import '../../../styles/variables.css';
 
+@keyframes borderPulse {
+    0% {
+        border-image: linear-gradient(to bottom, var(--cor8), var(--cor1), var(--cor8)) 1;
+    }
+    50% {
+        border-image: linear-gradient(to bottom, var(--cor1), var(--cor8), var(--cor1)) 1;
+    }
+    100% {
+        border-image: linear-gradient(to bottom, var(--cor8), var(--cor1), var(--cor8)) 1;
+    }
+}
+
 .sidebar-container {
     width: 250px;
     height: 100vh;
@@ -8,6 +20,24 @@
     display: flex;
     flex-direction: column;
     transition: width 0.3s ease;
+    animation: borderPulse 6s ease-in-out infinite;
+    position: relative;
+}
+
+.sidebar-container::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(to bottom, 
+        var(--cor8) 0%,
+        var(--cor1) 50%,
+        var(--cor8) 100%
+    );
+    animation: borderPulse 6s ease-in-out infinite;
+    opacity: 0.7;
 }
 
 .sidebar-content {
@@ -27,6 +57,11 @@
 .sidebar-logo {
     max-width: 90px;
     height: auto;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-logo:hover {
+    transform: scale(1.05);
 }
 
 .sidebar-menu {
