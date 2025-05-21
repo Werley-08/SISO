@@ -15,36 +15,36 @@ const Login = () => {
     };
 
     return (
-        <div className="main-layout">
-            <div className="main-layout__left-panel">
-                <img className="brand-logo" src={logo} alt="SISO Logo" />
+        <div className="login-container">
+            <div className="login-container__brand-panel">
+                <img className="login-brand-logo" src={logo} alt="SISO Logo" />
             </div>
 
-            <div className="main-layout__right-panel">
-                <div className="login-section">
-                    <div className="login-section__header">
-                        <p className="login-section__subtitle">Bem-vindo de volta!</p>
-                        <p className="login-section__title">Faça seu login</p>
+            <div className="login-container__form-panel">
+                <div className="login-form-container">
+                    <div className="login-form-container__header">
+                        <p className="login-form-container__subtitle">Bem-vindo de volta!</p>
+                        <p className="login-form-container__title">Faça seu login</p>
                     </div>
 
-                    <form className="login-section__form" onSubmit={handleSubmit}>
-                        <p className="login-section__form-label">Login</p>
+                    <form className="login-form-container__form" onSubmit={handleSubmit}>
+                        <p className="login-form-container__label">Login</p>
                         <input 
-                            className="login-section__form-input" 
+                            className="login-form-container__input" 
                             type="text" 
                             placeholder="digite seu login"
                             value={login}
                             onChange={(e) => setLogin(e.target.value)}
                         />
-                        <p className="login-section__form-label">Senha</p>
+                        <p className="login-form-container__label">Senha</p>
                         <input 
-                            className="login-section__form-input" 
+                            className="login-form-container__input" 
                             type="password" 
                             placeholder="digite sua senha"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button type="submit" className="login-section__submit-button">
+                        <button type="submit" className="login-form-container__submit">
                             <p>Login</p>
                         </button>
                     </form>
