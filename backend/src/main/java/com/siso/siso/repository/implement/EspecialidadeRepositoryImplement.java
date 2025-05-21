@@ -6,6 +6,7 @@ import com.siso.siso.repository.interfaces.IEspecialidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -31,5 +32,10 @@ public class EspecialidadeRepositoryImplement implements IEspecialidadeRepositor
     @Override
     public Optional<Especialidade> findByNome(String nome){
         return especialidadeRepository.findByNome(nome);
+    }
+
+    @Override
+    public List<Especialidade> findAll(){
+        return especialidadeRepository.findAll();
     }
 }
