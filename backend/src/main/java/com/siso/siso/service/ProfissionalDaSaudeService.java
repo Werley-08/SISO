@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
 
@@ -47,5 +49,10 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
 
         profissionalDaSaude.setSenha(null);
         return profissionalDaSaude;
+    }
+
+    @Override
+    public List<ProfissionalDaSaude> visualizarProfissionaisDaSaude(){
+        return profissionalDaSaudeRepository.findAll();
     }
 }

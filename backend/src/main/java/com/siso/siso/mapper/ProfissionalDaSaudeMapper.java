@@ -5,6 +5,9 @@ import com.siso.siso.model.ProfissionalDaSaude;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public interface ProfissionalDaSaudeMapper {
 
     static ProfissionalDaSaudeDTO toDTO(ProfissionalDaSaude profissionalDaSaude) {
@@ -37,5 +40,23 @@ public interface ProfissionalDaSaudeMapper {
                 profissionalDaSaudeDTO.getNumero_casa(),
                 profissionalDaSaudeDTO.getEspecialidade()
         );
+    }
+
+    public static List<ProfissionalDaSaudeDTO> toDTO(List<ProfissionalDaSaude> profissionais) {
+        return profissionais.stream()
+                .map(profissional -> {
+                    ProfissionalDaSaudeDTO dto = new ProfissionalDaSaudeDTO();
+                    dto.setNome(profissional.getNome());
+                    dto.setUsername(profissional.getUsername());
+                    dto.setSenha(null);
+                    dto.setTelefone(profissional.getTelefone());
+                    dto.setRua(profissional.getRua());
+                    dto.setBairro(profissional.getBairro());
+                    dto.setCidade(profissional.getCidade());
+                    dto.setNumero_casa(profissional.getNumero_casa());
+                    dto.setEspecialidade(profissional.getEspecialidade());
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 }

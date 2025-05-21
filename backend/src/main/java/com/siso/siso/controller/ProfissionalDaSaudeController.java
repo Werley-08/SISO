@@ -5,6 +5,8 @@ import com.siso.siso.service.interfaces.IProfissionalDaSaudeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.siso.siso.mapper.ProfissionalDaSaudeMapper.toDTO;
 import static com.siso.siso.mapper.ProfissionalDaSaudeMapper.toModel;
 
@@ -24,8 +26,13 @@ public class ProfissionalDaSaudeController{
         return toDTO(profissionalDaSaudeService.cadastrarProfissionalDaSaude(toModel(profissionalDaSaudeDTO)));
     }
 
-    @GetMapping("visualizar/{id}")
+    @GetMapping("/visualizar/{id}")
     public ProfissionalDaSaudeDTO visualizarProfissionalDaSaude(@PathVariable Integer id){
         return toDTO(profissionalDaSaudeService.visualizarProfissionalDaSaude(id));
+    }
+
+    @GetMapping("/visualizarTodos")
+    public List<ProfissionalDaSaudeDTO> visualizarProfissionalDaSaude(){
+        return toDTO(profissionalDaSaudeService.visualizarProfissionaisDaSaude());
     }
 }
