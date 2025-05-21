@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@DiscriminatorValue("PROFISSIONAL_SAUDE")
+@DiscriminatorValue("PROFISSIONAL_DA_SAUDE")
 @Entity
 public class ProfissionalDaSaude extends Usuario{
 

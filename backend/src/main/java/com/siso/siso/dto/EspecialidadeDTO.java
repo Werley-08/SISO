@@ -13,6 +13,4 @@ import lombok.Setter;
 public class EspecialidadeDTO {
     private int id;
     private String nome;
-
-
 }

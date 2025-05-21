@@ -1,5 +1,6 @@
 package com.siso.siso.dto;
 
+import com.siso.siso.model.Especialidade;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,5 @@ public class ProfissionalDaSaudeDTO {
     private String bairro;
     private String cidade;
     private String numero_casa;
-    private Integer especialidade_id;
+    private Especialidade especialidade;
 }
