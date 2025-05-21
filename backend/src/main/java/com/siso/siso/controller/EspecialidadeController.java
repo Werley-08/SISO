@@ -28,7 +28,7 @@ public class EspecialidadeController {
     }
 
     @PutMapping("/editar/{id}")
-    public EspecialidadeDTO editarEspecialidade(@PathVariable int id , @RequestBody EspecialidadeDTO especialidadeDTO) {
+    public EspecialidadeDTO editarEspecialidade(@PathVariable Integer id , @RequestBody EspecialidadeDTO especialidadeDTO) {
         return toDTO(especialidadeService.editarEspecialidade(id, toModel(especialidadeDTO)));
     }
 

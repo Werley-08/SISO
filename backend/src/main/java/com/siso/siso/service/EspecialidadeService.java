@@ -29,7 +29,7 @@ public class EspecialidadeService implements IEspecialidadeService {
     }
 
     @Override
-    public Especialidade editarEspecialidade(int id, Especialidade especialidadeAtual) {
+    public Especialidade editarEspecialidade(Integer id, Especialidade especialidadeAtual) {
 
         Especialidade especialidade = especialidadeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Não existe uma especialidade cadastrada com esse id."));

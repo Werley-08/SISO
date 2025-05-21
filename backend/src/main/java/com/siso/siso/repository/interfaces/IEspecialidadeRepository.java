@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IEspecialidadeRepository {
     Especialidade save(Especialidade especialidade);
-    Optional<Especialidade> findById(int id);
+    Optional<Especialidade> findById(Integer id);
     Optional<Especialidade> findByNome(String nome);
     List<Especialidade> findAll();
 }

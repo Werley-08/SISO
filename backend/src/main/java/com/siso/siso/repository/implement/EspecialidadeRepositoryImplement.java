@@ -25,7 +25,7 @@ public class EspecialidadeRepositoryImplement implements IEspecialidadeRepositor
     }
 
     @Override
-    public Optional<Especialidade> findById(int id){
+    public Optional<Especialidade> findById(Integer id){
         return especialidadeRepository.findById(id);
     }
 
