@@ -23,4 +23,9 @@ public class ProfissionalDaSaudeController{
     public ProfissionalDaSaudeDTO cadastrarProfissionalDaSaude(@RequestBody ProfissionalDaSaudeDTO profissionalDaSaudeDTO){
         return toDTO(profissionalDaSaudeService.cadastrarProfissionalDaSaude(toModel(profissionalDaSaudeDTO)));
     }
+
+    @GetMapping("visualizar/{id}")
+    public ProfissionalDaSaudeDTO visualizarProfissionalDaSaude(@PathVariable Integer id){
+        return toDTO(profissionalDaSaudeService.visualizarProfissionalDaSaude(id));
+    }
 }

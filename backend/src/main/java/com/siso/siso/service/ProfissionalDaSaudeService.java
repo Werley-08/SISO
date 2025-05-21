@@ -38,4 +38,14 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
         profissionalDaSaude.setSenha(null);
         return profissionalDaSaude;
     }
+
+    @Override
+    public ProfissionalDaSaude visualizarProfissionalDaSaude(Integer id){
+
+        ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(id)
+                .orElseThrow(() -> new  RuntimeException("Profissional não encontrado"));
+
+        profissionalDaSaude.setSenha(null);
+        return profissionalDaSaude;
+    }
 }
