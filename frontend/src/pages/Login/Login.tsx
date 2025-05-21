@@ -11,7 +11,7 @@ const Login = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log('Login:', login, 'Password:', password);
-        navigate('/GerenciamentoDeUsuarios');
+        navigate('/DashBoard');
     };
 
     return (

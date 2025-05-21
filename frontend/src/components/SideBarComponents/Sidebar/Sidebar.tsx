@@ -8,17 +8,19 @@ import { ReactComponent as PacientIcon } from "../../../assets/icons/Paciente-ic
 import { ReactComponent as UserIcon } from "../../../assets/icons/Usuario-icon.svg"
 import { ReactComponent as ScheduleIcon } from "../../../assets/icons/Agendamentos-icon.svg"
 import { ReactComponent as LogoutIcon } from "../../../assets/icons/Logout-icon.svg"
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
+    const navigate = useNavigate();
 
     const dropdownOptions = [
         {
             text: "Recepcionista",
-            onClick: () => console.log("Opção 1 clicada")
+            onClick: () => navigate('/GerenciamentoDeRecepcionista')
         },
         {
             text: "Profissional da Saúde",
-            onClick: () => console.log("Opção 2 clicada")
+            onClick: () => navigate('/GerenciamentoDeProfissionalDaSaude')
         }
     ];
 

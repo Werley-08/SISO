@@ -1,7 +1,7 @@
 import Sidebar from "../../components/SideBarComponents/Sidebar/Sidebar"
-import './GerenciamentoDeUsuarios.css'
+import './GerenciamentoDeRecepcionista.css'
 
-const GerenciamentoDeUsuarios = () => {
+const GerenciamentoDeRecepcionista = () => {
 
     return (
         <div className="main-layout">
@@ -16,4 +16,4 @@ const GerenciamentoDeUsuarios = () => {
     );
 };
 
-export default GerenciamentoDeUsuarios
+export default GerenciamentoDeRecepcionista
