@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SidebarDropdown.css';
-import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow-icon.svg";
+import { ReactComponent as ArrowIcon } from "../../../assets/icons/arrow-icon.svg";
 
 interface SidebarDropdownProps {
     icon: React.ReactNode;

@@ -2,12 +2,12 @@ import './Sidebar.css'
 import SidebarOption from "../SidebarOption/SidebarOption"
 import SidebarDropdown from "../SidebarDropdown/SidebarDropdown"
 import SidebarLogout from '../SidebarLogout/SidebarLogout'
-import logo from "../../assets/images/SISO---LogoLOGO---4.png"
-import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard-icon.svg"
-import { ReactComponent as PacientIcon } from "../../assets/icons/Paciente-icon.svg"
-import { ReactComponent as UserIcon } from "../../assets/icons/Usuario-icon.svg"
-import { ReactComponent as ScheduleIcon } from "../../assets/icons/Agendamentos-icon.svg"
-import { ReactComponent as LogoutIcon } from "../../assets/icons/Logout-icon.svg"
+import logo from "../../../assets/images/SISO---LogoLOGO---4.png"
+import { ReactComponent as DashboardIcon } from "../../../assets/icons/dashboard-icon.svg"
+import { ReactComponent as PacientIcon } from "../../../assets/icons/Paciente-icon.svg"
+import { ReactComponent as UserIcon } from "../../../assets/icons/Usuario-icon.svg"
+import { ReactComponent as ScheduleIcon } from "../../../assets/icons/Agendamentos-icon.svg"
+import { ReactComponent as LogoutIcon } from "../../../assets/icons/Logout-icon.svg"
 
 const Sidebar = () => {
 

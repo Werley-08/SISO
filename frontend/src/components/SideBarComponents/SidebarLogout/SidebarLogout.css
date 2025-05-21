@@ -1,12 +1,12 @@
-@import '../../styles/variables.css';
+@import '../../../styles/variables.css';
 
-.sidebar-option-wrapper {
+.sidebar-logout-wrapper {
     padding: var(--spacing-sm);
     width: 100%;
 }
 
-.sidebar-option-button {
-    background-color: var(--color-white);
+.sidebar-logout-button {
+    background-color: var(--color-icon);
     border: none;
     display: flex;
     align-items: center;
@@ -18,17 +18,17 @@
     width: 100%;
 }
 
-.sidebar-option-button:hover {
+.sidebar-logout-button:hover {
     background-color: var(--color-hover-bg);
 }
 
-.sidebar-option-button:hover .sidebar-option-icon svg,
-.sidebar-option-button:hover .sidebar-option-text {
-    color: var(--color-primary);
-    fill: var(--color-primary);
+.sidebar-logout-button:hover .sidebar-logout-icon svg,
+.sidebar-logout-button:hover .sidebar-logout-text {
+    color: var(--color-icon);
+    fill: var(--color-icon);
 }
 
-.sidebar-option-icon {
+.sidebar-logout-icon {
     width: 18px;
     display: flex;
     align-items: center;
@@ -36,15 +36,15 @@
     margin-right: var(--spacing-sm);
 }
 
-.sidebar-option-icon svg {
+.sidebar-logout-icon svg {
     width: 18px;
-    color: var(--color-icon);
-    fill: var(--color-icon);
+    color: var(--color-white);
+    fill: var(--color-white);
 }
 
-.sidebar-option-text {
+.sidebar-logout-text {
     margin-top: 5px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-icon);
+    color: var(--color-white);
 }
