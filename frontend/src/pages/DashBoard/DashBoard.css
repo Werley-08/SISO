@@ -1,0 +1,14 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboard-container__sidebar {
+
+
+}
+
+.dashboard-container__content {
+
+
+}

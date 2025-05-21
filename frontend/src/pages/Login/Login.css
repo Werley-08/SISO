@@ -9,14 +9,14 @@
     --color-shadow: rgba(0, 0, 0, 0.1);
 }
 
-.main-layout {
+.login-container {
     display: flex;
     flex-direction: row;
     height: 100vh;
     width: 100vw;
 }
 
-.main-layout__left-panel {
+.login-container__brand-panel {
     flex: 50%;
     background-color: #fff;
     height: 100%;
@@ -25,21 +25,21 @@
     align-items: center;     
 }
 
-.main-layout__right-panel {
+.login-container__form-panel {
     flex: 50%;
-    background-color: var(--color-primary);
+    background-color: var(--cor1);
     height: 100%;
     display: flex;           
     justify-content: center; 
     align-items: center;  
 }
 
-.brand-logo {
+.login-brand-logo {
     max-width: 65%;       
     height: auto; 
 }
 
-.login-section {
+.login-form-container {
     display: flex;           
     justify-content: right; 
     align-items: right;
@@ -48,66 +48,66 @@
     width: 50%;
 }
 
-.login-section__subtitle {
+.login-form-container__subtitle {
     font-size: 16px;
     font-weight: 400;
-    color: var(--color-text-secondary);
+    color: var(--cor5);
     margin: 0;
     padding: 0;
 }
 
-.login-section__title {
+.login-form-container__title {
     font-size: 24px;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--cor4);
     margin: 0;
     padding: 0;
 }
 
-.login-section__form {
+.login-form-container__form {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.login-section__form-label {
+.login-form-container__label {
     padding: 0;
     margin: 0;
     font-size: 12px;
     font-weight: 400;
-    color: var(--color-text-label);
+    color: var(--cor6);
     padding-bottom: 5px;
     font-family: 'Poppins', sans-serif;
 }
 
-.login-section__form-input {
-    border: 1px solid var(--color-white);
-    background-color: var(--color-primary);
+.login-form-container__input {
+    border: 1px solid var(--cor3);
+    background-color: var(--cor1);
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
     outline: none;
-    color: var(--color-white);
+    color: var(--cor3);
     transition: border-color 0.3s ease;
 }
 
-.login-section__form-input::placeholder {
-    color: var(--color-text-input);
+.login-form-container__input::placeholder {
+    color: var(--cor7);
     font-size: 11px;
 }
 
-.login-section__form-input:focus {
-    border-color: var(--color-border);
+.login-form-container__input:focus {
+    border-color: var(--cor8);
     color: #343434;
     border-width: 1px; 
 }
 
-.login-section__submit-button {
+.login-form-container__submit {
     border-radius: 8px;
-    background-color: var(--color-white);
-    border-color: var(--color-white);
-    color: var(--color-primary);
+    background-color: var(--cor3);
+    border-color: var(--cor3);
+    color: var(--cor1);
     font-weight: 600; 
     font-family: 'Poppins', sans-serif;
     padding: 10px 20px;
@@ -117,92 +117,92 @@
     margin-top: 6px;
 }
 
-.login-section__submit-button:hover {
+.login-form-container__submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--color-shadow);
+    box-shadow: 0 4px 8px var(--cor9);
 }
 
 /* Media Queries para Responsividade */
 
 /* Tablets */
 @media screen and (max-width: 1024px) {
-    .login-section {
+    .login-form-container {
         width: 70%;
     }
 
-    .brand-logo {
+    .login-brand-logo {
         max-width: 80%;
     }
 }
 
 /* Tablets Pequenos e Celulares Grandes */
 @media screen and (max-width: 768px) {
-    .main-layout {
+    .login-container {
         flex-direction: column;
     }
 
-    .main-layout__left-panel,
-    .main-layout__right-panel {
+    .login-container__brand-panel,
+    .login-container__form-panel {
         flex: none;
         height: 50vh;
     }
 
-    .login-section {
+    .login-form-container {
         width: 80%;
         padding: 20px;
     }
 
-    .brand-logo {
+    .login-brand-logo {
         max-width: 60%;
     }
 }
 
 /* Celulares */
 @media screen and (max-width: 480px) {
-    .main-layout__left-panel,
-    .main-layout__right-panel {
+    .login-container__brand-panel,
+    .login-container__form-panel {
         height: auto;
         min-height: 50vh;
     }
 
-    .login-section {
+    .login-form-container {
         width: 90%;
         padding: 15px;
     }
 
-    .login-section__title {
+    .login-form-container__title {
         font-size: 20px;
     }
 
-    .login-section__subtitle {
+    .login-form-container__subtitle {
         font-size: 14px;
     }
 
-    .login-section__form-label {
+    .login-form-container__label {
         font-size: 11px;
     }
 
-    .login-section__form-input {
+    .login-form-container__input {
         padding: 8px;
     }
 
-    .brand-logo {
+    .login-brand-logo {
         max-width: 70%;
     }
 }
 
 /* Ajustes para telas muito pequenas */
 @media screen and (max-width: 320px) {
-    .login-section {
+    .login-form-container {
         width: 95%;
         padding: 10px;
     }
 
-    .login-section__title {
+    .login-form-container__title {
         font-size: 18px;
     }
 
-    .login-section__subtitle {
+    .login-form-container__subtitle {
         font-size: 12px;
     }
 } 

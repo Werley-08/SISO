@@ -5,6 +5,8 @@ import com.siso.siso.service.interfaces.IEspecialidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.siso.siso.mapper.EspecialidadeMapper.toDTO;
 import static com.siso.siso.mapper.EspecialidadeMapper.toModel;
 
@@ -26,7 +28,12 @@ public class EspecialidadeController {
     }
 
     @PutMapping("/editar/{id}")
-    public EspecialidadeDTO editarEspecialidade(@PathVariable int id , @RequestBody EspecialidadeDTO especialidadeDTO) {
+    public EspecialidadeDTO editarEspecialidade(@PathVariable Integer id , @RequestBody EspecialidadeDTO especialidadeDTO) {
         return toDTO(especialidadeService.editarEspecialidade(id, toModel(especialidadeDTO)));
+    }
+
+    @GetMapping("/visualizar")
+    public List<EspecialidadeDTO> visualizarEspecialidade() {
+        return toDTO(especialidadeService.visualizarEspecialidade());
     }
 }

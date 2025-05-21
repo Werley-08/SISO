@@ -1,0 +1,50 @@
+@import url('../../styles/variables.css');
+
+.actionbutton-container {
+    display: flex;
+    flex-direction: row;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--cor1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.actionbutton-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--cor2);
+    color: var(--cor1);
+}
+
+.actionbutton-container__text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--cor3);
+    transition: all 0.3s ease;
+}
+
+.actionbutton-container__icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: var(--spacing-md);
+    transition: all 0.3s ease;
+}
+
+.actionbutton-container__icon svg {
+    width: 20px;
+    fill: var(--cor3);
+    transition: all 0.3s ease;
+}
+
+.actionbutton-container:hover .actionbutton-container__text {
+    color: var(--cor1);
+}
+
+.actionbutton-container:hover .actionbutton-container__icon svg {
+    fill: var(--cor1);
+}

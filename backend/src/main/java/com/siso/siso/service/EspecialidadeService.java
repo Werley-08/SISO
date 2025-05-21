@@ -7,6 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -28,7 +29,7 @@ public class EspecialidadeService implements IEspecialidadeService {
     }
 
     @Override
-    public Especialidade editarEspecialidade(int id, Especialidade especialidadeAtual) {
+    public Especialidade editarEspecialidade(Integer id, Especialidade especialidadeAtual) {
 
         Especialidade especialidade = especialidadeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Não existe uma especialidade cadastrada com esse id."));
@@ -38,8 +39,11 @@ public class EspecialidadeService implements IEspecialidadeService {
         }
 
         return especialidadeRepository.save(especialidadeAtual);
+    }
 
-
+    @Override
+    public List<Especialidade> visualizarEspecialidade() {
+        return especialidadeRepository.findAll();
     }
 
 

@@ -1,15 +1,16 @@
 :root {
     /* Cores */
-    --color-primary: #48C9B0;
-    --color-hover-bg: #D1F2EB;
-    --color-white: #fff;
-    --color-text-primary: #101828;
-    --color-text-secondary: #5A5A5D;
-    --color-text-label: #344054;
-    --color-text-input: #333333;
-    --color-border: #344054;
-    --color-shadow: rgba(0, 0, 0, 0.1);
-    --color-icon: #5D7285;
+    --cor1: #48C9B0;
+    --cor2: #D1F2EB;
+    --cor3: #fff;
+    --cor4: #101828;
+    --cor5: #5A5A5D;
+    --cor6: #344054;
+    --cor7: #333333;
+    --cor8: #344054;
+    --cor9: rgba(0, 0, 0, 0.1);
+    --cor10: #5D7285;
+    --cor11: #f0f2f2;
 
     /* Espaçamentos */
     --spacing-xs: 4px;

@@ -1,4 +1,4 @@
-@import '../../styles/variables.css';
+@import '../../../styles/variables.css';
 
 .sidebar-option-wrapper {
     padding: var(--spacing-sm);
@@ -6,7 +6,7 @@
 }
 
 .sidebar-option-button {
-    background-color: var(--color-white);
+    background-color: var(--cor3);
     border: none;
     display: flex;
     align-items: center;
@@ -19,13 +19,13 @@
 }
 
 .sidebar-option-button:hover {
-    background-color: var(--color-hover-bg);
+    background-color: var(--cor2);
 }
 
 .sidebar-option-button:hover .sidebar-option-icon svg,
 .sidebar-option-button:hover .sidebar-option-text {
-    color: var(--color-primary);
-    fill: var(--color-primary);
+    color: var(--cor1);
+    fill: var(--cor1);
 }
 
 .sidebar-option-icon {
@@ -38,13 +38,13 @@
 
 .sidebar-option-icon svg {
     width: 18px;
-    color: var(--color-icon);
-    fill: var(--color-icon);
+    color: var(--cor10);
+    fill: var(--cor10);
 }
 
 .sidebar-option-text {
     margin-top: 5px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-icon);
+    color: var(--cor10);
 }
