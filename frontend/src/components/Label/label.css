@@ -1,0 +1,16 @@
+@import url('../../styles/variables.css');
+
+.label-container {
+    border-radius: var(--border-radius-lg);
+    padding: 0px 10px;
+}
+
+.label-container:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.label-container__text {
+    font-weight: var(--font-weight-semibold);
+    color: var(--cor3);
+}

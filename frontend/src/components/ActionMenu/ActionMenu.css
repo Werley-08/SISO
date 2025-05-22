@@ -1,0 +1,26 @@
+@import url('../../styles/variables.css');
+
+.actionmenu-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.actionmenu-container__icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.actionmenu-container__icon:hover {
+    transform: scale(1.1);
+}
+
+.actionmenu-container__icon svg {
+    box-sizing: border-box;
+}

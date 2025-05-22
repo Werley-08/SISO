@@ -21,6 +21,7 @@
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding-left: var(--spacing-md);
 }
 
 .searchbar-container__icon:hover {
@@ -28,7 +29,7 @@
 }
 
 .searchbar-container__icon svg {
-    width: 30px;
+    width: 15px;
     color: var(--cor10);
     fill: var(--cor10);
     transition: all 0.3s ease;
@@ -53,5 +54,4 @@
     border: 1px solid var(--cor10);
     outline: none;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-    background-color: var(--cor12);
 }
