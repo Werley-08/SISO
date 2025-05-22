@@ -2,6 +2,8 @@ package com.siso.siso.service;
 
 import com.siso.siso.model.Especialidade;
 import com.siso.siso.model.ProfissionalDaSaude;
+import com.siso.siso.model.enums.Role;
+import com.siso.siso.model.enums.Status;
 import com.siso.siso.repository.interfaces.IEspecialidadeRepository;
 import com.siso.siso.repository.interfaces.IProfissionalDaSaudeRepository;
 import com.siso.siso.service.interfaces.IProfissionalDaSaudeService;
@@ -37,6 +39,8 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
 
         profissionalDaSaude.setSenha(passwordEncoder.encode(profissionalDaSaude.getSenha()));
         profissionalDaSaude.setEspecialidade(especialidade);
+        profissionalDaSaude.setRole(Role.PROFISSIONAL_DA_SAUDE);
+        profissionalDaSaude.setStatus(Status.ATIVO);
         profissionalDaSaudeRepository.save(profissionalDaSaude);
         profissionalDaSaude.setSenha(null);
         return profissionalDaSaude;
