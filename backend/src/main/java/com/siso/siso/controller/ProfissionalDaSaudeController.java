@@ -35,4 +35,9 @@ public class ProfissionalDaSaudeController{
     public List<ProfissionalDaSaudeDTO> visualizarProfissionalDaSaude(){
         return toDTO(profissionalDaSaudeService.visualizarProfissionaisDaSaude());
     }
+
+    @PutMapping("/editar/{id}/{id_especialidade}")
+    public ProfissionalDaSaudeDTO editarProfissionalDaSaude(@PathVariable Integer id, @PathVariable Integer id_especialidade, @RequestBody ProfissionalDaSaudeDTO profissionalDaSaude){
+        return toDTO(profissionalDaSaudeService.editarProfissionalDaSaude(toModel(profissionalDaSaude),id, id_especialidade));
+    }
 }

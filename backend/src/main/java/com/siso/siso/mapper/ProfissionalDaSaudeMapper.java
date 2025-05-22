@@ -12,8 +12,11 @@ public interface ProfissionalDaSaudeMapper {
 
     static ProfissionalDaSaudeDTO toDTO(ProfissionalDaSaude profissionalDaSaude) {
         return new ProfissionalDaSaudeDTO(
+                profissionalDaSaude.getId(),
                 profissionalDaSaude.getNome(),
                 profissionalDaSaude.getUsername(),
+                profissionalDaSaude.getStatus(),
+                profissionalDaSaude.getRole(),
                 profissionalDaSaude.getSenha(),
                 profissionalDaSaude.getTelefone(),
                 profissionalDaSaude.getRua(),
@@ -27,12 +30,12 @@ public interface ProfissionalDaSaudeMapper {
     static ProfissionalDaSaude toModel(ProfissionalDaSaudeDTO profissionalDaSaudeDTO) {
 
         return new ProfissionalDaSaude(
-                null,
+                profissionalDaSaudeDTO.getId(),
                 profissionalDaSaudeDTO.getNome(),
                 profissionalDaSaudeDTO.getUsername(),
                 profissionalDaSaudeDTO.getSenha(),
-                Role.PROFISSIONAL_DA_SAUDE,
-                Status.ATIVO,
+                profissionalDaSaudeDTO.getRole(),
+                profissionalDaSaudeDTO.getStatus(),
                 profissionalDaSaudeDTO.getTelefone(),
                 profissionalDaSaudeDTO.getRua(),
                 profissionalDaSaudeDTO.getBairro(),
