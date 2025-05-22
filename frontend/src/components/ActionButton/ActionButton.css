@@ -3,6 +3,7 @@
 .actionbutton-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     border-radius: var(--border-radius-lg);
     background-color: var(--cor1);
     cursor: pointer;
@@ -18,25 +19,26 @@
 
 .actionbutton-container__text {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: var(--spacing-md);
-    font-size: var(--font-size-md);
+    flex-direction: column;
+    align-items: last baseline;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
     color: var(--cor3);
     transition: all 0.3s ease;
+    flex: 80%;
 }
 
 .actionbutton-container__icon {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-right: var(--spacing-md);
+    flex-direction: column;
+    align-items:first baseline;
     transition: all 0.3s ease;
+    flex: 20%;
 }
 
 .actionbutton-container__icon svg {
-    width: 20px;
+    width: 13px;
     fill: var(--cor3);
     transition: all 0.3s ease;
 }

@@ -10,8 +10,8 @@ const ActionButton = ({text, className = ""} : Props) => {
 
     return (
         <div className={`actionbutton-container ${className}`}>
-            <div className='actionbutton-container__text'> {text} </div>
-            <div className='actionbutton-container__icon'> <AddIcon/> </div>
+            <div className='actionbutton-container__text'> <span> {text} </span> </div>
+            <div className='actionbutton-container__icon'> <span> <AddIcon/> </span> </div>
         </div>
     );
 };

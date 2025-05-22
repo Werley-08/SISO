@@ -1,7 +1,9 @@
 import Sidebar from "../../components/SideBarComponents/Sidebar/Sidebar"
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ActionButton from "../../components/ActionButton/ActionButton";
+import UserTable from "../../components/UserTable/UserTable";
 import './GerenciamentoDeProfissionalDaSaude.css'
+import { ProfissionalDaSaudeMock } from "./ProfissionalDaSaudeMock";
 
 const GerenciamentoDeProfissionalDaSaude = () => {
 
@@ -24,8 +26,11 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                 </div>
 
                 <div className="profissional-container__content__table">
+                    <UserTable usuarios={ProfissionalDaSaudeMock} className="usertable-container"/>
+                </div>
 
-                    
+                <div className="profissional-container__content__pagination">
+
                 </div>
 
             </div>

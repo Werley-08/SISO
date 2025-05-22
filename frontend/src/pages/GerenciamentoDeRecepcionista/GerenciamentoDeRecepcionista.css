@@ -33,12 +33,12 @@
     margin-right: var(--spacing-md);
 }
 
-.searchbar-container {
-    flex: 85%;
+.recepcionista-container__content__top .searchbar-container {
+    flex: 87%;
 }
 
-.actionbutton-container {
-    flex: 15%;
+.recepcionista-container__content__top .actionbutton-container {
+    flex: 13%;
     margin-left: var(--spacing-md);
 }
 
