@@ -2,16 +2,37 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import logo from '../../assets/images/SISO---LogoLOGO---2.png';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+interface LoginResponse {
+    token: string;
+}
 
 const Login = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Login:', login, 'Password:', password);
-        navigate('/DashBoard');
+
+        try {
+            const response = await axios.post<LoginResponse>('http://localhost:8080/api/auth/logar', {
+                username: login,
+                senha: password
+            });
+
+            const token = response.data.token;
+
+            localStorage.setItem('token', token);
+
+            navigate('/DashBoard');
+            toast.success("Seja bem-vindo!")
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            toast.error('O Login falhou. Verifique as credenciais!');
+        }
     };
 
     return (
@@ -29,17 +50,17 @@ const Login = () => {
 
                     <form className="login-form-container__form" onSubmit={handleSubmit}>
                         <p className="login-form-container__label">Login</p>
-                        <input 
-                            className="login-form-container__input" 
-                            type="text" 
+                        <input
+                            className="login-form-container__input"
+                            type="text"
                             placeholder="digite seu login"
                             value={login}
                             onChange={(e) => setLogin(e.target.value)}
                         />
                         <p className="login-form-container__label">Senha</p>
-                        <input 
-                            className="login-form-container__input" 
-                            type="password" 
+                        <input
+                            className="login-form-container__input"
+                            type="password"
                             placeholder="digite sua senha"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
