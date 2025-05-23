@@ -1,6 +1,7 @@
 import type { Especialidade } from './Especialidade.ts';
 
 export interface Usuarios {
+  id: number;
   nome: string;
   username: string;
   senha: string | null;

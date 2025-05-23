@@ -23,6 +23,8 @@
     display: flex;           
     justify-content: center; 
     align-items: center;     
+    position: relative;
+    overflow: hidden;
 }
 
 .login-container__form-panel {
@@ -34,9 +36,19 @@
     align-items: center;  
 }
 
+.login-container__ribbons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
 .login-brand-logo {
     max-width: 65%;       
-    height: auto; 
+    height: auto;
+    position: relative;
 }
 
 .login-form-container {
@@ -205,4 +217,4 @@
     .login-form-container__subtitle {
         font-size: 12px;
     }
-} 
+}

@@ -49,4 +49,7 @@
 
 .profissional-container__content__pagination {
     flex: 2%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
 }

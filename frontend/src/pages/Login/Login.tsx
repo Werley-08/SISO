@@ -1,13 +1,13 @@
+"use client"
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import logo from '../../assets/images/SISO---LogoLOGO---2.png';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-
-interface LoginResponse {
-    token: string;
-}
+import Ribbons from '../../components/Ribbons/Ribbons';
+import BlurText from '../../components/BlurText/BlurText';
+import { toast } from 'sonner';
+import { authService } from '../../services/authService';
 
 const Login = () => {
     const [login, setLogin] = useState('');
@@ -17,34 +17,53 @@ const Login = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        try {
-            const response = await axios.post<LoginResponse>('http://localhost:8080/api/auth/logar', {
-                username: login,
-                senha: password
-            });
+        toast.promise(
+            (async () => {
+                const response = await authService.login({
+                    username: login,
+                    senha: password
+                });
 
-            const token = response.data.token;
-
-            localStorage.setItem('token', token);
-
-            navigate('/DashBoard');
-            toast.success("Seja bem-vindo!")
-        } catch (error) {
-            console.error('Erro ao fazer login:', error);
-            toast.error('O Login falhou. Verifique as credenciais!');
-        }
+                localStorage.setItem('token', response.token);
+                navigate('/DashBoard');
+            })(),
+            {
+                loading: 'Entrando...',
+                success: 'Seja bem-vindo!',
+                error: 'O Login falhou. Verifique as credenciais!'
+            }
+        );
     };
 
     return (
         <div className="login-container">
             <div className="login-container__brand-panel">
+                <div className="login-container__ribbons">
+                    <Ribbons
+                        baseThickness={50}
+                        colors={['#48C9B0']}
+                        speedMultiplier={0.5}
+                        maxAge={500}
+                        enableFade={true}
+                        enableShaderEffect={false}
+                    />
+                </div>
                 <img className="login-brand-logo" src={logo} alt="SISO Logo" />
             </div>
 
             <div className="login-container__form-panel">
+
                 <div className="login-form-container">
                     <div className="login-form-container__header">
-                        <p className="login-form-container__subtitle">Bem-vindo de volta!</p>
+                        <p className="login-form-container__subtitle">
+                            <BlurText
+                                text="Bem vindo de volta!"
+                                delay={300}
+                                animateBy="words"
+                                direction="top"
+                                className="text-2xl mb-8"
+                                />
+                            </p>
                         <p className="login-form-container__title">Faça seu login</p>
                     </div>
 
@@ -71,7 +90,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </div>        
     );
 };
 

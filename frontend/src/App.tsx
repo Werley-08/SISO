@@ -1,11 +1,10 @@
 import AppRoutes from "./routes/Routes";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "sonner";
 
 function App() {
   return (
     <>
-      <ToastContainer />
+      <Toaster position="top-right" richColors />
       <AppRoutes />
     </>
   );
