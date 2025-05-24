@@ -3,9 +3,12 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import ActionButton from "../../components/ActionButton/ActionButton";
 import UserTable from "../../components/UserTable/UserTable";
 import Pagination from "../../components/Pagination/Pagination";
+import Modal from "../../components/Modal/Modal";
 import './GerenciamentoDeProfissionalDaSaude.css'
 import { ProfissionalDaSaudeMock } from "./ProfissionalDaSaudeMock";
 import { useState } from "react";
+import CadastrarProfissionalForm from "@/components/forms/CadastrarProfissionalForm/CadastrarProfissionalForm";
+
 
 const GerenciamentoDeProfissionalDaSaude = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,6 +18,7 @@ const GerenciamentoDeProfissionalDaSaude = () => {
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <div className="profissional-container">
@@ -29,16 +33,21 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                 </div>
 
                 <div className="profissional-container__content__top">
-                    <SearchBar className="searchbar-container"/>
-                    <ActionButton text="Adicionar Usuário" className="actionbutton-container"/>
+                    <SearchBar className="searchbar-container" />
+                    <ActionButton text="Adicionar Usuário" className="actionbutton-container" onClick={() => setShowModal(true)} />
                 </div>
+
+                <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                    <CadastrarProfissionalForm onClose={() => setShowModal(false)} />
+                </Modal>
+
 
                 <div className="profissional-container__content__table">
                     <UserTable usuarios={currentItems} className="usertable-container"/>
                 </div>
 
                 <div className="profissional-container__content__pagination">
-                    <Pagination 
+                    <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
                         onPageChange={setCurrentPage}
