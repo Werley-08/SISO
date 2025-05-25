@@ -1,22 +1,23 @@
 package com.siso.siso.mapper;
 
-import com.siso.siso.dto.ProfissionalDaSaudeDTO;
 import com.siso.siso.model.ProfissionalDaSaude;
-import com.siso.siso.model.enums.Role;
-import com.siso.siso.model.enums.Status;
+import com.siso.siso.dto.ProfissionalDaSaudeDTO;
+import com.siso.siso.dto.response.ProfissionalDaSaudeResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.siso.siso.utils.RoleFormatter.formatRole;
+
 public interface ProfissionalDaSaudeMapper {
 
-    static ProfissionalDaSaudeDTO toDTO(ProfissionalDaSaude profissionalDaSaude) {
-        return new ProfissionalDaSaudeDTO(
+    static ProfissionalDaSaudeResponseDTO toDTO(ProfissionalDaSaude profissionalDaSaude) {
+        return new ProfissionalDaSaudeResponseDTO(
                 profissionalDaSaude.getId(),
                 profissionalDaSaude.getNome(),
                 profissionalDaSaude.getUsername(),
                 profissionalDaSaude.getStatus(),
-                profissionalDaSaude.getRole(),
+                formatRole(profissionalDaSaude.getRole()),
                 profissionalDaSaude.getSenha(),
                 profissionalDaSaude.getTelefone(),
                 profissionalDaSaude.getRua(),
@@ -45,20 +46,23 @@ public interface ProfissionalDaSaudeMapper {
         );
     }
 
-    public static List<ProfissionalDaSaudeDTO> toDTO(List<ProfissionalDaSaude> profissionais) {
+    public static List<ProfissionalDaSaudeResponseDTO> toDTO(List<ProfissionalDaSaude> profissionais) {
         return profissionais.stream()
                 .map(profissional -> {
-                    ProfissionalDaSaudeDTO dto = new ProfissionalDaSaudeDTO();
-                    dto.setNome(profissional.getNome());
-                    dto.setUsername(profissional.getUsername());
-                    dto.setSenha(null);
-                    dto.setTelefone(profissional.getTelefone());
-                    dto.setRua(profissional.getRua());
-                    dto.setBairro(profissional.getBairro());
-                    dto.setCidade(profissional.getCidade());
-                    dto.setNumero_casa(profissional.getNumero_casa());
-                    dto.setEspecialidade(profissional.getEspecialidade());
-                    return dto;
+                    ProfissionalDaSaudeResponseDTO profissionalDaSaudeResponseDTO = new ProfissionalDaSaudeResponseDTO();
+
+                    profissionalDaSaudeResponseDTO.setNome(profissional.getNome());
+                    profissionalDaSaudeResponseDTO.setUsername(profissional.getUsername());
+                    profissionalDaSaudeResponseDTO.setStatus(profissional.getStatus());
+                    profissionalDaSaudeResponseDTO.setRole(formatRole(profissional.getRole()));
+                    profissionalDaSaudeResponseDTO.setSenha(null);
+                    profissionalDaSaudeResponseDTO.setTelefone(profissional.getTelefone());
+                    profissionalDaSaudeResponseDTO.setRua(profissional.getRua());
+                    profissionalDaSaudeResponseDTO.setBairro(profissional.getBairro());
+                    profissionalDaSaudeResponseDTO.setCidade(profissional.getCidade());
+                    profissionalDaSaudeResponseDTO.setNumero_casa(profissional.getNumero_casa());
+                    profissionalDaSaudeResponseDTO.setEspecialidade(profissional.getEspecialidade());
+                    return profissionalDaSaudeResponseDTO;
                 })
                 .collect(Collectors.toList());
     }
