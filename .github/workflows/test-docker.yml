@@ -5,11 +5,11 @@ on:
     branches:
       - main
       - developer
-      - setup/docker
 
   pull_request:
     branches:
       - main
+      - developer
 
 jobs:
   build:
