@@ -5,20 +5,37 @@ import UserTable from "../../components/UserTable/UserTable";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
 import './GerenciamentoDeProfissionalDaSaude.css'
-import { ProfissionalDaSaudeMock } from "./ProfissionalDaSaudeMock";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CadastrarProfissionalForm from "@/components/forms/CadastrarProfissionalForm/CadastrarProfissionalForm";
-
+import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
+import type { Usuarios } from "@/types/Usuarios";
 
 const GerenciamentoDeProfissionalDaSaude = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [profissionais, setProfissionais] = useState<Usuarios[]>([]);
+    const [loading, setLoading] = useState(true);
     const itemsPerPage = 12;
-    const totalPages = Math.ceil(ProfissionalDaSaudeMock.length / itemsPerPage);
-    const currentItems = ProfissionalDaSaudeMock.slice(
+    const totalPages = Math.ceil(profissionais.length / itemsPerPage);
+    const currentItems = profissionais.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
     const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        const fetchProfissionais = async () => {
+            try {
+                const data = await profissionalDaSaudeService.listarProfissionais();
+                setProfissionais(data);
+            } catch (error) {
+                console.error('Erro ao carregar profissionais:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProfissionais();
+    }, []);
 
     return (
         <div className="profissional-container">
@@ -41,9 +58,12 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                     <CadastrarProfissionalForm onClose={() => setShowModal(false)} />
                 </Modal>
 
-
                 <div className="profissional-container__content__table">
-                    <UserTable usuarios={currentItems} className="usertable-container"/>
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <UserTable usuarios={currentItems} className="usertable-container"/>
+                    )}
                 </div>
 
                 <div className="profissional-container__content__pagination">
