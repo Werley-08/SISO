@@ -12,18 +12,16 @@ import java.util.Optional;
 @Repository
 public class ProfissionalDaSaudeRepositoryImplement implements IProfissionalDaSaudeRepository {
 
-    private final ProfissionalDaSaudeRepository ProfissionalDaSaudeRepository;
     private final ProfissionalDaSaudeRepository profissionalDaSaudeRepository;
 
     @Autowired
-    ProfissionalDaSaudeRepositoryImplement(ProfissionalDaSaudeRepository ProfissionalDaSaudeRepository, ProfissionalDaSaudeRepository profissionalDaSaudeRepository) {
-        this.ProfissionalDaSaudeRepository = ProfissionalDaSaudeRepository;
+    ProfissionalDaSaudeRepositoryImplement(ProfissionalDaSaudeRepository profissionalDaSaudeRepository) {
         this.profissionalDaSaudeRepository = profissionalDaSaudeRepository;
     }
 
     @Override
     public ProfissionalDaSaude save(ProfissionalDaSaude ProfissionalDaSaude) {
-        return ProfissionalDaSaudeRepository.save(ProfissionalDaSaude);
+        return profissionalDaSaudeRepository.save(ProfissionalDaSaude);
     }
 
     @Override
