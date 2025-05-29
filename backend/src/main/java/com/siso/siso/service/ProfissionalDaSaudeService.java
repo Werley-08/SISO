@@ -2,8 +2,6 @@ package com.siso.siso.service;
 
 import com.siso.siso.model.Especialidade;
 import com.siso.siso.model.ProfissionalDaSaude;
-import com.siso.siso.model.enums.Role;
-import com.siso.siso.model.enums.Status;
 import com.siso.siso.repository.interfaces.IEspecialidadeRepository;
 import com.siso.siso.repository.interfaces.IProfissionalDaSaudeRepository;
 import com.siso.siso.service.interfaces.IProfissionalDaSaudeService;

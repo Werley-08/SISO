@@ -1,9 +1,9 @@
 package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.ProfissionalDaSaudeCreateDTO;
+import com.siso.siso.dto.response.ProfissionalDaSaudeResponseDTO;
 import com.siso.siso.dto.update.ProfissionalDaSaudeUpdateDTO;
 import com.siso.siso.model.ProfissionalDaSaude;
-import com.siso.siso.dto.response.ProfissionalDaSaudeResponseDTO;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
 

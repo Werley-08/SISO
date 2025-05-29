@@ -1,8 +1,6 @@
 package com.siso.siso.service;
 
 import com.siso.siso.model.Recepcionista;
-import com.siso.siso.model.enums.Role;
-import com.siso.siso.model.enums.Status;
 import com.siso.siso.repository.interfaces.IRecepcionistaRepository;
 import com.siso.siso.service.interfaces.IRecepcionistaService;
 import org.springframework.beans.factory.annotation.Autowired;
