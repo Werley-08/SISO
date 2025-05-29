@@ -1,6 +1,5 @@
 package com.siso.siso.dto.response;
 
-import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +15,7 @@ public class RecepcionistaResponseDTO {
     private String nome;
     private String username;
     private Status status;
-    private Role role;
+    private String role;
     private String senha;
     private String telefone;
     private String rua;

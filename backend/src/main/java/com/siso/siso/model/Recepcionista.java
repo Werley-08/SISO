@@ -14,6 +14,7 @@ import lombok.Setter;
 @DiscriminatorValue("RECEPCIONISTA")
 @Entity
 public class Recepcionista extends Usuario {
+
     public Recepcionista(Integer id, String nome, String username, String senha, Role role, Status status, String telefone, String rua, String bairro, String cidade, String numero_casa) {
         super(id, nome, username, senha, role, status, telefone, rua, bairro, cidade, numero_casa);
     }
