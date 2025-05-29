@@ -1,7 +1,5 @@
-package com.siso.siso.dto;
+package com.siso.siso.dto.create;
 
-import com.siso.siso.model.enums.Role;
-import com.siso.siso.model.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,12 +9,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class RecepcionistaDTO {
-    private Integer id;
+public class RecepcionistaCreateDTO {
     private String nome;
     private String username;
-    private Status status;
-    private Role role;
     private String senha;
     private String telefone;
     private String rua;

@@ -2,7 +2,10 @@ package com.siso.siso.model;
 
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
-import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

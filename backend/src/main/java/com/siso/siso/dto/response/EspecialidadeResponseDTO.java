@@ -1,5 +1,4 @@
-package com.siso.siso.dto;
-
+package com.siso.siso.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EspecialidadeDTO {
+public class EspecialidadeResponseDTO {
     private Integer id;
     private String nome;
 }
