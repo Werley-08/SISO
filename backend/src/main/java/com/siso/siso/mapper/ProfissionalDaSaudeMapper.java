@@ -51,6 +51,7 @@ public interface ProfissionalDaSaudeMapper {
                 .map(profissional -> {
                     ProfissionalDaSaudeResponseDTO profissionalDaSaudeResponseDTO = new ProfissionalDaSaudeResponseDTO();
 
+                    profissionalDaSaudeResponseDTO.setId(profissional.getId());
                     profissionalDaSaudeResponseDTO.setNome(profissional.getNome());
                     profissionalDaSaudeResponseDTO.setUsername(profissional.getUsername());
                     profissionalDaSaudeResponseDTO.setStatus(profissional.getStatus());
