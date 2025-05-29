@@ -10,5 +10,5 @@ public interface IEspecialidadeService {
 
     Especialidade editarEspecialidade(Integer id, Especialidade especialidade);
 
-    List<Especialidade> visualizarEspecialidade();
+    List<Especialidade> visualizarEspecialidades();
 }

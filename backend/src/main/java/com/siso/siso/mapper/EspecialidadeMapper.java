@@ -1,31 +1,43 @@
 package com.siso.siso.mapper;
 
-import com.siso.siso.dto.EspecialidadeDTO;
+import com.siso.siso.dto.create.EspecialidadeCreateDTO;
+import com.siso.siso.dto.response.EspecialidadeResponseDTO;
+import com.siso.siso.dto.update.EspecialidadeUpdateDTO;
 import com.siso.siso.model.Especialidade;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public interface EspecialidadeMapper {
-    static EspecialidadeDTO toDTO(Especialidade especialidade) {
-        return new EspecialidadeDTO(
+
+    // Converte models para ResponseDTO
+    static EspecialidadeResponseDTO toDTO(Especialidade especialidade) {
+        return new EspecialidadeResponseDTO(
                 especialidade.getId(),
                 especialidade.getNome()
         );
     }
 
-    static Especialidade toModel(EspecialidadeDTO especialidadeDTO) {
+    static List<EspecialidadeResponseDTO> toDTO(List<Especialidade> especialidades) {
+        return especialidades.stream().
+                map(especialidade -> new EspecialidadeResponseDTO(
+                        especialidade.getId(),
+                        especialidade.getNome()))
+                .collect(Collectors.toList());
+    }
+
+    // Converte DTOs para Model
+    static Especialidade toModel(EspecialidadeCreateDTO especialidadeDTO) {
         return new Especialidade(
-                especialidadeDTO.getId(),
+                null,
                 especialidadeDTO.getNome()
         );
     }
 
-    static List<EspecialidadeDTO> toDTO(List<Especialidade> especialidades) {
-        return especialidades.stream().
-                map(especialidade -> new EspecialidadeDTO(
-                        especialidade.getId(),
-                        especialidade.getNome()))
-                .collect(Collectors.toList());
+    static Especialidade toModel(EspecialidadeUpdateDTO especialidadeDTO) {
+        return new Especialidade(
+                especialidadeDTO.getId(),
+                especialidadeDTO.getNome()
+        );
     }
 }
