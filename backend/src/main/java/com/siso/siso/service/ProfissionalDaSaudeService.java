@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
@@ -62,20 +61,24 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
     }
 
     @Override
-    public ProfissionalDaSaude editarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaudeAtual, Integer id, Integer idEspecialidade){
-        ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(id)
-                .orElseThrow(() -> new  RuntimeException("Profissional não encontrado"));
+    public ProfissionalDaSaude editarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaude, Integer id){
+        ProfissionalDaSaude profissionalDaSaudeAtual = profissionalDaSaudeRepository.findById(id)
+                .orElseThrow(() -> new  RuntimeException("Profissional não existe no sistema"));
 
-        if(!Objects.equals(profissionalDaSaude.getId(), profissionalDaSaudeAtual.getId())){
+        Especialidade especialidade = especialidadeRepository.findById(profissionalDaSaude.getEspecialidade().getId())
+                .orElseThrow(() -> new  RuntimeException("Especialidade não existe no sistema"));
+
+        if(!profissionalDaSaudeAtual.getId().equals(profissionalDaSaude.getId())){
             throw new IllegalArgumentException("O id do profissional não pode ser atualizado!");
         }
 
-        Especialidade especialidade = especialidadeRepository.findById(idEspecialidade)
-                .orElseThrow(() -> new RuntimeException("Especialidade não encontrada"));
+        profissionalDaSaude.setRole(Role.PROFISSIONAL_DA_SAUDE);
+        profissionalDaSaude.setUsername(profissionalDaSaudeAtual.getUsername());
+        profissionalDaSaude.setSenha(profissionalDaSaudeAtual.getSenha());
+        profissionalDaSaude.setEspecialidade(especialidade);
 
-        profissionalDaSaudeAtual.setEspecialidade(especialidade);
-
-        return profissionalDaSaudeRepository.save(profissionalDaSaudeAtual);
-
+        profissionalDaSaudeRepository.save(profissionalDaSaude);
+        profissionalDaSaude.setSenha(null);
+        return profissionalDaSaude;
     }
 }
