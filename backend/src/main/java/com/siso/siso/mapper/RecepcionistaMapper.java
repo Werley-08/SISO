@@ -63,4 +63,3 @@ public interface RecepcionistaMapper {
                 .collect(Collectors.toList());
     }
 }
-
