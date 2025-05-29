@@ -37,22 +37,14 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
 
 
         profissionalDaSaude.setSenha(passwordEncoder.encode(profissionalDaSaude.getSenha()));
-        profissionalDaSaude.setEspecialidade(especialidade);
-        profissionalDaSaude.setRole(Role.PROFISSIONAL_DA_SAUDE);
-        profissionalDaSaude.setStatus(Status.ATIVO);
-        profissionalDaSaudeRepository.save(profissionalDaSaude);
-        profissionalDaSaude.setSenha(null);
-        return profissionalDaSaude;
+        return profissionalDaSaudeRepository.save(profissionalDaSaude);
     }
 
     @Override
     public ProfissionalDaSaude visualizarProfissionalDaSaude(Integer id){
 
-        ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(id)
+        return profissionalDaSaudeRepository.findById(id)
                 .orElseThrow(() -> new  RuntimeException("Profissional não encontrado"));
-
-        profissionalDaSaude.setSenha(null);
-        return profissionalDaSaude;
     }
 
     @Override
@@ -72,13 +64,10 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
             throw new IllegalArgumentException("O id do profissional não pode ser atualizado!");
         }
 
-        profissionalDaSaude.setRole(Role.PROFISSIONAL_DA_SAUDE);
         profissionalDaSaude.setUsername(profissionalDaSaudeAtual.getUsername());
         profissionalDaSaude.setSenha(profissionalDaSaudeAtual.getSenha());
         profissionalDaSaude.setEspecialidade(especialidade);
 
-        profissionalDaSaudeRepository.save(profissionalDaSaude);
-        profissionalDaSaude.setSenha(null);
-        return profissionalDaSaude;
+        return profissionalDaSaudeRepository.save(profissionalDaSaude);
     }
 }

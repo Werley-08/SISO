@@ -1,6 +1,6 @@
 package com.siso.siso.controller;
 
-import com.siso.siso.dto.RecepcionistaDTO;
+import com.siso.siso.dto.create.RecepcionistaCreateDTO;
 import com.siso.siso.dto.response.RecepcionistaResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class RecepcionistaController {
     }
 
     @PostMapping("/cadastrar")
-    public RecepcionistaResponseDTO cadastrarRecepcionista(@RequestBody RecepcionistaDTO recepcionistaDTO){
+    public RecepcionistaResponseDTO cadastrarRecepcionista(@RequestBody RecepcionistaCreateDTO recepcionistaDTO){
         return toDTO(recepcionistaService.cadastrarRecepcionista(toModel(recepcionistaDTO)));
     }
 

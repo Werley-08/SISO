@@ -16,7 +16,6 @@ public class RecepcionistaResponseDTO {
     private String username;
     private Status status;
     private String role;
-    private String senha;
     private String telefone;
     private String rua;
     private String bairro;

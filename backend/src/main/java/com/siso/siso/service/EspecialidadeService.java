@@ -45,5 +45,4 @@ public class EspecialidadeService implements IEspecialidadeService {
     public List<Especialidade> visualizarEspecialidades() {
         return especialidadeRepository.findAll();
     }
-
 }
