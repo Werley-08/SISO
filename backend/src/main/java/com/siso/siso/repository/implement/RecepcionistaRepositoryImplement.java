@@ -6,6 +6,8 @@ import com.siso.siso.repository.interfaces.IRecepcionistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class RecepcionistaRepositoryImplement implements IRecepcionistaRepository {
 
@@ -21,5 +23,9 @@ public class RecepcionistaRepositoryImplement implements IRecepcionistaRepositor
         return recepcionistaRepository.save(recepcionista);
     }
 
+    @Override
+    public List<Recepcionista> findAll(){
+        return recepcionistaRepository.findAll();
+    }
 
 }

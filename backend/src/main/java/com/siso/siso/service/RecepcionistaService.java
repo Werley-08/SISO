@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RecepcionistaService implements IRecepcionistaService {
 
@@ -31,6 +33,11 @@ public class RecepcionistaService implements IRecepcionistaService {
         recepcionista.setSenha(null);
         return recepcionista;
 
+    }
+
+    @Override
+    public List<Recepcionista> listarRecepcionistas(){
+        return recepcionistaRepository.findAll();
     }
 
 }
