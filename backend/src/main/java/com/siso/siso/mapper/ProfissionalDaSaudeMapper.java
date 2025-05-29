@@ -1,5 +1,6 @@
 package com.siso.siso.mapper;
 
+import com.siso.siso.dto.update.ProfissionalDaSaudeUpdateDTO;
 import com.siso.siso.model.ProfissionalDaSaude;
 import com.siso.siso.dto.ProfissionalDaSaudeDTO;
 import com.siso.siso.dto.response.ProfissionalDaSaudeResponseDTO;
@@ -43,6 +44,24 @@ public interface ProfissionalDaSaudeMapper {
                 profissionalDaSaudeDTO.getCidade(),
                 profissionalDaSaudeDTO.getNumero_casa(),
                 profissionalDaSaudeDTO.getEspecialidade()
+        );
+    }
+
+    static ProfissionalDaSaude toModel(ProfissionalDaSaudeUpdateDTO profissionalDaSaudeUpdateDTO) {
+
+        return new ProfissionalDaSaude(
+                profissionalDaSaudeUpdateDTO.getId(),
+                profissionalDaSaudeUpdateDTO.getNome(),
+                null,
+                null,
+                null,
+                profissionalDaSaudeUpdateDTO.getStatus(),
+                profissionalDaSaudeUpdateDTO.getTelefone(),
+                profissionalDaSaudeUpdateDTO.getRua(),
+                profissionalDaSaudeUpdateDTO.getBairro(),
+                profissionalDaSaudeUpdateDTO.getCidade(),
+                profissionalDaSaudeUpdateDTO.getNumero_casa(),
+                profissionalDaSaudeUpdateDTO.getEspecialidade()
         );
     }
 

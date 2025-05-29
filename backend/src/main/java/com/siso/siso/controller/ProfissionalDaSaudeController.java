@@ -2,6 +2,7 @@ package com.siso.siso.controller;
 
 import com.siso.siso.dto.ProfissionalDaSaudeDTO;
 import com.siso.siso.dto.response.ProfissionalDaSaudeResponseDTO;
+import com.siso.siso.dto.update.ProfissionalDaSaudeUpdateDTO;
 import com.siso.siso.service.interfaces.IProfissionalDaSaudeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +38,8 @@ public class ProfissionalDaSaudeController{
         return toDTO(profissionalDaSaudeService.visualizarProfissionaisDaSaude());
     }
 
-    @PutMapping("/editar/{id}/{id_especialidade}")
-    public ProfissionalDaSaudeResponseDTO editarProfissionalDaSaude(@PathVariable Integer id, @PathVariable Integer id_especialidade, @RequestBody ProfissionalDaSaudeDTO profissionalDaSaude){
-        return toDTO(profissionalDaSaudeService.editarProfissionalDaSaude(toModel(profissionalDaSaude),id, id_especialidade));
+    @PutMapping("/editar/{id}")
+    public ProfissionalDaSaudeResponseDTO editarProfissionalDaSaude(@PathVariable Integer id, @RequestBody ProfissionalDaSaudeUpdateDTO profissionalDaSaude){
+        return toDTO(profissionalDaSaudeService.editarProfissionalDaSaude(toModel(profissionalDaSaude),id));
     }
 }
