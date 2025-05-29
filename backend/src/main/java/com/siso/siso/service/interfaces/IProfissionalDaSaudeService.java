@@ -8,5 +8,5 @@ public interface IProfissionalDaSaudeService{
     ProfissionalDaSaude cadastrarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaude);
     ProfissionalDaSaude visualizarProfissionalDaSaude(Integer id);
     List<ProfissionalDaSaude> visualizarProfissionaisDaSaude();
-    ProfissionalDaSaude editarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaude, Integer id, Integer idEspecialidade);
+    ProfissionalDaSaude editarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaude, Integer id);
 }
