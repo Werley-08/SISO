@@ -2,6 +2,7 @@ package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.RecepcionistaCreateDTO;
 import com.siso.siso.dto.response.RecepcionistaResponseDTO;
+import com.siso.siso.dto.update.RecepcionistaUpdateDTO;
 import com.siso.siso.model.Recepcionista;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
@@ -55,6 +56,22 @@ public interface RecepcionistaMapper {
                 recepcionistaDTO.getSenha(),
                 Role.RECEPCIONISTA,
                 Status.ATIVO,
+                recepcionistaDTO.getTelefone(),
+                recepcionistaDTO.getRua(),
+                recepcionistaDTO.getBairro(),
+                recepcionistaDTO.getCidade(),
+                recepcionistaDTO.getNumero_casa()
+        );
+    }
+
+    static Recepcionista toModel(RecepcionistaUpdateDTO recepcionistaDTO){
+        return new Recepcionista(
+                recepcionistaDTO.getId(),
+                recepcionistaDTO.getNome(),
+                null,
+                null,
+                Role.RECEPCIONISTA,
+                recepcionistaDTO.getStatus(),
                 recepcionistaDTO.getTelefone(),
                 recepcionistaDTO.getRua(),
                 recepcionistaDTO.getBairro(),

@@ -52,6 +52,7 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
 
     @Override
     public ProfissionalDaSaude editarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaude, Integer id){
+
         ProfissionalDaSaude profissionalDaSaudeAtual = profissionalDaSaudeRepository.findById(id)
                 .orElseThrow(() -> new  RuntimeException("Profissional não existe no sistema"));
 

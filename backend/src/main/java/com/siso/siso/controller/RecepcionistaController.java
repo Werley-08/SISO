@@ -2,6 +2,7 @@ package com.siso.siso.controller;
 
 import com.siso.siso.dto.create.RecepcionistaCreateDTO;
 import com.siso.siso.dto.response.RecepcionistaResponseDTO;
+import com.siso.siso.dto.update.RecepcionistaUpdateDTO;
 import com.siso.siso.service.interfaces.IRecepcionistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,11 @@ public class RecepcionistaController {
     @PostMapping("/cadastrar")
     public RecepcionistaResponseDTO cadastrarRecepcionista(@RequestBody RecepcionistaCreateDTO recepcionistaDTO){
         return toDTO(recepcionistaService.cadastrarRecepcionista(toModel(recepcionistaDTO)));
+    }
+
+    @PutMapping("/editar/{id}")
+    public RecepcionistaResponseDTO editarRecepcionista(@PathVariable Integer id, @RequestBody RecepcionistaUpdateDTO recepcionistaDTO){
+        return toDTO(recepcionistaService.editarRecepcionista(toModel(recepcionistaDTO), id));
     }
 
     @GetMapping("/visualizar/{id}")

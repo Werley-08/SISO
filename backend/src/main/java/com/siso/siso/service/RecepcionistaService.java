@@ -29,6 +29,22 @@ public class RecepcionistaService implements IRecepcionistaService {
     }
 
     @Override
+    public Recepcionista editarRecepcionista(Recepcionista recepcionista, Integer id){
+
+        Recepcionista recepcionistaAtual = recepcionistaRepository.findById(id)
+                .orElseThrow(() -> new  RuntimeException("Recepcionista não existe no sistema"));
+
+        if(!recepcionistaAtual.getId().equals(recepcionista.getId())){
+            throw new IllegalArgumentException("O id da recepcionista não pode ser atualizado!");
+        }
+
+        recepcionista.setUsername(recepcionistaAtual.getUsername());
+        recepcionista.setSenha(recepcionistaAtual.getSenha());
+
+        return recepcionistaRepository.save(recepcionista);
+    }
+
+    @Override
     public Recepcionista visualizarRecepcionista(Integer id){
         return recepcionistaRepository.findById(id)
                 .orElseThrow(() -> new  RuntimeException("Recepcionista não encontrado"));
