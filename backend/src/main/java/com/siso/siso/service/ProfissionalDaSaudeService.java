@@ -2,8 +2,6 @@ package com.siso.siso.service;
 
 import com.siso.siso.model.Especialidade;
 import com.siso.siso.model.ProfissionalDaSaude;
-import com.siso.siso.model.enums.Role;
-import com.siso.siso.model.enums.Status;
 import com.siso.siso.repository.interfaces.IEspecialidadeRepository;
 import com.siso.siso.repository.interfaces.IProfissionalDaSaudeRepository;
 import com.siso.siso.service.interfaces.IProfissionalDaSaudeService;
@@ -12,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
@@ -38,22 +35,14 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
 
 
         profissionalDaSaude.setSenha(passwordEncoder.encode(profissionalDaSaude.getSenha()));
-        profissionalDaSaude.setEspecialidade(especialidade);
-        profissionalDaSaude.setRole(Role.PROFISSIONAL_DA_SAUDE);
-        profissionalDaSaude.setStatus(Status.ATIVO);
-        profissionalDaSaudeRepository.save(profissionalDaSaude);
-        profissionalDaSaude.setSenha(null);
-        return profissionalDaSaude;
+        return profissionalDaSaudeRepository.save(profissionalDaSaude);
     }
 
     @Override
     public ProfissionalDaSaude visualizarProfissionalDaSaude(Integer id){
 
-        ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(id)
+        return profissionalDaSaudeRepository.findById(id)
                 .orElseThrow(() -> new  RuntimeException("Profissional não encontrado"));
-
-        profissionalDaSaude.setSenha(null);
-        return profissionalDaSaude;
     }
 
     @Override
@@ -62,20 +51,22 @@ public class ProfissionalDaSaudeService implements IProfissionalDaSaudeService {
     }
 
     @Override
-    public ProfissionalDaSaude editarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaudeAtual, Integer id, Integer idEspecialidade){
-        ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(id)
-                .orElseThrow(() -> new  RuntimeException("Profissional não encontrado"));
+    public ProfissionalDaSaude editarProfissionalDaSaude(ProfissionalDaSaude profissionalDaSaude, Integer id){
 
-        if(!Objects.equals(profissionalDaSaude.getId(), profissionalDaSaudeAtual.getId())){
+        ProfissionalDaSaude profissionalDaSaudeAtual = profissionalDaSaudeRepository.findById(id)
+                .orElseThrow(() -> new  RuntimeException("Profissional não existe no sistema"));
+
+        Especialidade especialidade = especialidadeRepository.findById(profissionalDaSaude.getEspecialidade().getId())
+                .orElseThrow(() -> new  RuntimeException("Especialidade não existe no sistema"));
+
+        if(!profissionalDaSaudeAtual.getId().equals(profissionalDaSaude.getId())){
             throw new IllegalArgumentException("O id do profissional não pode ser atualizado!");
         }
 
-        Especialidade especialidade = especialidadeRepository.findById(idEspecialidade)
-                .orElseThrow(() -> new RuntimeException("Especialidade não encontrada"));
+        profissionalDaSaude.setUsername(profissionalDaSaudeAtual.getUsername());
+        profissionalDaSaude.setSenha(profissionalDaSaudeAtual.getSenha());
+        profissionalDaSaude.setEspecialidade(especialidade);
 
-        profissionalDaSaudeAtual.setEspecialidade(especialidade);
-
-        return profissionalDaSaudeRepository.save(profissionalDaSaudeAtual);
-
+        return profissionalDaSaudeRepository.save(profissionalDaSaude);
     }
 }

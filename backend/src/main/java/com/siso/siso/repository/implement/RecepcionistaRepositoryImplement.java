@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class RecepcionistaRepositoryImplement implements IRecepcionistaRepository {
@@ -22,6 +23,9 @@ public class RecepcionistaRepositoryImplement implements IRecepcionistaRepositor
     public Recepcionista save(Recepcionista recepcionista){
         return recepcionistaRepository.save(recepcionista);
     }
+
+    @Override
+    public Optional<Recepcionista> findById(Integer id){ return recepcionistaRepository.findById(id); }
 
     @Override
     public List<Recepcionista> findAll(){

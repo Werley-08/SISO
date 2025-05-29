@@ -42,9 +42,7 @@ public class EspecialidadeService implements IEspecialidadeService {
     }
 
     @Override
-    public List<Especialidade> visualizarEspecialidade() {
+    public List<Especialidade> visualizarEspecialidades() {
         return especialidadeRepository.findAll();
     }
-
-
 }
