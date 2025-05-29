@@ -31,8 +31,25 @@ public class SecurityConfigurationsProd{
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
 
-                        // Authorization
+                        // Auth endpoints
                         .requestMatchers(HttpMethod.POST, "/api/auth/logar").permitAll()
+
+                        // Recepcionista endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/recepcionista/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/recepcionista/visualizar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/recepcionista/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.PUT, "/api/recepcionista/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
+
+                        // Profissional da Saúde endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/profissionalDaSaude/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.PUT, "/api/profissionalDaSaude/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
+
+                        // Especialidade endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/especialidade/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.PUT, "/api/especialidade/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/especialidade/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
 
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
