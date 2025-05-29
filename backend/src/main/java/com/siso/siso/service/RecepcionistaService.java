@@ -29,6 +29,12 @@ public class RecepcionistaService implements IRecepcionistaService {
     }
 
     @Override
+    public Recepcionista visualizarRecepcionista(Integer id){
+        return recepcionistaRepository.findById(id)
+                .orElseThrow(() -> new  RuntimeException("Recepcionista não encontrado"));
+    }
+
+    @Override
     public List<Recepcionista> listarRecepcionistas(){
         return recepcionistaRepository.findAll();
     }

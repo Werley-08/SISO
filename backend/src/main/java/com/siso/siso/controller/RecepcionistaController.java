@@ -27,6 +27,11 @@ public class RecepcionistaController {
         return toDTO(recepcionistaService.cadastrarRecepcionista(toModel(recepcionistaDTO)));
     }
 
+    @GetMapping("/visualizar/{id}")
+    public RecepcionistaResponseDTO visualizarRecepcionista(@PathVariable Integer id){
+        return toDTO(recepcionistaService.visualizarRecepcionista(id));
+    }
+
     @GetMapping("/visualizarTodos")
     public List<RecepcionistaResponseDTO> visualizarRecepcionistas(){
         return toDTO(recepcionistaService.listarRecepcionistas());

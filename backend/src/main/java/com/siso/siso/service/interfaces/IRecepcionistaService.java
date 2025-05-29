@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IRecepcionistaService {
     Recepcionista cadastrarRecepcionista(Recepcionista recepcionista);
+    Recepcionista visualizarRecepcionista(Integer id);
     List<Recepcionista> listarRecepcionistas();
-
 }
