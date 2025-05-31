@@ -18,4 +18,6 @@ public class PacienteCreateDTO {
     private String bairro;
     private String cidade;
     private int num_casa;
+
+    private ResponsavelCreateDTO responsavel;
 }

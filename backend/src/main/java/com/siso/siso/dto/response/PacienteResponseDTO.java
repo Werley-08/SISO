@@ -1,6 +1,5 @@
 package com.siso.siso.dto.response;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +18,5 @@ public class PacienteResponseDTO {
     private String bairro;
     private String cidade;
     private int num_casa;
+    private ResponsavelResponseDTO responsavel;
 }

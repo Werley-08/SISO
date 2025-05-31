@@ -38,4 +38,7 @@ public class Paciente {
 
     @Column()
     private int num_casa;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Responsavel responsavel;
 }

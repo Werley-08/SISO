@@ -54,6 +54,9 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.PUT, "/api/especialidade/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
                         .requestMatchers(HttpMethod.GET, "/api/especialidade/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
 
+                        // Pacientes endpoinst
+                        .requestMatchers(HttpMethod.POST, "/api/paciente/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
+
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
