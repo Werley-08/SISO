@@ -2,9 +2,9 @@ import "./SelectField.css";
 
 interface SelectFieldProps {
   label: string;
-  value: string;
+  value: string | number;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: { id: number; nome: string }[];
+  options: { id: string | number; nome: string }[];
   name: string;
 }
 

@@ -4,7 +4,7 @@ export interface Usuarios {
   id: number;
   nome: string;
   username: string;
-  senha: string | null;
+  senha: string;
   role: string;
   status: string;
   telefone: string;

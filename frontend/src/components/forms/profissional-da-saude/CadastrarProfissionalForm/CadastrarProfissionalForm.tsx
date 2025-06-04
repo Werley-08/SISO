@@ -69,7 +69,7 @@ const CadastrarProfissionalForm = ({ onClose }: CadastrarProfissionalFormProps) 
   useEffect(() => {
     const fetchEspecialidades = async () => {
       try {
-        const res = await api.get("/especialidade/visualizar");
+        const res = await api.get("/especialidade/visualizarTodos");
         setEspecialidades(res.data);
       } catch (err) {
         console.error(err);
