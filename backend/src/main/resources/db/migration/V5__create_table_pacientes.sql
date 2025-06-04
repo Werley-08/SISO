@@ -1,5 +1,5 @@
 CREATE TABLE Pacientes(
-    id_paciente     SERIAL PRIMARY KEY AUTO_INCREMENT,
+    id_paciente     SERIAL PRIMARY KEY,
     nome            VARCHAR(255) NOT NULL,
     data_nascimento VARCHAR(255) NOT NULL,
     telefone        VARCHAR(255) NOT NULL,
