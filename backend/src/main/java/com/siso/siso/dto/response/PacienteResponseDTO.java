@@ -5,18 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PacienteResponseDTO {
-    private Integer idPaciente;
+    private Integer id_paciente;
     private String nome;
-    private String data_nascimento;
+    private LocalDate data_nascimento;
     private String telefone;
     private String rua;
     private String bairro;
     private String cidade;
-    private int num_casa;
+    private Integer num_casa;
     private ResponsavelResponseDTO responsavel;
 }

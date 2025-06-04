@@ -7,9 +7,10 @@ import com.siso.siso.model.Paciente;
 import com.siso.siso.model.Responsavel;
 
 public interface PacienteMapper {
-    static Paciente toModel(PacienteCreateDTO pacienteCreateDTO) {
-        Responsavel responsavel = null;
 
+    static Paciente toModel(PacienteCreateDTO pacienteCreateDTO) {
+
+        Responsavel responsavel = null;
         if (pacienteCreateDTO.getResponsavel() != null) {
             responsavel = new Responsavel(
                     null,
@@ -33,10 +34,11 @@ public interface PacienteMapper {
     }
 
     static PacienteResponseDTO toDTO(Paciente paciente) {
+
         ResponsavelResponseDTO responsavelDTO = null;
         if (paciente.getResponsavel() != null) {
             responsavelDTO = new ResponsavelResponseDTO(
-                    paciente.getResponsavel().getIdResponsavel(),
+                    paciente.getResponsavel().getId_responsavel(),
                     paciente.getResponsavel().getNome(),
                     paciente.getResponsavel().getTelefone(),
                     paciente.getResponsavel().getParentesco()
@@ -44,7 +46,7 @@ public interface PacienteMapper {
         }
 
         return new PacienteResponseDTO(
-                paciente.getIdPaciente(),
+                paciente.getId_paciente(),
                 paciente.getNome(),
                 paciente.getData_nascimento(),
                 paciente.getTelefone(),

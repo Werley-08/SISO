@@ -5,6 +5,7 @@ import com.siso.siso.dto.response.PacienteResponseDTO;
 import com.siso.siso.service.interfaces.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import static com.siso.siso.mapper.PacienteMapper.toModel;
 @RestController
 @RequestMapping("/api/paciente")
 public class PacienteController {
+
     private final IPacienteService pacienteService;
 
     @Autowired
@@ -22,7 +24,7 @@ public class PacienteController {
     }
 
     @PostMapping("/cadastrar")
-    public PacienteResponseDTO cadastrarPaciente(PacienteCreateDTO pacienteCreateDTO){
+    public PacienteResponseDTO cadastrarPaciente(@RequestBody PacienteCreateDTO pacienteCreateDTO){
         return toDTO(pacienteService.cadastrarPaciente(toModel(pacienteCreateDTO)));
     }
 }

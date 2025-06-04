@@ -16,7 +16,7 @@ public class Responsavel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idResponsavel;
+    private Integer id_responsavel;
 
     @Column(nullable = false)
     private String nome;
@@ -26,5 +26,4 @@ public class Responsavel {
 
     @Column(nullable = false)
     private String parentesco;
-
 }

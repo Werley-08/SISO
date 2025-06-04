@@ -6,23 +6,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Pacientes")
+@Table(name = "pacientes")
 public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPaciente;
+    private Integer id_paciente;
 
     @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false)
-    private String data_nascimento;
+    private LocalDate data_nascimento;
 
     @Column(nullable = false)
     private String telefone;
@@ -37,8 +40,9 @@ public class Paciente {
     private String cidade;
 
     @Column()
-    private int num_casa;
+    private Integer num_casa;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
+    @JoinColumn(name = "id_responsavel")
     private Responsavel responsavel;
 }
