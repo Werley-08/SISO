@@ -5,9 +5,10 @@ import UserTableRow from '../UserTableRow/UserTableRow';
 interface Props {
     usuarios: Usuarios[];
     className?: string;
+    onEdit?: (usuario: Usuarios) => void;
 }
 
-const UserTable = ({usuarios, className = "" }: Props) => {
+const UserTable = ({ usuarios, className = "", onEdit }: Props) => {
 
     return (
         <div className={`usertable-container ${className}`}>
@@ -22,9 +23,10 @@ const UserTable = ({usuarios, className = "" }: Props) => {
 
             <div className='usertable-container-content'>
                 {usuarios.map(usuario => (
-                    <UserTableRow usuario={usuario} className="usertable-row-container"/>
+                    <UserTableRow key={usuario.id} usuario={usuario} className="usertable-row-container" onEdit={onEdit} />
                 ))}
             </div>
+
 
         </div>
     );

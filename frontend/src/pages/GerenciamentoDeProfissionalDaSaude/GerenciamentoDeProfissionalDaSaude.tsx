@@ -6,9 +6,10 @@ import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
 import './GerenciamentoDeProfissionalDaSaude.css'
 import { useState, useEffect } from "react";
-import CadastrarProfissionalForm from "@/components/forms/CadastrarProfissionalForm/CadastrarProfissionalForm";
+import CadastrarProfissionalForm from "@/components/forms/profissional-da-saude/CadastrarProfissionalForm/CadastrarProfissionalForm";
 import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
 import type { Usuarios } from "@/types/Usuarios";
+import EditarProfissionalForm from "@/components/forms/profissional-da-saude/EditarProfissionalForm/EditarProfissionalForm";
 
 const GerenciamentoDeProfissionalDaSaude = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +22,13 @@ const GerenciamentoDeProfissionalDaSaude = () => {
         currentPage * itemsPerPage
     );
     const [showModal, setShowModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+
+    const [selectedProfissional, setSelectedProfissional] = useState<Usuarios | null>(null);
+    const handleEdit = (usuario: Usuarios) => {
+        setSelectedProfissional(usuario);
+        setShowEditModal(true);
+    };
 
     useEffect(() => {
         const fetchProfissionais = async () => {
@@ -58,11 +66,20 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                     <CadastrarProfissionalForm onClose={() => setShowModal(false)} />
                 </Modal>
 
+                <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)}>
+                    {selectedProfissional && (
+                        <EditarProfissionalForm
+                            profissional={selectedProfissional}
+                            onClose={() => setShowEditModal(false)}
+                        />
+                    )}
+                </Modal>
+
                 <div className="profissional-container__content__table">
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
-                        <UserTable usuarios={currentItems} className="usertable-container"/>
+                        <UserTable usuarios={currentItems} className="usertable-container" onEdit={handleEdit} />
                     )}
                 </div>
 
