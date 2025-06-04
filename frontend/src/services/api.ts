@@ -8,6 +8,11 @@ const api = axios.create({
 
 api.interceptors.request.use(
     (config) => {
+        // Skip adding Authorization header for login endpoint
+        if (config.url === '/auth/logar') {
+            return config;
+        }
+
         const token = localStorage.getItem("token");
 
         if(token) {
