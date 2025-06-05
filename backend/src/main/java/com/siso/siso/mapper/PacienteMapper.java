@@ -7,6 +7,9 @@ import com.siso.siso.model.Paciente;
 import com.siso.siso.model.Responsavel;
 import com.siso.siso.model.enums.StatusPaciente;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public interface PacienteMapper {
 
     static Paciente toModel(PacienteCreateDTO pacienteCreateDTO) {
@@ -61,5 +64,11 @@ public interface PacienteMapper {
                 paciente.getNum_casa(),
                 responsavelDTO
         );
+    }
+
+    static List<PacienteResponseDTO> toDTO(List<Paciente> pacientes) {
+        return pacientes.stream()
+                .map(PacienteMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }

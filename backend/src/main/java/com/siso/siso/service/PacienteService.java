@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 @Service
 public class PacienteService implements IPacienteService {
@@ -37,5 +38,10 @@ public class PacienteService implements IPacienteService {
             paciente.setResponsavel(responsavelRepository.save(responsavel));
         }
         return pacienteRepository.save(paciente);
+    }
+
+    @Override
+    public List<Paciente> visualizarPacientes(){
+        return pacienteRepository.findAll();
     }
 }
