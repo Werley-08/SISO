@@ -1,5 +1,6 @@
 package com.siso.siso.dto.create;
 
+import com.siso.siso.model.enums.ClassificacaoEtaria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PacienteCreateDTO {
+    private ClassificacaoEtaria classificacaoEtaria;
     private String nome;
     private LocalDate data_nascimento;
     private String telefone;

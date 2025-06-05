@@ -1,5 +1,6 @@
 package com.siso.siso.dto.response;
 
+import com.siso.siso.model.enums.ClassificacaoEtaria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PacienteResponseDTO {
     private Integer id_paciente;
+    private ClassificacaoEtaria classificacaoEtaria;
     private String nome;
     private LocalDate data_nascimento;
     private String telefone;

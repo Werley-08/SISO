@@ -22,6 +22,7 @@ public interface PacienteMapper {
 
         return new Paciente(
                 null,
+                pacienteCreateDTO.getClassificacaoEtaria(),
                 pacienteCreateDTO.getNome(),
                 pacienteCreateDTO.getData_nascimento(),
                 pacienteCreateDTO.getTelefone(),
@@ -47,6 +48,7 @@ public interface PacienteMapper {
 
         return new PacienteResponseDTO(
                 paciente.getId_paciente(),
+                paciente.getClassificacaoEtaria(),
                 paciente.getNome(),
                 paciente.getData_nascimento(),
                 paciente.getTelefone(),
