@@ -1,6 +1,7 @@
 CREATE TABLE pacientes(
     id_paciente     SERIAL PRIMARY KEY,
     classificacao_etaria VARCHAR(255) NOT NULL,
+    status_paciente VARCHAR(255) NOT NULL,
     nome            VARCHAR(255) NOT NULL,
     data_nascimento DATE NOT NULL,
     telefone        VARCHAR(255) NOT NULL,
