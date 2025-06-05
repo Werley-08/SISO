@@ -6,6 +6,12 @@
     border-radius: var(--border-radius-lg);
     margin: var(--spacing-md) 0;
     display: inline-block;
+    transition: transform var(--transition-normal);
+    cursor: pointer;
+}
+
+.form-descriptor:hover {
+    transform: scale(1.05);
 }
 
 .form-descriptor-label {
@@ -13,4 +19,5 @@
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-md);
     letter-spacing: 0.3px;
+    transition: color var(--transition-normal);
 }

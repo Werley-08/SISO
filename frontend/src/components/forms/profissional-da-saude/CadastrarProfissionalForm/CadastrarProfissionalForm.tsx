@@ -79,7 +79,7 @@ const CadastrarProfissionalForm = ({ onClose }: CadastrarProfissionalFormProps) 
     <form onSubmit={handleSubmit} className="cadastrar-profissional-form">
       <h3>Cadastrar Profissional de Saúde</h3>
       
-      <FormDescriptor label="Informações Gerais" />
+      <FormDescriptor className="form-descriptor" label="Informações Gerais" />
       <div className="input-group">
         <InputField 
           label="Nome" 
