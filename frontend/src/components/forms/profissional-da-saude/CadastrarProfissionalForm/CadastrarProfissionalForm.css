@@ -1,12 +1,17 @@
+.cadastrar-profissional-form .form-descriptor {
+  margin-top: var(--spacing-xxl);
+}
+
 .input-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .botoes {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 16px;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
 }

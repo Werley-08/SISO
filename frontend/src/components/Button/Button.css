@@ -1,20 +1,36 @@
 @import url('../../styles/variables.css');
 
 .btn {
-  padding: 10px 16px;
-  border-radius: 6px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
   cursor: pointer;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+  transition: all var(--transition-normal);
+  border: none;
 }
 
 .btn.primary {
   background-color: var(--cor1);
-  color: white;
-  border: none;
+  color: var(--cor3);
+}
+
+.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--cor2);
+  color: var(--cor1);
 }
 
 .btn.secondary {
-  background-color: var(--cor3); 
+  background-color: var(--cor3);
   border: 2px solid var(--cor1);
   color: var(--cor1);
+}
+
+.btn.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--cor1);
+  color: var(--cor3);
 }
