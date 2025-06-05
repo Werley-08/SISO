@@ -2,15 +2,15 @@
 
 .form-descriptor {
     background-color: var(--cor1);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    margin: 0.8rem 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-lg);
+    margin: var(--spacing-md) 0;
     display: inline-block;
 }
 
 .form-descriptor-label {
     color: var(--cor3);
-    font-weight: 500;
-    font-size: 0.85rem;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-md);
     letter-spacing: 0.3px;
 }
