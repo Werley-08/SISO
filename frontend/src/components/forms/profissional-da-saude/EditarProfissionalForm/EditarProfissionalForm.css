@@ -1,3 +1,7 @@
+.editar-profissional-form .form-descriptor {
+  margin-top: var(--spacing-xxl);
+}
+
 .input-group {
   display: flex;
   flex-wrap: wrap;

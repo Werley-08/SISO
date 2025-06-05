@@ -72,7 +72,7 @@ const EditarProfissionalForm = ({ onClose, profissional }: EditarProfissionalFor
     <form onSubmit={handleSubmit} className="editar-profissional-form">
       <h3>Editar Profissional de Saúde</h3>
       
-      <FormDescriptor label="Informações Gerais" />
+      <FormDescriptor className="form-descriptor" label="Informações Gerais" />
       <div className="input-group">
         <InputField 
           label="Nome" 
@@ -115,7 +115,7 @@ const EditarProfissionalForm = ({ onClose, profissional }: EditarProfissionalFor
         />
       </div>
 
-      <FormDescriptor label="Endereço" />
+      <FormDescriptor className="form-descriptor" label="Endereço" />
       <div className="input-group">
         <InputField 
           label="Rua" 
@@ -151,7 +151,7 @@ const EditarProfissionalForm = ({ onClose, profissional }: EditarProfissionalFor
         />
       </div>
 
-      <FormDescriptor label="Credenciais de Acesso" />
+      <FormDescriptor className="form-descriptor" label="Credenciais de Acesso" />
       <div className="input-group">
         <InputField 
           label="Username" 

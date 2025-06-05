@@ -105,7 +105,7 @@ const CadastrarProfissionalForm = ({ onClose }: CadastrarProfissionalFormProps) 
         />
       </div>
 
-      <FormDescriptor label="Endereço" />
+      <FormDescriptor className="form-descriptor" label="Endereço" />
       <div className="input-group">
         <InputField 
           label="Rua" 
@@ -137,7 +137,7 @@ const CadastrarProfissionalForm = ({ onClose }: CadastrarProfissionalFormProps) 
         />
       </div>
 
-      <FormDescriptor label="Credenciais de Acesso" />
+      <FormDescriptor className="form-descriptor" label="Credenciais de Acesso" />
       <div className="input-group">
         <InputField 
           label="Username" 
