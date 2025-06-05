@@ -1,5 +1,16 @@
+@import url('../../styles/variables.css');
+
 .ribbons-container {
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
+}
+
+.ribbons-container svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  z-index: 0;
 }

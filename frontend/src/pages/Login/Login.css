@@ -1,13 +1,4 @@
-:root {
-    --color-primary: #48C9B0;
-    --color-white: #fff;
-    --color-text-primary: #101828;
-    --color-text-secondary: #5A5A5D;
-    --color-text-label: #344054;
-    --color-text-input: #333333;
-    --color-border: #344054;
-    --color-shadow: rgba(0, 0, 0, 0.1);
-}
+@import url('../../styles/variables.css');
 
 .login-container {
     display: flex;
@@ -18,7 +9,7 @@
 
 .login-container__brand-panel {
     flex: 50%;
-    background-color: #fff;
+    background-color: var(--cor3);
     height: 100%;
     display: flex;           
     justify-content: center; 
@@ -56,38 +47,38 @@
     justify-content: right; 
     align-items: right;
     flex-direction: column;
-    padding: 10px;
+    padding: var(--spacing-md);
     width: 50%;
 }
 
 .login-form-container__subtitle {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-regular);
     color: var(--cor5);
     margin: 0;
     padding: 0;
 }
 
 .login-form-container__title {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
     color: var(--cor4);
     margin: 0;
     padding: 0;
 }
 
 .login-form-container__form {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
 }
 
 .login-form-container__label {
     padding: 0;
     margin: 0;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
     color: var(--cor6);
-    padding-bottom: 5px;
+    padding-bottom: var(--spacing-xs);
     font-family: 'Poppins', sans-serif;
 }
 
