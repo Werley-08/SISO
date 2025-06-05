@@ -28,7 +28,7 @@ public class Procedimento {
     private String descricao;
 
     @Column(nullable = false)
-    private int duracao_padrao_sessao;
+    private int duracao_em_sessao;
 
     public Procedimento(Integer id, float preco, String descricao, int duracao_sessao) {
         this.idProcedimento = id;
