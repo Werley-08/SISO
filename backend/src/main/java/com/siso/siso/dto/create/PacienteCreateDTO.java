@@ -16,7 +16,7 @@ import java.util.Date;
 public class PacienteCreateDTO {
     private ClassificacaoEtaria classificacaoEtaria;
     private String nome;
-    private LocalDate data_nascimento;
+    private String data_nascimento;
     private String telefone;
     private String rua;
     private String bairro;

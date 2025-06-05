@@ -10,6 +10,8 @@ import com.siso.siso.model.enums.StatusPaciente;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.siso.siso.utils.DateFormatter.formatDate;
+
 public interface PacienteMapper {
 
     static Paciente toModel(PacienteCreateDTO pacienteCreateDTO) {
@@ -29,7 +31,7 @@ public interface PacienteMapper {
                 pacienteCreateDTO.getClassificacaoEtaria(),
                 StatusPaciente.AGUARDANDO_INICIO,
                 pacienteCreateDTO.getNome(),
-                pacienteCreateDTO.getData_nascimento(),
+                formatDate(pacienteCreateDTO.getData_nascimento()),
                 pacienteCreateDTO.getTelefone(),
                 pacienteCreateDTO.getRua(),
                 pacienteCreateDTO.getBairro(),
@@ -56,7 +58,7 @@ public interface PacienteMapper {
                 paciente.getClassificacaoEtaria(),
                 paciente.getStatusPaciente(),
                 paciente.getNome(),
-                paciente.getData_nascimento(),
+                formatDate(paciente.getData_nascimento()),
                 paciente.getTelefone(),
                 paciente.getRua(),
                 paciente.getBairro(),
