@@ -11,9 +11,10 @@ import { especialidadeService } from "@/services/especialidadeService";
 
 interface CadastrarProfissionalFormProps {
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
-const CadastrarProfissionalForm = ({ onClose }: CadastrarProfissionalFormProps) => {
+const CadastrarProfissionalForm = ({ onClose, onSuccess }: CadastrarProfissionalFormProps) => {
   const [formData, setFormData] = useState({
     nome: "",
     telefone: "",
@@ -68,6 +69,7 @@ const CadastrarProfissionalForm = ({ onClose }: CadastrarProfissionalFormProps) 
       });
 
       toast.success("Profissional cadastrado com sucesso!");
+      onSuccess?.();
       onClose();
     } catch (error) {
       toast.error("Erro ao cadastrar o Profissional!");

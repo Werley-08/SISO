@@ -13,9 +13,10 @@ import { especialidadeService } from "@/services/especialidadeService";
 interface EditarProfissionalFormProps {
   onClose: () => void;
   profissional: Usuarios;
+  onSuccess?: () => void;
 }
 
-const EditarProfissionalForm = ({ onClose, profissional }: EditarProfissionalFormProps) => {
+const EditarProfissionalForm = ({ onClose, profissional, onSuccess }: EditarProfissionalFormProps) => {
   const [formData, setFormData] = useState<Usuarios>({
     ...profissional,
     senha: ""
@@ -61,6 +62,7 @@ const EditarProfissionalForm = ({ onClose, profissional }: EditarProfissionalFor
     try {
       await profissionalDaSaudeService.editarProfissional(formData.id, dataToSend);
       toast.success("Profissional atualizado com sucesso!");
+      onSuccess?.();
       onClose();
     } catch (error) {
       toast.error("Erro ao atualizar o profissional!");

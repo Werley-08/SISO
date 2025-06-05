@@ -5,7 +5,7 @@ import UserTable from "../../components/UserTable/UserTable";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
 import './GerenciamentoDeProfissionalDaSaude.css'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CadastrarProfissionalForm from "@/components/forms/profissional-da-saude/CadastrarProfissionalForm/CadastrarProfissionalForm";
 import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
 import type { Usuarios } from "@/types/Usuarios";
@@ -30,20 +30,21 @@ const GerenciamentoDeProfissionalDaSaude = () => {
         setShowEditModal(true);
     };
 
-    useEffect(() => {
-        const fetchProfissionais = async () => {
-            try {
-                const data = await profissionalDaSaudeService.listarProfissionais();
-                setProfissionais(data);
-            } catch (error) {
-                console.error('Erro ao carregar profissionais:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProfissionais();
+    const fetchProfissionais = useCallback(async () => {
+        try {
+            setLoading(true);
+            const data = await profissionalDaSaudeService.listarProfissionais();
+            setProfissionais(data);
+        } catch (error) {
+            console.error('Erro ao carregar profissionais:', error);
+        } finally {
+            setLoading(false);
+        }
     }, []);
+
+    useEffect(() => {
+        fetchProfissionais();
+    }, [fetchProfissionais]);
 
     return (
         <div className="profissional-container">
@@ -63,7 +64,10 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                 </div>
 
                 <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                    <CadastrarProfissionalForm onClose={() => setShowModal(false)} />
+                    <CadastrarProfissionalForm 
+                        onClose={() => setShowModal(false)} 
+                        onSuccess={fetchProfissionais}
+                    />
                 </Modal>
 
                 <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)}>
@@ -71,6 +75,7 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                         <EditarProfissionalForm
                             profissional={selectedProfissional}
                             onClose={() => setShowEditModal(false)}
+                            onSuccess={fetchProfissionais}
                         />
                     )}
                 </Modal>
