@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "procedimentos")
 public class Procedimento {
@@ -30,10 +29,11 @@ public class Procedimento {
     @Column(nullable = false)
     private int duracao_em_sessao;
 
-    public Procedimento(Integer id, float preco, String descricao, int duracao_sessao) {
+    public Procedimento(Integer id,String nome, float preco, String descricao, int duracao_sessao) {
         this.idProcedimento = id;
+        this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
-        this.duracao_padrao_sessao = duracao_sessao;
+        this.duracao_em_sessao = duracao_sessao;
     }
 }
