@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -7,7 +5,7 @@ import logo from '../../assets/images/SISO---LogoLOGO---2.png';
 import Ribbons from '../../components/Ribbons/Ribbons';
 import BlurText from '../../components/BlurText/BlurText';
 import { toast } from 'sonner';
-import { authService } from '../../services/authService';
+import api from '@/services/api';
 
 const Login = () => {
     const [login, setLogin] = useState('');
@@ -17,23 +15,23 @@ const Login = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        toast.promise(
-            (async () => {
-                const response = await authService.login({
-                    username: login,
-                    senha: password
-                });
+        try {
+            const response = await api.post("/auth/logar", {
+                username: login,
+                senha: password,
+            });
 
-                localStorage.setItem('token', response.token);
-                navigate('/DashBoard');
-            })(),
-            {
-                loading: 'Entrando...',
-                success: 'Seja bem-vindo!',
-                error: 'O Login falhou. Verifique as credenciais!'
-            }
-        );
+            const { token } = response.data;
+
+            localStorage.setItem('token', token);
+            navigate('/DashBoard');
+
+            toast.success("Logado com sucesso!");
+        } catch (error) {
+            toast.error("Erro no login: " + error);
+        }
     };
+
 
     return (
         <div className="login-container">
@@ -55,15 +53,15 @@ const Login = () => {
 
                 <div className="login-form-container">
                     <div className="login-form-container__header">
-                        <p className="login-form-container__subtitle">
+                        <div className="login-form-container__subtitle">
                             <BlurText
-                                text="Bem vindo de volta!"
+                                text="Bem-vindo de volta!"
                                 delay={300}
                                 animateBy="words"
                                 direction="top"
                                 className="text-2xl mb-8"
-                                />
-                            </p>
+                            />
+                        </div>
                         <p className="login-form-container__title">Faça seu login</p>
                     </div>
 
@@ -85,12 +83,12 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <button type="submit" className="login-form-container__submit">
-                            <p>Login</p>
+                            Login
                         </button>
                     </form>
                 </div>
             </div>
-        </div>        
+        </div>
     );
 };
 
