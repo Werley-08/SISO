@@ -9,9 +9,10 @@ type Props = {
     className?: string;
     usuario?: Usuarios;
     onEdit?: (usuario: Usuarios) => void;
+    onProfile?: (usuario: Usuarios) => void;
 };
 
-const UserTableRow = ({ usuario, className = "", onEdit }: Props) => {
+const UserTableRow = ({ usuario, className = "", onEdit, onProfile }: Props) => {
 
     return (
         <div className={`usertable-row-container ${className}`}>
@@ -34,7 +35,7 @@ const UserTableRow = ({ usuario, className = "", onEdit }: Props) => {
                     <ActionMenu
                         className='actionmenu-container'
                         icons={[
-                            { icon: <EyeIcon /> }, //falta implementar
+                            { icon: <EyeIcon />, onClick:() => onProfile?.(usuario!) }, 
                             { icon: <PencilIcon />, onClick: () => onEdit?.(usuario!) }
                         ]}
                     />

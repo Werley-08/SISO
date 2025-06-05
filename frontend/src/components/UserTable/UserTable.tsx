@@ -6,9 +6,10 @@ interface Props {
     usuarios: Usuarios[];
     className?: string;
     onEdit?: (usuario: Usuarios) => void;
+    onProfile?: (usuario: Usuarios) => void;
 }
 
-const UserTable = ({ usuarios, className = "", onEdit }: Props) => {
+const UserTable = ({ usuarios, className = "", onEdit, onProfile }: Props) => {
 
     return (
         <div className={`usertable-container ${className}`}>
@@ -23,10 +24,9 @@ const UserTable = ({ usuarios, className = "", onEdit }: Props) => {
 
             <div className='usertable-container-content'>
                 {usuarios.map(usuario => (
-                    <UserTableRow key={usuario.id} usuario={usuario} className="usertable-row-container" onEdit={onEdit} />
+                    <UserTableRow key={usuario.id} usuario={usuario} className="usertable-row-container" onEdit={onEdit} onProfile={onProfile} />
                 ))}
             </div>
-
 
         </div>
     );

@@ -1,0 +1,20 @@
+.avatar-container__circle{
+    min-width: 250px;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 250px;
+    background-color: var(--cor1);
+}
+
+.avatar-container__circle-text {
+
+    color: var(--cor3);
+    font-size: 90px
+}
+
+.avatar-container__name{
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-xxl);
+}

@@ -10,6 +10,7 @@ import CadastrarProfissionalForm from "@/components/forms/profissional-da-saude/
 import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
 import type { Usuarios } from "@/types/Usuarios";
 import EditarProfissionalForm from "@/components/forms/profissional-da-saude/EditarProfissionalForm/EditarProfissionalForm";
+import ProfissionalProfile from "@/components/UserProfiles/ProfissionalProfile/ProfissionalProfile";
 
 const GerenciamentoDeProfissionalDaSaude = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,13 +22,21 @@ const GerenciamentoDeProfissionalDaSaude = () => {
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
+
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showProfileModal, setShowProfileModal] = useState(false);
 
     const [selectedProfissional, setSelectedProfissional] = useState<Usuarios | null>(null);
+
     const handleEdit = (usuario: Usuarios) => {
         setSelectedProfissional(usuario);
         setShowEditModal(true);
+    };
+
+    const handleProfile = (usuario: Usuarios) => {
+        setSelectedProfissional(usuario);
+        setShowProfileModal(true);
     };
 
     const fetchProfissionais = useCallback(async () => {
@@ -80,11 +89,20 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                     )}
                 </Modal>
 
+                <Modal isOpen={showProfileModal} onClose={() => setShowProfileModal(false)}>
+                    {selectedProfissional && (
+                        <ProfissionalProfile
+                            profissional={selectedProfissional} 
+                            onClose={() => setShowProfileModal(false)} 
+                        />
+                    )}
+                </Modal>
+
                 <div className="profissional-container__content__table">
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
-                        <UserTable usuarios={currentItems} className="usertable-container" onEdit={handleEdit} />
+                        <UserTable usuarios={currentItems} className="usertable-container" onEdit={handleEdit} onProfile={handleProfile}/>
                     )}
                 </div>
 
