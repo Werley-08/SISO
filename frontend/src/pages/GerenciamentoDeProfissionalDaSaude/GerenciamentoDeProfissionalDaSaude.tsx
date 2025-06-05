@@ -5,10 +5,11 @@ import UserTable from "../../components/UserTable/UserTable";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
 import './GerenciamentoDeProfissionalDaSaude.css'
-import { useState, useEffect } from "react";
-import CadastrarProfissionalForm from "@/components/forms/CadastrarProfissionalForm/CadastrarProfissionalForm";
+import { useState, useEffect, useCallback } from "react";
+import CadastrarProfissionalForm from "@/components/forms/profissional-da-saude/CadastrarProfissionalForm/CadastrarProfissionalForm";
 import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
 import type { Usuarios } from "@/types/Usuarios";
+import EditarProfissionalForm from "@/components/forms/profissional-da-saude/EditarProfissionalForm/EditarProfissionalForm";
 
 const GerenciamentoDeProfissionalDaSaude = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,21 +22,29 @@ const GerenciamentoDeProfissionalDaSaude = () => {
         currentPage * itemsPerPage
     );
     const [showModal, setShowModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+
+    const [selectedProfissional, setSelectedProfissional] = useState<Usuarios | null>(null);
+    const handleEdit = (usuario: Usuarios) => {
+        setSelectedProfissional(usuario);
+        setShowEditModal(true);
+    };
+
+    const fetchProfissionais = useCallback(async () => {
+        try {
+            setLoading(true);
+            const data = await profissionalDaSaudeService.listarProfissionais();
+            setProfissionais(data);
+        } catch (error) {
+            console.error('Erro ao carregar profissionais:', error);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
 
     useEffect(() => {
-        const fetchProfissionais = async () => {
-            try {
-                const data = await profissionalDaSaudeService.listarProfissionais();
-                setProfissionais(data);
-            } catch (error) {
-                console.error('Erro ao carregar profissionais:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchProfissionais();
-    }, []);
+    }, [fetchProfissionais]);
 
     return (
         <div className="profissional-container">
@@ -55,14 +64,27 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                 </div>
 
                 <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                    <CadastrarProfissionalForm onClose={() => setShowModal(false)} />
+                    <CadastrarProfissionalForm 
+                        onClose={() => setShowModal(false)} 
+                        onSuccess={fetchProfissionais}
+                    />
+                </Modal>
+
+                <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)}>
+                    {selectedProfissional && (
+                        <EditarProfissionalForm
+                            profissional={selectedProfissional}
+                            onClose={() => setShowEditModal(false)}
+                            onSuccess={fetchProfissionais}
+                        />
+                    )}
                 </Modal>
 
                 <div className="profissional-container__content__table">
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
-                        <UserTable usuarios={currentItems} className="usertable-container"/>
+                        <UserTable usuarios={currentItems} className="usertable-container" onEdit={handleEdit} />
                     )}
                 </div>
 

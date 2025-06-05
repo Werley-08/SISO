@@ -6,17 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
+import java.time.LocalDate;
+import java.util.Date;
+
 @Getter
 @Setter
-public class RecepcionistaCreateDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class PacienteCreateDTO {
+    private ClassificacaoEtaria classificacaoEtaria;
     private String nome;
-    private String username;
-    private String senha;
+    private LocalDate data_nascimento;
     private String telefone;
     private String rua;
     private String bairro;
     private String cidade;
-    private String numero_casa;
+    private Integer num_casa;
+    private ResponsavelCreateDTO responsavel;
 }

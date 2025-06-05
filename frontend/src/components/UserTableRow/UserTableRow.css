@@ -1,8 +1,8 @@
 @import url('../../styles/variables.css');
 
 .usertable-row-container {
-    margin: 3px 0px;
-    transition: transform 0.2s ease;
+    margin: var(--spacing-xs) 0;
+    transition: transform var(--transition-fast);
 }
 
 .usertable-row-container:hover {
@@ -20,8 +20,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 10px 0px;
-    margin: 0px;
+    padding: var(--spacing-md) 0;
+    margin: 0;
     background-color: var(--cor3);
     min-height: 40px;
 }
