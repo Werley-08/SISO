@@ -14,7 +14,6 @@ import static com.siso.siso.utils.RoleFormatter.formatRole;
 
 public interface RecepcionistaMapper {
 
-    // Converte Model em ResponseDTO
     static RecepcionistaResponseDTO toDTO(Recepcionista recepcionista){
         return new RecepcionistaResponseDTO(
                 recepcionista.getId(),
@@ -32,22 +31,10 @@ public interface RecepcionistaMapper {
 
     static List<RecepcionistaResponseDTO> toDTO(List<Recepcionista> recepcionistas) {
         return recepcionistas.stream()
-                .map(recepcionista -> new RecepcionistaResponseDTO(
-                        recepcionista.getId(),
-                        recepcionista.getNome(),
-                        recepcionista.getUsername(),
-                        recepcionista.getStatus(),
-                        formatRole(recepcionista.getRole()),
-                        recepcionista.getTelefone(),
-                        recepcionista.getRua(),
-                        recepcionista.getBairro(),
-                        recepcionista.getCidade(),
-                        recepcionista.getNumero_casa()
-                ))
+                .map(RecepcionistaMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    // Converter DTO's em Model
     static Recepcionista toModel(RecepcionistaCreateDTO recepcionistaDTO){
         return new Recepcionista(
                 null,

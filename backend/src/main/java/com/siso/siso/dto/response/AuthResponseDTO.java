@@ -1,4 +1,4 @@
-package com.siso.siso.dto.auth;
+package com.siso.siso.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

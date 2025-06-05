@@ -1,7 +1,5 @@
 package com.siso.siso.dto.update;
 
-import jakarta.persistence.Column;
-
 public class PacienteUpdateDTO {
 
     private String nome;

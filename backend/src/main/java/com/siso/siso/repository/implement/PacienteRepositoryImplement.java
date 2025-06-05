@@ -6,6 +6,8 @@ import com.siso.siso.repository.interfaces.IPacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class PacienteRepositoryImplement implements IPacienteRepository{
     private final PacienteRepository pacienteRepository;
@@ -18,5 +20,10 @@ public class PacienteRepositoryImplement implements IPacienteRepository{
     @Override
     public Paciente save(Paciente paciente) {
         return pacienteRepository.save(paciente);
+    }
+
+    @Override
+    public List<Paciente> findAll() {
+        return pacienteRepository.findAll();
     }
 }

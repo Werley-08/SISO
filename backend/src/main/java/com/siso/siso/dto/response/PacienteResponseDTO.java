@@ -7,9 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,7 +16,7 @@ public class PacienteResponseDTO {
     private ClassificacaoEtaria classificacaoEtaria;
     private StatusPaciente statusPaciente;
     private String nome;
-    private LocalDate data_nascimento;
+    private String data_nascimento;
     private String telefone;
     private String rua;
     private String bairro;

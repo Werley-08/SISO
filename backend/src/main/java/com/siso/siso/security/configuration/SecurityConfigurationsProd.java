@@ -56,6 +56,7 @@ public class SecurityConfigurationsProd{
 
                         // Pacientes endpoinst
                         .requestMatchers(HttpMethod.POST, "/api/paciente/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/paciente/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
 
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
