@@ -1,7 +1,10 @@
 package com.siso.siso.dto.update;
 
 import com.siso.siso.model.enums.Status;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
