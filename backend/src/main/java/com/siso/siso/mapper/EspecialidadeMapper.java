@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public interface EspecialidadeMapper {
 
-    // Converte models para ResponseDTO
     static EspecialidadeResponseDTO toDTO(Especialidade especialidade) {
         return new EspecialidadeResponseDTO(
                 especialidade.getId(),
@@ -19,14 +18,11 @@ public interface EspecialidadeMapper {
     }
 
     static List<EspecialidadeResponseDTO> toDTO(List<Especialidade> especialidades) {
-        return especialidades.stream().
-                map(especialidade -> new EspecialidadeResponseDTO(
-                        especialidade.getId(),
-                        especialidade.getNome()))
+        return especialidades.stream()
+                .map(EspecialidadeMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    // Converte DTOs para Model
     static Especialidade toModel(EspecialidadeCreateDTO especialidadeDTO) {
         return new Especialidade(
                 null,

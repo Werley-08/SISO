@@ -1,7 +1,7 @@
 package com.siso.siso.controller;
 
 import com.siso.siso.dto.auth.AuthDTO;
-import com.siso.siso.dto.auth.AuthResponseDTO;
+import com.siso.siso.dto.response.AuthResponseDTO;
 import com.siso.siso.security.configuration.SecurityConfigurationsTests;
 import com.siso.siso.security.filter.SecurityFilter;
 import com.siso.siso.service.AuthService;

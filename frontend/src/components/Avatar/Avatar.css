@@ -1,0 +1,40 @@
+.avatar-container__circle{
+    flex: 95%;
+    height: 20vh;
+    width: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 250px;
+    background-color: var(--cor1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.avatar-container__circle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-container__circle-text {
+    color: var(--cor3);
+    font-size: 90px;
+    transition: all 0.3s ease;
+}
+
+.avatar-container__circle:hover .avatar-container__circle-text {
+    transform: scale(1.1);
+    color: var(--cor3);
+}
+
+.avatar-container__name{
+    flex: 5%;
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    transition: all 0.3s ease;
+}
+
+.avatar-container__circle:hover + .avatar-container__name {
+    color: var(--cor1);
+    transform: translateY(-2px);
+}

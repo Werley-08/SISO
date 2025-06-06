@@ -14,7 +14,6 @@ import static com.siso.siso.utils.RoleFormatter.formatRole;
 
 public interface ProfissionalDaSaudeMapper {
 
-    // Converte Model para ResponseDTO
     static ProfissionalDaSaudeResponseDTO toDTO(ProfissionalDaSaude profissionalDaSaude) {
         return new ProfissionalDaSaudeResponseDTO(
                 profissionalDaSaude.getId(),
@@ -33,23 +32,10 @@ public interface ProfissionalDaSaudeMapper {
 
     static List<ProfissionalDaSaudeResponseDTO> toDTO(List<ProfissionalDaSaude> profissionais) {
         return profissionais.stream()
-                .map(profissional -> new ProfissionalDaSaudeResponseDTO(
-                        profissional.getId(),
-                        profissional.getNome(),
-                        profissional.getUsername(),
-                        profissional.getStatus(),
-                        formatRole(profissional.getRole()),
-                        profissional.getTelefone(),
-                        profissional.getRua(),
-                        profissional.getBairro(),
-                        profissional.getCidade(),
-                        profissional.getNumero_casa(),
-                        profissional.getEspecialidade()
-                ))
+                .map(ProfissionalDaSaudeMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    // Converte DTOs em Model
     static ProfissionalDaSaude toModel(ProfissionalDaSaudeCreateDTO profissionalDaSaudeDTO) {
 
         return new ProfissionalDaSaude(
