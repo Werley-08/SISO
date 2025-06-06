@@ -1,23 +1,28 @@
 @import url('../../../styles/variables.css');
 
-.profissionalProfile-container{
+.profissionalProfile-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
     display: flex;
     flex-direction: column;
 }
 
 .profissionalProfile-container__title {
-    flex: 5%;
+    margin-bottom: var(--spacing-xl);
 }
 
 .profissionalProfile-container__main-content {
-    flex: 95%;
     display: flex;
-    flex-direction: row;
-    margin-top: var(--spacing-xxl);
+    flex-direction: column;
+    gap: var(--spacing-xl);
 }
 
 .profissionalProfile-container__avatar {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
 }
 
 .profissionalProfile-container__avatar .avatar-container{
@@ -27,6 +32,7 @@
 }
 
 .profissionalProfile-container__informations {
-    border: 1px solid yellow;
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
 }

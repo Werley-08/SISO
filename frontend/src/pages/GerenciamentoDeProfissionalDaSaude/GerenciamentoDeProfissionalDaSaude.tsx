@@ -93,7 +93,6 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                     {selectedProfissional && (
                         <ProfissionalProfile
                             profissional={selectedProfissional} 
-                            onClose={() => setShowProfileModal(false)} 
                         />
                     )}
                 </Modal>
