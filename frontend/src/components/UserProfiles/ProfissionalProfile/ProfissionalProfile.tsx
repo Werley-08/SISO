@@ -8,6 +8,7 @@ import { ReactComponent as UserStatusIcon } from "@/assets/icons/UserStatus-icon
 import { ReactComponent as PhoneIcon } from "@/assets/icons/Phone-icon.svg"
 import { ReactComponent as HomeIcon } from "@/assets/icons/Home-icon.svg"
 import { ReactComponent as LocationIcon } from "@/assets/icons/Location-icon.svg"
+import { ReactComponent as ProfissionalIcon } from "@/assets/icons/ProfissionalDaSaude-icon.svg"
 
 interface ProfissionalProfileProps {
   className?: string;
@@ -26,7 +27,12 @@ const ProfissionalProfile: React.FC<ProfissionalProfileProps> = ({ className, pr
 
                 <div className="profissionalProfile-container__avatar"> 
                     <Avatar usuario={profissional} className="avatar-container"/>
-                    <IconWithText text={profissional.role} icon={<UserRoleIcon/>}   />
+
+                    <div className="profissionalProfile-container__avatar-informations">
+                        <IconWithText text={profissional.role} icon={<UserRoleIcon/>}   />
+                        <IconWithText text={profissional.especialidade?.nome} icon={<ProfissionalIcon/>}   />
+                    </div>
+                    
                 </div>
 
                 <div className="profissionalProfile-container__informations">
