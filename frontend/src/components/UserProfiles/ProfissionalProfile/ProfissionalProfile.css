@@ -1,0 +1,38 @@
+@import url('../../../styles/variables.css');
+
+.profissionalProfile-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.profissionalProfile-container__title {
+    margin-bottom: var(--spacing-xl);
+}
+
+.profissionalProfile-container__main-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.profissionalProfile-container__avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.profissionalProfile-container__avatar .avatar-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profissionalProfile-container__informations {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}

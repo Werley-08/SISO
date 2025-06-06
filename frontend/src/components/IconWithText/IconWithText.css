@@ -1,0 +1,46 @@
+@import url('../../styles/variables.css');
+
+.iconWithText-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.iconWithText-container:hover {
+    background-color: var(--cor3);
+    transform: translateY(-2px);
+}
+
+.iconWithText-container__icon {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.iconWithText-container__icon svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--cor7);
+    transition: all 0.3s ease;
+}
+
+.iconWithText-container:hover .iconWithText-container__icon svg {
+    fill: var(--cor1);
+    transform: scale(1.1);
+}
+
+.iconWithText-container__text {
+    font-size: var(--font-size-sm);
+    color: var(--cor5);
+    transition: all 0.3s ease;
+}
+
+.iconWithText-container:hover .iconWithText-container__text {
+    color: var(--cor1);
+    font-weight: var(--font-weight-semibold);
+}
