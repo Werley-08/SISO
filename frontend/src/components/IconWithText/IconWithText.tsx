@@ -2,7 +2,7 @@ import './IconWithText.css'
 
 type IconWithTextProps = {
     className?: string;
-    text: string;
+    text?: string;
     icon: React.ReactNode;
 };
 

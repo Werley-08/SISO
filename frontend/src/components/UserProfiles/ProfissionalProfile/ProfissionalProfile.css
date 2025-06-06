@@ -25,6 +25,13 @@
     gap: var(--spacing-md);
 }
 
+.profissionalProfile-container__avatar-informations {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: var(--spacing-md);
+}
+
 .profissionalProfile-container__avatar .avatar-container{
     display: flex;
     flex-direction: column;
