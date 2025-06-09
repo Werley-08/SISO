@@ -103,3 +103,21 @@
 .select-with-button__arrow--open {
   transform: rotate(180deg);
 }
+.select-with-button__option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.select-with-button__edit-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  fill: var(--cor8);
+  transition: fill 0.2s ease;
+}
+
+.select-with-button__edit-icon:hover {
+  fill: var(--cor1);
+}

@@ -9,5 +9,13 @@ export const especialidadeService = {
     cadastrarEspecialidade: async (nome: string): Promise<Especialidade> => {
         const response = await api.post<Especialidade>('/especialidade/cadastrar', { nome });
         return response.data;
-    }
+    },
+    editarEspecialidade: async (id: number | string, nome: string): Promise<Especialidade> => {
+        const response = await api.put<Especialidade>(`/especialidade/editar/${id}`, {
+            id,
+            nome
+        });
+        return response.data;
+    },
+
 }; 
