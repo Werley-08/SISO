@@ -5,5 +5,9 @@ export const especialidadeService = {
     listarEspecialidades: async (): Promise<Especialidade[]> => {
         const response = await api.get<Especialidade[]>('/especialidade/visualizarTodos');
         return response.data;
+    },
+    cadastrarEspecialidade: async (nome: string): Promise<Especialidade> => {
+        const response = await api.post<Especialidade>('/especialidade/cadastrar', { nome });
+        return response.data;
     }
 }; 
