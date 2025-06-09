@@ -1,0 +1,105 @@
+
+.select-with-button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.select-with-button__label {
+  font-weight: 600;
+  font-size: var(--font-size-md);
+}
+
+.select-with-button__trigger {
+  padding: var(--spacing-md);
+  border: 1px solid var(--cor8);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--cor3);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  width: 200px;
+}
+
+.select-with-button__dropdown {
+  position: absolute;
+  background-color: var(--cor3);
+  border: 1px solid var(--cor8);
+  border-radius: var(--border-radius-lg);
+  width: 290px;
+  margin-top: 70px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.select-with-button__search-wrapper {
+  padding: 12px;
+  border-bottom: 1px solid var(--cor8);
+}
+
+.select-with-button__button-wrapper {
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-with-button__button-wrapper button {
+  width: 90%;
+  padding: 10px;
+  background-color: var(--cor1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-md);
+  cursor: pointer;
+}
+
+.select-with-button__options {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.select-with-button__options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.select-with-button__options::-webkit-scrollbar-thumb {
+  background-color: var(--cor8);
+  border-radius: 10px;
+}
+
+.select-with-button__option {
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+}
+
+.select-with-button__option:hover {
+  background-color: var(--cor2);
+}
+
+.select-with-button__trigger {
+  padding: var(--spacing-md);
+  border: 1px solid var(--cor8);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--cor3);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.select-with-button__arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.select-with-button__arrow--open {
+  transform: rotate(180deg);
+}
