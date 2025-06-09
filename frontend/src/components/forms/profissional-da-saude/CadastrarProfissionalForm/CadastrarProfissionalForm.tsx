@@ -3,7 +3,7 @@ import Button from "@/components/Button/Button";
 import { useEffect, useState } from "react";
 import "./CadastrarProfissionalForm.css";
 import FormDescriptor from "@/components/FormDescriptor/FormDescriptor";
-import SelectField from "@/components/SelectField/SelectField";
+import SelectWithButton from "@/components/SelectwithButton/SelectWithButton";
 import type { Especialidade } from "@/types/Especialidade";
 import { toast } from "sonner";
 import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
@@ -98,13 +98,19 @@ const CadastrarProfissionalForm = ({ onClose, onSuccess }: CadastrarProfissional
           placeholder="(00) 0 0000-0000" 
           name="telefone" 
         />
-        <SelectField 
-          label="Especialidade" 
-          value={formData.especialidadeId} 
-          onChange={handleChange} 
-          options={especialidades} 
-          name="especialidadeId"
-        />
+        <SelectWithButton
+         label="Especialidade"
+         value={formData.especialidadeId}
+         onChange={(id) =>
+         setFormData((prev) => ({
+          ...prev,
+         especialidadeId: String(id),
+        }))
+         }
+        options={especialidades}
+        name="especialidadeId"
+    />
+
       </div>
 
       <FormDescriptor className="form-descriptor" label="Endereço" />
