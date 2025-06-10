@@ -31,3 +31,37 @@ Este repositório contém o sistema de gerenciamento odontológico desenvolvido 
 - Docker (ambiente de desenvolvimento e produção)
 
 ---
+
+## 📦 Como Executar o Back-end com Docker Compose
+
+Com o repositório já clonado e com o docker já instalado(e rodando)
+
+Construa a imagem, usando o comando:
+
+    - "docker-compose build"
+
+Depois, suba o container, usando o comando:
+
+    - "docker-compose up"
+
+- Acesse o Back-end: O servidor estará disponível em http://localhost:8080.
+
+---
+
+## 🖥️ Como Executar o Front-end
+
+Entre na pasta do front-end, usando o comando:
+
+    - "cd frontend"
+
+Instale as dependências do Front-end, usando o comando:
+
+    - "npm i"
+
+Por fim, execute, usando o comando:
+
+    - "npm run dev"
+
+---
+
+## 🔗 O sistema só funcionara se você estiver rodando o front e o back
