@@ -1,4 +1,4 @@
-@import url('../../styles/variables.css');
+@import url("@/styles/variables.css");
 
 .usertable-row-container {
     margin: var(--spacing-xs) 0;

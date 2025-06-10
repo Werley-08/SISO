@@ -1,4 +1,4 @@
-@import url('../../styles/variables.css');
+@import url("@/styles/variables.css");
 
 .searchbar-container {
     background-color: var(--cor11);
