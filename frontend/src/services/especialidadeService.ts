@@ -12,6 +12,10 @@ export const especialidadeService = {
     cadastrarEspecialidade: async (data: CadastrarEspecialidadeData): Promise<Especialidade> => {
         const response = await api.post<Especialidade>('/especialidade/cadastrar', data);
         return response.data;
-    }
+    },
 
+    editarEspecialidade: async (id: number, data: Especialidade): Promise<Especialidade> => {
+        const response = await api.put<Especialidade>(`/especialidade/editar/${id}`, data);
+        return response.data;
+    }
 }; 
