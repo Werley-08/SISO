@@ -1,4 +1,4 @@
-@import url('../../styles/variables.css');
+@import url("@/styles/variables.css");
 
 .modal-overlay {
     position: fixed;
@@ -18,15 +18,16 @@
     background: var(--cor3);
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-lg);
-    width: 100%;
-    max-width: 1000px;
-    min-width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     margin: auto;
     max-height: 90vh;
     overflow-y: auto;
+    width: auto;
+    max-width: 90vw;
+    min-width: auto;
 }
+
 
 .modal-close {
     position: absolute;

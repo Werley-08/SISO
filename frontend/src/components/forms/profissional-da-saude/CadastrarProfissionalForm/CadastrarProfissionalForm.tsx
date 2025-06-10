@@ -3,11 +3,13 @@ import Button from "@/components/Button/Button";
 import { useEffect, useState } from "react";
 import "./CadastrarProfissionalForm.css";
 import FormDescriptor from "@/components/FormDescriptor/FormDescriptor";
-import SelectField from "@/components/SelectField/SelectField";
 import type { Especialidade } from "@/types/Especialidade";
 import { toast } from "sonner";
 import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
 import { especialidadeService } from "@/services/especialidadeService";
+import CadastrarEspecialidadeForm from "../../especialidades/CadastrarEspecialidadeForm/CadastrarEspecialidadeForm";
+import DropdownEspecialidade from "../../especialidades/DropdownEspecialidade/DropdownEspecialidade";
+import EditarEspecialidadeForm from "../../especialidades/EditarEspecialidadeForm/EditarEspecialidadeForm";
 
 interface CadastrarProfissionalFormProps {
   onClose: () => void;
@@ -42,8 +44,12 @@ const CadastrarProfissionalForm = ({ onClose, onSuccess }: CadastrarProfissional
     fetchEspecialidades();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleCustomChange = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -59,7 +65,7 @@ const CadastrarProfissionalForm = ({ onClose, onSuccess }: CadastrarProfissional
 
     try {
       const especialidade = especialidades.find(esp => esp.id === Number(formData.especialidadeId));
-      
+
       await profissionalDaSaudeService.cadastrarProfissional({
         ...formData,
         especialidade: {
@@ -80,81 +86,119 @@ const CadastrarProfissionalForm = ({ onClose, onSuccess }: CadastrarProfissional
   return (
     <form onSubmit={handleSubmit} className="cadastrar-profissional-form">
       <h3>Cadastrar Profissional de Saúde</h3>
-      
+
       <FormDescriptor className="form-descriptor" label="Informações Gerais" />
       <div className="input-group">
-        <InputField 
-          label="Nome" 
-          value={formData.nome} 
-          onChange={handleChange} 
-          placeholder="Insira o nome..." 
-          name="nome" 
+        <InputField
+          label="Nome"
+          value={formData.nome}
+          onChange={handleChange}
+          placeholder="Insira o nome..."
+          name="nome"
           required
         />
-        <InputField 
-          label="Telefone" 
-          value={formData.telefone} 
-          onChange={handleChange} 
-          placeholder="(00) 0 0000-0000" 
-          name="telefone" 
+        <InputField
+          label="Telefone"
+          value={formData.telefone}
+          onChange={handleChange}
+          placeholder="(00) 0 0000-0000"
+          name="telefone"
         />
-        <SelectField 
-          label="Especialidade" 
-          value={formData.especialidadeId} 
-          onChange={handleChange} 
-          options={especialidades} 
+
+        <DropdownEspecialidade
+          label="Especialidade"
           name="especialidadeId"
+          value={formData.especialidadeId}
+          onChange={(value) => handleCustomChange("especialidadeId", value)}
+          options={especialidades}
+          actionLabel="Cadastrar Especialidade"
+          modalContent={(closeModalEspecialidade) => (
+            <CadastrarEspecialidadeForm
+              onClose={closeModalEspecialidade}
+              onSuccess={async (novaEspecialidade) => {
+                const novas = await especialidadeService.listarEspecialidades();
+                setEspecialidades(novas);
+                setFormData((prev) => ({
+                  ...prev,
+                  especialidadeId: novaEspecialidade.id.toString(),
+                }));
+                closeModalEspecialidade();
+              }}
+            />
+          )}
+          editModalContent={(especialidade, onClose) => (
+            <EditarEspecialidadeForm
+              especialidade={especialidade}
+              onClose={onClose}
+              onSuccess={async (especialidadeAtualizada) => {
+                const novas = await especialidadeService.listarEspecialidades();
+                setEspecialidades(novas);
+
+                if (
+                  especialidadeAtualizada.id.toString() ===
+                  formData.especialidadeId
+                ) {
+                  setFormData((prev) => ({
+                    ...prev,
+                    especialidadeId: especialidadeAtualizada.id.toString(),
+                  }));
+                }
+
+                onClose();
+              }}
+            />
+          )}
         />
       </div>
 
       <FormDescriptor className="form-descriptor" label="Endereço" />
       <div className="input-group">
-        <InputField 
-          label="Rua" 
-          value={formData.rua} 
-          onChange={handleChange} 
-          placeholder="Digite a rua..." 
-          name="rua" 
+        <InputField
+          label="Rua"
+          value={formData.rua}
+          onChange={handleChange}
+          placeholder="Digite a rua..."
+          name="rua"
         />
-        <InputField 
-          label="Número" 
-          value={formData.numero_casa} 
-          onChange={handleChange} 
-          placeholder="1234" 
-          name="numero_casa" 
+        <InputField
+          label="Número"
+          value={formData.numero_casa}
+          onChange={handleChange}
+          placeholder="1234"
+          name="numero_casa"
         />
-        <InputField 
-          label="Bairro" 
-          value={formData.bairro} 
-          onChange={handleChange} 
-          placeholder="Digite o bairro..." 
-          name="bairro" 
+        <InputField
+          label="Bairro"
+          value={formData.bairro}
+          onChange={handleChange}
+          placeholder="Digite o bairro..."
+          name="bairro"
         />
-        <InputField 
-          label="Cidade" 
-          value={formData.cidade} 
-          onChange={handleChange} 
-          placeholder="Digite a cidade..." 
-          name="cidade" 
+        <InputField
+          label="Cidade"
+          value={formData.cidade}
+          onChange={handleChange}
+          placeholder="Digite a cidade..."
+          name="cidade"
         />
       </div>
 
       <FormDescriptor className="form-descriptor" label="Credenciais de Acesso" />
       <div className="input-group">
-        <InputField 
-          label="Username" 
-          value={formData.username} 
-          onChange={handleChange} 
-          placeholder="Digite o email..." 
+        <InputField
+          label="Username"
+          value={formData.username}
+          onChange={handleChange}
+          placeholder="Digite o email..."
           name="username"
           required
         />
-        <InputField 
-          label="Senha" 
-          type="password" 
-          value={formData.senha} 
-          onChange={handleChange} 
-          placeholder="Digite a senha..." 
+        <InputField
+          label="Senha"
+          type="password"
+          value={formData.senha}
+          onChange={handleChange}
+          placeholder="Digite a senha..."
           name="senha"
           required
         />

@@ -1,0 +1,112 @@
+@import url("@/styles/variables.css");
+
+.select-field {
+  display: flex;
+  flex-direction: column;
+  margin-right: var(--spacing-lg);
+  position: relative;
+}
+
+.select-field label {
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+  color: var(--cor6);
+}
+
+.select-element {
+  cursor: pointer;
+  width: 208px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid var(--cor8);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-md);
+  transition: border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+  background-color: var(--cor3);
+}
+
+.select-element:focus,
+.select-element:focus-visible {
+  border-color: var(--cor1);
+  box-shadow: 0 0 5px var(--cor9);
+  outline: none;
+}
+
+.dropdown-search-bar {
+  margin: 10px;
+}
+
+.dropdown-display::after {
+  content: "▾";
+  float: right;
+  color: var(--cor6);
+}
+
+.dropdown-actions {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
+}
+
+.dropdown-menu {
+  justify-content: center;
+  position: absolute;
+  height: 250px;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid var(--cor8);
+  border-radius: var(--border-radius-lg);
+  z-index: 10;
+  margin-top: 4px;
+  max-height: 250px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-options-scroll {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.dropdown-action-button-wrapper {
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+  background: white;
+  position: static;
+  top: 0;
+  z-index: 1;
+}
+
+.dropdown-option {
+  padding: 0.8rem var(--font-size-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+}
+
+.dropdown-option:hover {
+  background-color: #f0f0f0;
+  font-weight: 500;
+}
+
+.option-label {
+  flex: 1;
+}
+
+.edit-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.edit-icon:hover {
+  opacity: 1;
+}
