@@ -33,32 +33,51 @@
   outline: none;
 }
 
+.dropdown-search-bar {
+  margin: 10px;
+}
+
 .dropdown-display::after {
   content: "▾";
   float: right;
   color: var(--cor6);
 }
 
+.dropdown-actions {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
+}
+
 .dropdown-menu {
+  justify-content: center;
   position: absolute;
+  height: 250px;
   top: 100%;
   left: 0;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   background: white;
   border: 1px solid var(--cor8);
   border-radius: var(--border-radius-lg);
   z-index: 10;
   margin-top: 4px;
   max-height: 250px;
-  overflow-y: auto;
+  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-options-scroll {
+  overflow-y: auto;
+  flex: 1;
 }
 
 .dropdown-action-button-wrapper {
   padding: 0.5rem;
   border-bottom: 1px solid #eee;
   background: white;
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 1;
 }

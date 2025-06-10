@@ -5,6 +5,7 @@ import Modal from "@/components/Modal/Modal";
 import { ReactComponent as PencilIcon } from "@/assets/icons/Pencil-icon.svg";
 import "./DropdownEspecialidade.css";
 import ActionMenu from "@/components/ActionMenu/ActionMenu";
+import SearchBar from "@/components/SearchBar/SearchBar";
 
 interface Props {
   label: string;
@@ -36,6 +37,11 @@ const DropdownEspecialidade = ({
   const [showModal, setShowModal] = useState(false);
   const [editando, setEditando] = useState<Especialidade | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredOptions = options.filter((opt) =>
+    opt.nome.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const selectedOption = useMemo(
     () => options.find((opt) => opt.id.toString() === value),
@@ -76,29 +82,47 @@ const DropdownEspecialidade = ({
 
       {isOpen && (
         <div className="dropdown-menu">
-          <div className="dropdown-action-button-wrapper">
-            <ActionButton
-              text={actionLabel}
-              onClick={() => {
-                setIsOpen(false);
-                setShowModal(true);
+          <div className="dropdown-actions">
+            <div
+              className="dropdown-search"
+              onClick={(e) => e.stopPropagation()}
+              onInputCapture={(e) => {
+                const target = e.target as HTMLInputElement;
+                if (target?.type === "search") {
+                  setSearchTerm(target.value);
+                }
               }}
-            />
-          </div>
-          {options.map((opt) => (
-            <div key={opt.id} className="dropdown-option">
-              <span
-                onClick={() => {
-                  onChange(opt.id.toString());
-                  setIsOpen(false);
-                }}
-                className="option-label"
-              >
-                {opt.nome}
-              </span>
+            >
+              <SearchBar className="dropdown-search-bar" />
+            </div>
 
-              <ActionMenu
-                  className='edit-icon'
+            <div className="dropdown-action-button-wrapper">
+              <ActionButton
+                text={actionLabel}
+                onClick={() => {
+                  setIsOpen(false);
+                  setShowModal(true);
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="dropdown-options-scroll">
+            {filteredOptions.map((opt) => (
+              <div key={opt.id} className="dropdown-option">
+                <span
+                  onClick={() => {
+                    onChange(opt.id.toString());
+                    setIsOpen(false);
+                    setSearchTerm("");
+                  }}
+                  className="option-label"
+                >
+                  {opt.nome}
+                </span>
+
+                <ActionMenu
+                  className="edit-icon"
                   icons={[
                     {
                       icon: <PencilIcon />,
@@ -106,8 +130,9 @@ const DropdownEspecialidade = ({
                     },
                   ]}
                 />
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
