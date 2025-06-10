@@ -1,4 +1,4 @@
-@import url("../../styles/variables.css");
+@import url("@/styles/variables.css");
 
 .select-field {
   display: flex;
@@ -64,7 +64,10 @@
 }
 
 .dropdown-option {
-  padding: 0.5rem var(--spacing-lg);
+  padding: 0.8rem var(--font-size-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   font-size: var(--font-size-md);
 }
@@ -72,4 +75,19 @@
 .dropdown-option:hover {
   background-color: #f0f0f0;
   font-weight: 500;
+}
+
+.option-label {
+  flex: 1;
+}
+
+.edit-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.edit-icon:hover {
+  opacity: 1;
 }

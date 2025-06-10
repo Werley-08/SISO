@@ -7,8 +7,9 @@ import type { Especialidade } from "@/types/Especialidade";
 import { toast } from "sonner";
 import { profissionalDaSaudeService } from "@/services/profissionalDaSaudeService";
 import { especialidadeService } from "@/services/especialidadeService";
-import CadastrarEspecialidadeForm from "../CadastrarEspecialidadeForm/CadastrarEspecialidadeForm";
-import DropdownEspecialidade from "@/components/DropdownEspecialidade/DropdownEspecialidade";
+import CadastrarEspecialidadeForm from "../../especialidades/CadastrarEspecialidadeForm/CadastrarEspecialidadeForm";
+import DropdownEspecialidade from "../../especialidades/DropdownEspecialidade/DropdownEspecialidade";
+import EditarEspecialidadeForm from "../../especialidades/EditarEspecialidadeForm/EditarEspecialidadeForm";
 
 interface CadastrarProfissionalFormProps {
   onClose: () => void;
@@ -122,6 +123,28 @@ const CadastrarProfissionalForm = ({ onClose, onSuccess }: CadastrarProfissional
                   especialidadeId: novaEspecialidade.id.toString(),
                 }));
                 closeModalEspecialidade();
+              }}
+            />
+          )}
+          editModalContent={(especialidade, onClose) => (
+            <EditarEspecialidadeForm
+              especialidade={especialidade}
+              onClose={onClose}
+              onSuccess={async (especialidadeAtualizada) => {
+                const novas = await especialidadeService.listarEspecialidades();
+                setEspecialidades(novas);
+
+                if (
+                  especialidadeAtualizada.id.toString() ===
+                  formData.especialidadeId
+                ) {
+                  setFormData((prev) => ({
+                    ...prev,
+                    especialidadeId: especialidadeAtualizada.id.toString(),
+                  }));
+                }
+
+                onClose();
               }}
             />
           )}

@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import type { Especialidade } from "@/types/Especialidade";
-import ActionButton from "../ActionButton/ActionButton";
-import Modal from "../Modal/Modal";
+import ActionButton from "@/components/ActionButton/ActionButton";
+import Modal from "@/components/Modal/Modal";
+import { ReactComponent as PencilIcon } from "@/assets/icons/Pencil-icon.svg";
 import "./DropdownEspecialidade.css";
+import ActionMenu from "@/components/ActionMenu/ActionMenu";
 
 interface Props {
   label: string;
@@ -12,6 +14,10 @@ interface Props {
   options: Especialidade[];
   actionLabel: string;
   modalContent: (onClose: () => void) => React.ReactNode;
+  editModalContent?: (
+    especialidade: Especialidade,
+    onClose: () => void
+  ) => React.ReactNode;
   className?: string;
 }
 
@@ -23,10 +29,12 @@ const DropdownEspecialidade = ({
   options,
   actionLabel,
   modalContent,
+  editModalContent,
   className,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [editando, setEditando] = useState<Especialidade | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const selectedOption = useMemo(
@@ -46,6 +54,11 @@ const DropdownEspecialidade = ({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const openEditModal = (especialidade: Especialidade) => {
+    setEditando(especialidade);
+    setIsOpen(false);
+  };
 
   return (
     <div className={`select-field ${className ?? ""}`} ref={dropdownRef}>
@@ -73,15 +86,26 @@ const DropdownEspecialidade = ({
             />
           </div>
           {options.map((opt) => (
-            <div
-              key={opt.id}
-              className="dropdown-option"
-              onClick={() => {
-                onChange(opt.id.toString());
-                setIsOpen(false);
-              }}
-            >
-              {opt.nome}
+            <div key={opt.id} className="dropdown-option">
+              <span
+                onClick={() => {
+                  onChange(opt.id.toString());
+                  setIsOpen(false);
+                }}
+                className="option-label"
+              >
+                {opt.nome}
+              </span>
+
+              <ActionMenu
+                  className='edit-icon'
+                  icons={[
+                    {
+                      icon: <PencilIcon />,
+                      onClick: () => openEditModal(opt),
+                    },
+                  ]}
+                />
             </div>
           ))}
         </div>
@@ -90,6 +114,12 @@ const DropdownEspecialidade = ({
       {showModal && (
         <Modal isOpen={true} onClose={() => setShowModal(false)}>
           {modalContent(() => setShowModal(false))}
+        </Modal>
+      )}
+
+      {editando && editModalContent && (
+        <Modal isOpen={true} onClose={() => setEditando(null)}>
+          {editModalContent(editando, () => setEditando(null))}
         </Modal>
       )}
     </div>

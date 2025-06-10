@@ -1,5 +1,5 @@
-.cadastrar-especialidade-form {
-  margin-top: var(--spacing-xxl);
+.cadastrar-especialidade-form .input-element {
+    width: 300px;
 }
 
 .input-group {
