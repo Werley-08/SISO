@@ -1,0 +1,17 @@
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.editar-especialidade-form .input-element {
+    width: 300px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
