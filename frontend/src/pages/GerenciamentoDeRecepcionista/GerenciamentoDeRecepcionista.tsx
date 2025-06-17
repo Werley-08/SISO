@@ -9,6 +9,7 @@ import type { Usuarios } from "@/types/Usuarios";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import RecepcionistaProfile from "@/components/UserProfiles/RecepcionistaProfile/RecepcionistaProfile";
+import CadastrarRecepcionistaForm from "@/components/forms/recepcionista/CadastrarRecepcionistaForm/CadastrarRecepcionistaForm";
 
 const GerenciamentoDeRecepcionista = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +22,8 @@ const GerenciamentoDeRecepcionista = () => {
         currentPage * itemsPerPage
     );
 
+    const [showModal, setShowModal] = useState(false);
+
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const [selectedProfissional, setSelectedProfissional] = useState<Usuarios | null>(null);
@@ -30,43 +33,50 @@ const GerenciamentoDeRecepcionista = () => {
         setShowProfileModal(true);
     };
 
-    useEffect(() => {
-        const fetchRecepcionistas = async () => {
-            try {
-                const data = await recepcionistaService.listarRecepcionistas();
-                setRecepcionistas(data);
-            } catch (error) {
-                console.error('Erro ao carregar recepcionistas:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchRecepcionistas = async () => {
+        try {
+            const data = await recepcionistaService.listarRecepcionistas();
+            setRecepcionistas(data);
+        } catch (error) {
+            console.error('Erro ao carregar recepcionistas:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchRecepcionistas();
     }, []);
 
     return (
         <div className="recepcionista-container">
             <div className="recepcionista-container__sidebar">
-                <Sidebar/>
+                <Sidebar />
             </div>
 
             <div className="recepcionista-container__content">
 
                 <div className="recepcionista-container__content__title">
-                    Gerenciamento de usuários
+                    Gerenciamento de Usuários
                     <div className="recepcionista-container__content__title-line"></div>
                 </div>
 
                 <div className="recepcionista-container__content__top">
-                    <SearchBar className="searchbar-container"/>
-                    <ActionButton text="Adicionar Usuário" className="actionbutton-container"/>
+                    <SearchBar className="searchbar-container" />
+                    <ActionButton text="Adicionar Usuário" className="actionbutton-container" onClick={() => setShowModal(true)} />
                 </div>
+
+                <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                    <CadastrarRecepcionistaForm
+                        onClose={() => setShowModal(false)}
+                        onSuccess={fetchRecepcionistas}
+                    />
+                </Modal>
 
                 <Modal isOpen={showProfileModal} onClose={() => setShowProfileModal(false)}>
                     {selectedProfissional && (
                         <RecepcionistaProfile
-                            recepcionista={selectedProfissional} 
+                            recepcionista={selectedProfissional}
                         />
                     )}
                 </Modal>
@@ -75,7 +85,7 @@ const GerenciamentoDeRecepcionista = () => {
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
-                        <UserTable usuarios={currentItems} className="usertable-container" onProfile={handleProfile}/>
+                        <UserTable usuarios={currentItems} className="usertable-container" onProfile={handleProfile} />
                     )}
                 </div>
 
