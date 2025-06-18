@@ -10,6 +10,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import RecepcionistaProfile from "@/components/UserProfiles/RecepcionistaProfile/RecepcionistaProfile";
 import CadastrarRecepcionistaForm from "@/components/forms/recepcionista/CadastrarRecepcionistaForm/CadastrarRecepcionistaForm";
+import EditarRecepcionistaForm from "@/components/forms/recepcionista/EditarRecepcionistaForm/EditarRecepcionistaForm";
 
 const GerenciamentoDeRecepcionista = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -24,14 +25,21 @@ const GerenciamentoDeRecepcionista = () => {
 
     const [showModal, setShowModal] = useState(false);
 
+    const [showEditModal, setShowEditModal] = useState(false);
+
     const [showProfileModal, setShowProfileModal] = useState(false);
 
-    const [selectedProfissional, setSelectedProfissional] = useState<Usuarios | null>(null);
+    const [selectedRecepcionista, setSelectedRecepcionista] = useState<Usuarios | null>(null);
 
     const handleProfile = (usuario: Usuarios) => {
-        setSelectedProfissional(usuario);
+        setSelectedRecepcionista(usuario);
         setShowProfileModal(true);
     };
+
+    const handleEdit = (usuario: Usuarios) => {
+        setSelectedRecepcionista(usuario);
+        setShowEditModal(true);
+    }
 
     const fetchRecepcionistas = async () => {
         try {
@@ -74,9 +82,19 @@ const GerenciamentoDeRecepcionista = () => {
                 </Modal>
 
                 <Modal isOpen={showProfileModal} onClose={() => setShowProfileModal(false)}>
-                    {selectedProfissional && (
+                    {selectedRecepcionista && (
                         <RecepcionistaProfile
-                            recepcionista={selectedProfissional}
+                            recepcionista={selectedRecepcionista}
+                        />
+                    )}
+                </Modal>
+
+                <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)} >
+                    {selectedRecepcionista && (
+                        <EditarRecepcionistaForm
+                            onClose={() => setShowEditModal(false)}
+                            onSuccess={fetchRecepcionistas}
+                            recepcionista={selectedRecepcionista}
                         />
                     )}
                 </Modal>
@@ -85,7 +103,7 @@ const GerenciamentoDeRecepcionista = () => {
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
-                        <UserTable usuarios={currentItems} className="usertable-container" onProfile={handleProfile} />
+                        <UserTable usuarios={currentItems} className="usertable-container" onEdit={handleEdit} onProfile={handleProfile} />
                     )}
                 </div>
 
