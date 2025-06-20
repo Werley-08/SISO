@@ -21,6 +21,10 @@ const Sidebar = () => {
         navigate('/Dashboard');
     };
 
+    const handlePacientClick = () => {
+    navigate('/Pacientes');
+};
+
     const dropdownOptions = [
         {
             text: "Recepcionista",
@@ -54,7 +58,11 @@ const Sidebar = () => {
                         />
                     </div>
                     <div className="menu-item">
-                        <SidebarOption icon={<PacientIcon />} text="Pacientes"/>
+                          <SidebarOption 
+                            icon={<PacientIcon />} 
+                            text="Pacientes"
+                            onClick={handlePacientClick} 
+                        />
                     </div>
                     <div className="menu-item">
                         <SidebarDropdown 

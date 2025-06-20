@@ -1,5 +1,6 @@
 import Login from "../pages/Login/Login";
 import DashBoard from "../pages/DashBoard/DashBoard";
+import GerenciamentoDePacientes from "../pages/GerenciamentoDePacientes/GerenciamentoDePacientes";
 import GerenciamentoDeProfissionalDaSaude from "../pages/GerenciamentoDeProfissionalDaSaude/GerenciamentoDeProfissionalDaSaude";
 import GerenciamentoDeRecepcionista from "../pages/GerenciamentoDeRecepcionista/GerenciamentoDeRecepcionista";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -15,6 +16,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <DashBoard />
+            </ProtectedRoute>
+          }
+        />
+          <Route
+          path="/GerenciamentoDePacientes"
+          element={
+            <ProtectedRoute>
+              <GerenciamentoDePacientes />
             </ProtectedRoute>
           }
         />
