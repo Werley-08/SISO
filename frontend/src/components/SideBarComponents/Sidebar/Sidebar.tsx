@@ -22,7 +22,7 @@ const Sidebar = () => {
     };
 
     const handlePacientClick = () => {
-    navigate('/Pacientes');
+    navigate('/GerenciamentoDePacientes');
 };
 
     const dropdownOptions = [
