@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum ClassificacaoEtaria {
-    MAIOR_IDADE("MAIOR_IDADE"),
-    MENOR_IDADE("MENOR_IDADE");
+    ADULTO("ADULTO"),
+    MENOR("MENOR");
 
     private final String classificacaoEtaria;
 
