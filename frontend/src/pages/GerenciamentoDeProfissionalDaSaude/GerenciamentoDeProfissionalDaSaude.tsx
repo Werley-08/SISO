@@ -16,7 +16,7 @@ const GerenciamentoDeProfissionalDaSaude = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [profissionais, setProfissionais] = useState<Usuarios[]>([]);
     const [loading, setLoading] = useState(true);
-    const itemsPerPage = 12;
+    const itemsPerPage = 11;
     const totalPages = Math.ceil(profissionais.length / itemsPerPage);
     const currentItems = profissionais.slice(
         (currentPage - 1) * itemsPerPage,
