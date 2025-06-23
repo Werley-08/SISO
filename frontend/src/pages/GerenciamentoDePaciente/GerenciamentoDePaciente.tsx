@@ -7,9 +7,11 @@ import PatientTable from "@/components/Tables/PatientTable/PatientTable/PatientT
 import Pagination from "@/components/Pagination/Pagination";
 import { type Paciente } from "@/types/Paciente";
 import { pacienteService } from "@/services/pacienteService"
+import Modal from "@/components/Modal/Modal";
+import CadastrarPacienteForm from "@/components/forms/paciente/CadastrarPacienteForm";
 
 const GerenciamentoDePaciente = () => {
-
+    const [showModal, setShowModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [pacientes, setPacientes] = useState<Paciente[]>([]);
     const [loading, setLoading] = useState(true);
@@ -25,7 +27,7 @@ const GerenciamentoDePaciente = () => {
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
-    
+
     const handleEdit = (paciente: Paciente) => {
         // FALTA IMPLEMENTAR
     };
@@ -71,14 +73,21 @@ const GerenciamentoDePaciente = () => {
                             setCurrentPage(1);
                         }}
                     />
-                    <ActionButton text="Adicionar Paciente" className="actionbutton-container" />
+                    <ActionButton text="Adicionar Paciente" className="actionbutton-container" onClick={() => setShowModal(true)} />
                 </div>
+
+                <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                    <CadastrarPacienteForm
+                        onClose={() => setShowModal(false)}
+                        onSuccess={fetchPacientes}
+                    />
+                </Modal>
 
                 <div className="profissional-container__content__table">
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
-                        <PatientTable pacientes={currentItems} className="patientTable-container" onEdit={handleEdit} onProfile={handleProfile}/>
+                        <PatientTable pacientes={currentItems} className="patientTable-container" onEdit={handleEdit} onProfile={handleProfile} />
                     )}
                 </div>
 
