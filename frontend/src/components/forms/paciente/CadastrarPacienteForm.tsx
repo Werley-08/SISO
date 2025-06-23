@@ -21,7 +21,7 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
         bairro: "",
         cidade: "",
         num_casa: "",
-        classificacaoEtaria: "",
+        classificacao_etaria: "",
         responsavel: {
             nome: "",
             telefone: "",
@@ -32,10 +32,10 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
-        if (name === "classificacaoEtaria") {
+        if (name === "classificacao_etaria") {
             setFormData(prev => ({
                 ...prev,
-                classificacaoEtaria: value,
+                classificacao_etaria: value,
                 responsavel: value === "MENOR"
                     ? prev.responsavel
                     : { nome: "", telefone: "", parentesco: "" }
@@ -59,7 +59,7 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const requiredFields = ['nome', 'classificacaoEtaria'];
+        const requiredFields = ['nome', 'classificacao_etaria'];
         const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
 
         if (missingFields.length > 0) {
@@ -67,7 +67,7 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
             return;
         }
 
-        if (formData.classificacaoEtaria === "MENOR") {
+        if (formData.classificacao_etaria === "MENOR") {
             const { nome, telefone, parentesco } = formData.responsavel;
             if (!nome || !telefone || !parentesco) {
                 toast.error("Preencha todos os dados do responsável legal.");
@@ -76,7 +76,7 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
         }
 
         const { responsavel, ...baseData } = formData;
-        const payload = formData.classificacaoEtaria === "MENOR"
+        const payload = formData.classificacao_etaria === "MENOR"
             ? { ...baseData, responsavel }
             : baseData;
 
@@ -122,8 +122,8 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
                 />
                 <SelectField
                     label="Classificação Etária"
-                    value={formData.classificacaoEtaria}
-                    name="classificacaoEtaria"
+                    value={formData.classificacao_etaria}
+                    name="classificacao_etaria"
                     options={[
                         { id: "MENOR", nome: "MENOR" },
                         { id: "ADULTO", nome: "ADULTO" },
@@ -132,7 +132,7 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
                 />
             </div>
 
-            {formData.classificacaoEtaria === "MENOR" && (
+            {formData.classificacao_etaria === "MENOR" && (
                 <>
                     <FormDescriptor label="Responsável Legal" />
                     <div className="input-group">

@@ -2,7 +2,7 @@ import type { Responsavel } from "./Responsavel";
 
 export interface Paciente {
     id: number;
-    classificacaoEtaria: string;
+    classificacao_etaria: string;
     status: string;
     nome: string;
     data_nascimento: string;
