@@ -17,7 +17,7 @@ public interface PacienteMapper {
 
         return new Paciente(
                 null,
-                pacienteCreateDTO.getClassificacaoEtaria(),
+                pacienteCreateDTO.getClassificacao_etaria(),
                 Status.INATIVO,
                 pacienteCreateDTO.getNome(),
                 formatDate(pacienteCreateDTO.getData_nascimento()),

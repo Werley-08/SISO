@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PacienteCreateDTO {
-    private ClassificacaoEtaria classificacaoEtaria;
+    private ClassificacaoEtaria classificacao_etaria;
     private String nome;
     private String data_nascimento;
     private String telefone;
