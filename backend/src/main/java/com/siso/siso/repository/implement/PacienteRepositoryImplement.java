@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PacienteRepositoryImplement implements IPacienteRepository{
@@ -23,7 +24,8 @@ public class PacienteRepositoryImplement implements IPacienteRepository{
     }
 
     @Override
-    public List<Paciente> findAll() {
-        return pacienteRepository.findAll();
-    }
+    public List<Paciente> findAll() { return pacienteRepository.findAll(); }
+
+    @Override
+    public Optional<Paciente> findById(Integer id){ return pacienteRepository.findById(id); }
 }

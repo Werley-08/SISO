@@ -2,6 +2,7 @@ package com.siso.siso.service;
 
 import com.siso.siso.model.Paciente;
 import com.siso.siso.model.Responsavel;
+import com.siso.siso.model.enums.ClassificacaoEtaria;
 import com.siso.siso.repository.interfaces.IPacienteRepository;
 import com.siso.siso.repository.interfaces.IResponsavelRepository;
 import com.siso.siso.service.interfaces.IPacienteService;
@@ -43,5 +44,26 @@ public class PacienteService implements IPacienteService {
     @Override
     public List<Paciente> visualizarPacientes(){
         return pacienteRepository.findAll();
+    }
+
+    @Override
+    public Paciente editarPaciente(Paciente paciente, Integer id) {
+
+        Paciente pacienteAtual = pacienteRepository.findById(id)
+                .orElseThrow(() -> new  RuntimeException("Paciente não existe no sistema"));
+
+        if(!pacienteAtual.getId().equals(paciente.getId())){
+            throw new IllegalArgumentException("O id do paciente não pode ser atualizado!");
+        }
+
+        if (paciente.getClassificacao_etaria().equals(ClassificacaoEtaria.MENOR) && paciente.getResponsavel() == null) {
+            throw new IllegalArgumentException("Um paciente menor de idade não pode ser editado sem um responsável associado!");
+        }
+
+        Responsavel responsavel = paciente.getResponsavel();
+        if (responsavel != null) {
+            paciente.setResponsavel(responsavelRepository.save(responsavel));
+        }
+        return pacienteRepository.save(paciente);
     }
 }

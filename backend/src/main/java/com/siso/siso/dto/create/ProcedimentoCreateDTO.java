@@ -12,4 +12,3 @@ public class ProcedimentoCreateDTO {
     private String descricao;
     private int duracao_em_sessao;
 }
-

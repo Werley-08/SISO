@@ -17,7 +17,7 @@ public interface ProcedimentoMapper {
 
     static ProcedimentoResponseDTO toDTO(Procedimento procedimento){
         return new ProcedimentoResponseDTO(
-                procedimento.getIdProcedimento(),
+                procedimento.getId(),
                 procedimento.getNome(),
                 procedimento.getPreco(),
                 procedimento.getDescricao(),
