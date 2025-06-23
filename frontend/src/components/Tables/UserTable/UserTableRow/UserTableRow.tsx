@@ -1,9 +1,9 @@
 import './UserTableRow.css'
-import type { Usuarios } from '../../types/Usuarios';
-import Label from '../Label/Label';
-import { ReactComponent as PencilIcon } from "../../assets/icons/Pencil-icon.svg"
-import { ReactComponent as EyeIcon } from "../../assets/icons/Eye-icon.svg"
-import ActionMenu from '../ActionMenu/ActionMenu';
+import type { Usuarios } from '../../../../types/Usuarios';
+import Label from '../../../Label/Label';
+import { ReactComponent as PencilIcon } from "@/assets/icons/Pencil-icon.svg"
+import { ReactComponent as EyeIcon } from "@/assets/icons/Eye-icon.svg"
+import ActionMenu from '../../../ActionMenu/ActionMenu';
 
 type Props = {
     className?: string;

@@ -1,7 +1,7 @@
 import Sidebar from "../../components/SideBarComponents/Sidebar/Sidebar"
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ActionButton from "../../components/ActionButton/ActionButton";
-import UserTable from "../../components/UserTable/UserTable";
+import UserTable from "../../components/Tables/UserTable/UserTable/UserTable";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
 import './GerenciamentoDeProfissionalDaSaude.css'
