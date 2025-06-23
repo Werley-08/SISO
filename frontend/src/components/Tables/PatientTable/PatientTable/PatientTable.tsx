@@ -5,9 +5,11 @@ import PatientTableRow from '../PatientTableRow/PatientTabelRow'
 interface Props {
     pacientes: Paciente[];
     className?: string;
+    onEdit?: (paciente: Paciente) => void;
+    onProfile?: (paciente: Paciente) => void;
 }
 
-const PatientTable = ({ pacientes, className = ""}: Props) => {
+const PatientTable = ({ pacientes, className = "", onEdit, onProfile }: Props) => {
 
     return (
         <div className={`patientTable-container ${className}`}>
@@ -22,7 +24,13 @@ const PatientTable = ({ pacientes, className = ""}: Props) => {
 
             <div className='patientTable-container-content'>
                 {pacientes.map(paciente => (
-                    <PatientTableRow key={paciente.id} paciente={paciente} className="patientTable-row-container"/>
+                    <PatientTableRow
+                        key={paciente.id}
+                        paciente={paciente}
+                        className="patientTable-row-container"
+                        onEdit={onEdit}
+                        onProfile={onProfile}
+                    />
                 ))}
             </div>
 
