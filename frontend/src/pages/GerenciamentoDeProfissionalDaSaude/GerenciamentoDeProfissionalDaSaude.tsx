@@ -16,9 +16,17 @@ const GerenciamentoDeProfissionalDaSaude = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [profissionais, setProfissionais] = useState<Usuarios[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
     const itemsPerPage = 11;
-    const totalPages = Math.ceil(profissionais.length / itemsPerPage);
-    const currentItems = profissionais.slice(
+
+    // Filtro local de busca
+    const filteredProfissionais = profissionais.filter((prof) =>
+        prof.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (prof.especialidade && prof.especialidade.nome.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
+    const totalPages = Math.ceil(filteredProfissionais.length / itemsPerPage);
+    const currentItems = filteredProfissionais.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -68,7 +76,14 @@ const GerenciamentoDeProfissionalDaSaude = () => {
                 </div>
 
                 <div className="profissional-container__content__top">
-                    <SearchBar className="searchbar-container" />
+                    <SearchBar
+                        className="searchbar-container"
+                        value={searchTerm}
+                        onChange={e => {
+                            setSearchTerm(e.target.value);
+                            setCurrentPage(1);
+                        }}
+                    />
                     <ActionButton text="Adicionar Usuário" className="actionbutton-container" onClick={() => setShowModal(true)} />
                 </div>
 
