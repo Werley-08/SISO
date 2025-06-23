@@ -15,7 +15,6 @@
     cursor: pointer;
     border-radius: var(--border-radius-sm);
     transition: background-color var(--transition-fast);
-    min-width: 200px;
     width: 100%;
 }
 
