@@ -13,9 +13,15 @@ const GerenciamentoDePaciente = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pacientes, setPacientes] = useState<Paciente[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
     const itemsPerPage = 11;
-    const totalPages = Math.ceil(pacientes.length / itemsPerPage);
-    const currentItems = pacientes.slice(
+
+    const filteredPacientes = pacientes.filter((pac) =>
+        pac.nome.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const totalPages = Math.ceil(filteredPacientes.length / itemsPerPage);
+    const currentItems = filteredPacientes.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -57,7 +63,14 @@ const GerenciamentoDePaciente = () => {
                 </div>
 
                 <div className="paciente-container__content__top">
-                    <SearchBar className="searchbar-container" />
+                    <SearchBar
+                        className="searchbar-container"
+                        value={searchTerm}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setSearchTerm(e.target.value);
+                            setCurrentPage(1);
+                        }}
+                    />
                     <ActionButton text="Adicionar Paciente" className="actionbutton-container" />
                 </div>
 
