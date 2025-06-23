@@ -4,6 +4,7 @@ import GerenciamentoDeProfissionalDaSaude from "../pages/GerenciamentoDeProfissi
 import GerenciamentoDeRecepcionista from "../pages/GerenciamentoDeRecepcionista/GerenciamentoDeRecepcionista";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
+import GerenciamentoDePaciente from "@/pages/GerenciamentoDePaciente/GerenciamentoDePaciente";
 
 function AppRoutes() {
   return (
@@ -15,6 +16,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <DashBoard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/GerenciamentoDePaciente"
+          element={
+            <ProtectedRoute>
+              <GerenciamentoDePaciente />
             </ProtectedRoute>
           }
         />

@@ -1,5 +1,5 @@
 import './UserTable.css'
-import type { Usuarios } from '../../types/Usuarios';
+import type { Usuarios } from '../../../../types/Usuarios';
 import UserTableRow from '../UserTableRow/UserTableRow';
 
 interface Props {

@@ -1,0 +1,24 @@
+@import url("@/styles/variables.css");
+
+.patientTable-container {
+    background-color: var(--cor12);
+    border-radius: var(--border-radius-lg);
+    padding-top: 30px;
+    padding: 30px var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+}
+
+.patientTable-container-chapters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.patientTable-container-chapters__title {
+    flex: 1;
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-md);
+}

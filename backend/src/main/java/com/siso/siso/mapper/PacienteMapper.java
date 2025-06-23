@@ -3,7 +3,7 @@ package com.siso.siso.mapper;
 import com.siso.siso.dto.create.PacienteCreateDTO;
 import com.siso.siso.dto.response.PacienteResponseDTO;
 import com.siso.siso.model.Paciente;
-import com.siso.siso.model.enums.StatusPaciente;
+import com.siso.siso.model.enums.Status;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ public interface PacienteMapper {
         return new Paciente(
                 null,
                 pacienteCreateDTO.getClassificacaoEtaria(),
-                StatusPaciente.AGUARDANDO_INICIO,
+                Status.INATIVO,
                 pacienteCreateDTO.getNome(),
                 formatDate(pacienteCreateDTO.getData_nascimento()),
                 pacienteCreateDTO.getTelefone(),
@@ -33,7 +33,7 @@ public interface PacienteMapper {
         return new PacienteResponseDTO(
                 paciente.getId_paciente(),
                 paciente.getClassificacaoEtaria(),
-                paciente.getStatusPaciente(),
+                paciente.getStatus(),
                 paciente.getNome(),
                 formatDate(paciente.getData_nascimento()),
                 paciente.getTelefone(),

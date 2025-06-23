@@ -1,7 +1,7 @@
 package com.siso.siso.dto.response;
 
 import com.siso.siso.model.enums.ClassificacaoEtaria;
-import com.siso.siso.model.enums.StatusPaciente;
+import com.siso.siso.model.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.Setter;
 public class PacienteResponseDTO {
     private Integer id_paciente;
     private ClassificacaoEtaria classificacaoEtaria;
-    private StatusPaciente statusPaciente;
+    private Status status;
     private String nome;
     private String data_nascimento;
     private String telefone;
