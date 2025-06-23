@@ -16,7 +16,7 @@ const GerenciamentoDeRecepcionista = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [recepcionistas, setRecepcionistas] = useState<Usuarios[]>([]);
     const [loading, setLoading] = useState(true);
-    const itemsPerPage = 12;
+    const itemsPerPage = 11;
     const totalPages = Math.ceil(recepcionistas.length / itemsPerPage);
     const currentItems = recepcionistas.slice(
         (currentPage - 1) * itemsPerPage,

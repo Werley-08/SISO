@@ -13,7 +13,7 @@ const GerenciamentoDePaciente = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pacientes, setPacientes] = useState<Paciente[]>([]);
     const [loading, setLoading] = useState(true);
-    const itemsPerPage = 12;
+    const itemsPerPage = 11;
     const totalPages = Math.ceil(pacientes.length / itemsPerPage);
     const currentItems = pacientes.slice(
         (currentPage - 1) * itemsPerPage,
@@ -52,7 +52,7 @@ const GerenciamentoDePaciente = () => {
 
             <div className="paciente-container__content">
                 <div className="paciente-container__content__title">
-                    Gerenciamento de paciente
+                    Gerenciamento de pacientes
                     <div className="paciente-container__content__title-line"></div>
                 </div>
 
