@@ -2,6 +2,7 @@ package com.siso.siso.controller;
 
 import com.siso.siso.dto.auth.AuthDTO;
 import com.siso.siso.dto.response.AuthResponseDTO;
+import com.siso.siso.model.enums.Role;
 import com.siso.siso.security.configuration.SecurityConfigurationsTests;
 import com.siso.siso.security.filter.SecurityFilter;
 import com.siso.siso.service.AuthService;
@@ -19,6 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.standaloneSetup;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -47,7 +49,7 @@ public class AuthControllerTest {
     public void logarTest1() {
 
         AuthDTO authDTO = new AuthDTO("username", "senha");
-        AuthResponseDTO authResponseDTO = new AuthResponseDTO("ABCDEFGH");
+        AuthResponseDTO authResponseDTO = new AuthResponseDTO("ABCDEFGH", Role.ADMIN);
 
         when(this.authService.logar(any(AuthDTO.class)))
                 .thenReturn(ResponseEntity.ok(authResponseDTO));
@@ -61,6 +63,7 @@ public class AuthControllerTest {
 
                 .then()
                 .statusCode(HttpStatus.OK.value())
-                .body("token", instanceOf(String.class));
+                .body("token", instanceOf(String.class))
+                .body("role", equalTo("ADMIN"));
     }
 }
