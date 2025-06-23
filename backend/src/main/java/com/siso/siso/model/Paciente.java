@@ -1,7 +1,7 @@
 package com.siso.siso.model;
 
 import com.siso.siso.model.enums.ClassificacaoEtaria;
-import com.siso.siso.model.enums.StatusPaciente;
+import com.siso.siso.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class Paciente {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private StatusPaciente statusPaciente;
+    private Status status;
 
     @Column(nullable = false)
     private String nome;
@@ -53,12 +53,12 @@ public class Paciente {
     @JoinColumn(name = "id_responsavel")
     private Responsavel responsavel;
 
-    public Paciente(Integer id_paciente, ClassificacaoEtaria classificacaoEtaria, StatusPaciente statusPaciente, String nome,
+    public Paciente(Integer id_paciente, ClassificacaoEtaria classificacaoEtaria, Status status, String nome,
                     LocalDate data_nascimento, String telefone, String rua, String bairro, String cidade,
                     Integer num_casa, Responsavel responsavel) {
         this.id_paciente = id_paciente;
         this.classificacaoEtaria = classificacaoEtaria;
-        this.statusPaciente = statusPaciente;
+        this.status = status;
         this.nome = nome;
         this.data_nascimento = data_nascimento;
         this.telefone = telefone;
