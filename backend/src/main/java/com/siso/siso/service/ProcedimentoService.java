@@ -6,6 +6,8 @@ import com.siso.siso.service.interfaces.IProcedimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProcedimentoService implements IProcedimentoService {
 
@@ -21,9 +23,11 @@ public class ProcedimentoService implements IProcedimentoService {
         if(procedimentoRepository.findByNome(procedimento.getNome()).isPresent()){
             throw new IllegalArgumentException("Já existe um procedimento cadastrado com esse nome");
         }
-
         return procedimentoRepository.save(procedimento);
     }
 
-
+    @Override
+    public List<Procedimento> visualizarProcedimentos() {
+        return procedimentoRepository.findAll();
+    }
 }
