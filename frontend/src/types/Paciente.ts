@@ -6,6 +6,7 @@ export interface Paciente {
     status: string;
     nome: string;
     data_nascimento: string;
+    telefone: string;
     rua: string;
     bairro: string;
     cidade: string;
