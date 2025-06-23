@@ -16,9 +16,15 @@ const GerenciamentoDeRecepcionista = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [recepcionistas, setRecepcionistas] = useState<Usuarios[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
     const itemsPerPage = 11;
-    const totalPages = Math.ceil(recepcionistas.length / itemsPerPage);
-    const currentItems = recepcionistas.slice(
+
+    const filteredRecepcionistas = recepcionistas.filter((rec) =>
+        rec.nome.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const totalPages = Math.ceil(filteredRecepcionistas.length / itemsPerPage);
+    const currentItems = filteredRecepcionistas.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -70,7 +76,14 @@ const GerenciamentoDeRecepcionista = () => {
                 </div>
 
                 <div className="recepcionista-container__content__top">
-                    <SearchBar className="searchbar-container" />
+                    <SearchBar
+                        className="searchbar-container"
+                        value={searchTerm}
+                        onChange={e => {
+                            setSearchTerm(e.target.value);
+                            setCurrentPage(1);
+                        }}
+                    />
                     <ActionButton text="Adicionar Usuário" className="actionbutton-container" onClick={() => setShowModal(true)} />
                 </div>
 
