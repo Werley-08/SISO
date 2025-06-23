@@ -25,8 +25,5 @@ public class Procedimento {
     private float preco;
 
     @Column(nullable = false)
-    private String descricao;
-
-    @Column(nullable = false)
     private int duracao_em_sessao;
 }

@@ -10,7 +10,6 @@ public interface ProcedimentoMapper {
                 null,
                 procedimentoCreateDTO.getNome(),
                 procedimentoCreateDTO.getPreco(),
-                procedimentoCreateDTO.getDescricao(),
                 procedimentoCreateDTO.getDuracao_em_sessao()
         );
     }
@@ -20,7 +19,6 @@ public interface ProcedimentoMapper {
                 procedimento.getId(),
                 procedimento.getNome(),
                 procedimento.getPreco(),
-                procedimento.getDescricao(),
                 procedimento.getDuracao_em_sessao()
         );
     }
