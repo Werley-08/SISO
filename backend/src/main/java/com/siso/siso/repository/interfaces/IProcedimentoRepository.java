@@ -9,4 +9,5 @@ public interface IProcedimentoRepository {
     Optional<Procedimento> findByNome(String nome);
     Procedimento save(Procedimento procedimento);
     List<Procedimento> findAll();
+    Optional<Procedimento> findById(Integer id);
 }

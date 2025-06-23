@@ -7,4 +7,5 @@ import java.util.List;
 public interface IProcedimentoService {
     Procedimento cadastrarProcedimento(Procedimento procedimento);
     List<Procedimento> visualizarProcedimentos();
+    Procedimento editarProcedimento(Procedimento procedimento, Integer id);
 }

@@ -62,6 +62,7 @@ public class SecurityConfigurationsProd{
                         // procedimentos endpoints
                         .requestMatchers(HttpMethod.POST, "/api/procedimento/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA" , "PROFISSIONAL_DA_SAUDE")
                         .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA" , "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

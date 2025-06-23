@@ -3,6 +3,7 @@ package com.siso.siso.mapper;
 import com.siso.siso.dto.create.ProcedimentoCreateDTO;
 import com.siso.siso.dto.response.EspecialidadeResponseDTO;
 import com.siso.siso.dto.response.ProcedimentoResponseDTO;
+import com.siso.siso.dto.update.ProcedimentoUpdateDTO;
 import com.siso.siso.model.Especialidade;
 import com.siso.siso.model.Procedimento;
 
@@ -16,6 +17,15 @@ public interface ProcedimentoMapper {
                 procedimentoCreateDTO.getNome(),
                 procedimentoCreateDTO.getPreco(),
                 procedimentoCreateDTO.getDuracao_em_sessao()
+        );
+    }
+
+    static Procedimento toModel(ProcedimentoUpdateDTO procedimentoUpdateDTO) {
+        return new Procedimento(
+                procedimentoUpdateDTO.getId(),
+                procedimentoUpdateDTO.getNome(),
+                procedimentoUpdateDTO.getPreco(),
+                procedimentoUpdateDTO.getDuracao_em_sessao()
         );
     }
 

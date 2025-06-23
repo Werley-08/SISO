@@ -30,4 +30,7 @@ public class ProcedimentoRepositoryImplement implements IProcedimentoRepository 
 
     @Override
     public List<Procedimento> findAll() { return procedimentoRepository.findAll(); }
+
+    @Override
+    public Optional<Procedimento> findById(Integer id){ return procedimentoRepository.findById(id); }
 }
