@@ -1,4 +1,4 @@
-package com.siso.siso.dto.response;
+package com.siso.siso.dto.update;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProcedimentoResponseDTO {
+public class ProcedimentoUpdateDTO {
     private Integer id;
     private String nome;
     private float preco;
