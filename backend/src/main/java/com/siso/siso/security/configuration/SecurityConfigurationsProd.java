@@ -57,6 +57,7 @@ public class SecurityConfigurationsProd{
                         // Pacientes endpoints
                         .requestMatchers(HttpMethod.POST, "/api/paciente/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
                         .requestMatchers(HttpMethod.GET, "/api/paciente/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.PUT, "/api/paciente/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
 
                         // procedimentos endpoints
                         .requestMatchers(HttpMethod.POST, "/api/procedimento/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA" , "PROFISSIONAL_DA_SAUDE")

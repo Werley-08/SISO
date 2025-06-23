@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponsavelUpdateDTO {
+    private Integer id;
     private String nome;
     private String telefone;
     private String parentesco;

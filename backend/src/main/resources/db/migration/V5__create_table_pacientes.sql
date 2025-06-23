@@ -1,5 +1,5 @@
 CREATE TABLE pacientes(
-    id_paciente SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     classificacao_etaria VARCHAR(255) NOT NULL,
     status VARCHAR(255) NOT NULL,
     nome VARCHAR(255) NOT NULL,
@@ -10,5 +10,5 @@ CREATE TABLE pacientes(
     cidade  VARCHAR(255),
     num_casa INT,
     id_responsavel  INT,
-    CONSTRAINT fk_responsavel FOREIGN KEY (id_responsavel) REFERENCES Responsaveis (id_responsavel)
+    CONSTRAINT fk_responsavel FOREIGN KEY (id_responsavel) REFERENCES Responsaveis (id)
 );
