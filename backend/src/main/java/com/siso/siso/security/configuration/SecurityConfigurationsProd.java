@@ -38,31 +38,31 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.POST, "/api/auth/logar").permitAll()
 
                         // Recepcionista endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/recepcionista/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.GET, "/api/recepcionista/visualizar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.GET, "/api/recepcionista/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.PUT, "/api/recepcionista/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.POST, "/api/recepcionista/cadastrar").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/recepcionista/visualizar/{id}").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/recepcionista/visualizarTodos").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/recepcionista/editar/{id}").hasAnyRole("ADMIN")
 
                         // Profissional da Saúde endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/profissionalDaSaude/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.PUT, "/api/profissionalDaSaude/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.POST, "/api/profissionalDaSaude/cadastrar").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizar/{id}").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizarTodos").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/profissionalDaSaude/editar/{id}").hasAnyRole("ADMIN")
 
                         // Especialidade endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/especialidade/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.PUT, "/api/especialidade/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.GET, "/api/especialidade/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.POST, "/api/especialidade/cadastrar").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/especialidade/editar/{id}").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/especialidade/visualizarTodos").hasAnyRole("ADMIN")
 
                         // Pacientes endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/paciente/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA")
-                        .requestMatchers(HttpMethod.GET, "/api/paciente/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
-                        .requestMatchers(HttpMethod.PUT, "/api/paciente/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.POST, "/api/paciente/cadastrar").hasAnyRole("RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/paciente/visualizarTodos").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.PUT, "/api/paciente/editar/{id}").hasAnyRole("RECEPCIONISTA")
 
-                        // procedimentos endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/procedimento/cadastrar").hasAnyRole("ADMIN", "RECEPCIONISTA" , "PROFISSIONAL_DA_SAUDE")
-                        .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA" , "PROFISSIONAL_DA_SAUDE")
-                        .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN", "RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        // Procedimentos endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/procedimento/cadastrar").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN")
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
