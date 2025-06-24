@@ -14,7 +14,6 @@ interface CadastrarProcedimentoFormProps {
 const CadastrarProcedimentoForm = ({ onClose, onSuccess }: CadastrarProcedimentoFormProps) => {
     const [formData, setFormData] = useState({
         nome: "",
-        descricao: "",
         preco: "",
         duracao_em_sessao: "",
     });
@@ -26,7 +25,7 @@ const CadastrarProcedimentoForm = ({ onClose, onSuccess }: CadastrarProcedimento
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const requiredFields = ['nome', 'descricao', 'preco', 'duracao_em_sessao'];
+        const requiredFields = ['nome', 'preco', 'duracao_em_sessao'];
         const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
         if (missingFields.length > 0) {
             toast.error("Preencha todos os campos obrigatórios");
@@ -62,14 +61,7 @@ const CadastrarProcedimentoForm = ({ onClose, onSuccess }: CadastrarProcedimento
                     name="nome"
                     required
                 />
-                <InputField
-                    label="Descrição"
-                    value={formData.descricao}
-                    onChange={handleChange}
-                    placeholder="Digite a descrição..."
-                    name="descricao"
-                    required
-                />
+               
             </div>
 
             <FormDescriptor className="form-descriptor" label="Detalhes do Procedimento" />
@@ -84,7 +76,7 @@ const CadastrarProcedimentoForm = ({ onClose, onSuccess }: CadastrarProcedimento
                     required
                 />
                 <InputField
-                    label="Duração (minutos)"
+                    label="Duração (sessões)"
                     type="number"
                     value={formData.duracao_em_sessao}
                     onChange={handleChange}
