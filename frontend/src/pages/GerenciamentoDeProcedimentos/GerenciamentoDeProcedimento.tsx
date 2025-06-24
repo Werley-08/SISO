@@ -7,12 +7,15 @@ import ProcedimentoTable from "@/components/Tables/ProcedimentoTable/Procediment
 import Pagination from "@/components/Pagination/Pagination";
 import { type Procedimento } from "@/types/Procedimento";
 import { procedimentoService } from "@/services/procedimentoService"
+import CadastrarProcedimentoForm from "@/components/forms/Procedimentos/CadastrarProcedimentoForm";
+import Modal from "@/components/Modal/Modal";
 
 const GerenciamentoDeProcedimento = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [procedimentos, setprocedimentos] = useState<Procedimento[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const itemsPerPage = 11;
 
     const filteredprocedimentos = procedimentos.filter((pac) =>
@@ -41,6 +44,11 @@ const GerenciamentoDeProcedimento = () => {
         }
     }, []);
 
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+        fetchProcedimentos();
+    };
+
     useEffect(() => {
         fetchProcedimentos();
     }, [fetchProcedimentos]);
@@ -66,7 +74,7 @@ const GerenciamentoDeProcedimento = () => {
                             setCurrentPage(1);
                         }}
                     />
-                    <ActionButton text="Adicionar procedimento" className="actionbutton-container" />
+                    <ActionButton text="Adicionar procedimento" className="actionbutton-container" onClick={() => setIsModalOpen(true)} />
                 </div>
 
                 <div className="procedimento-container__content__table">
@@ -84,6 +92,11 @@ const GerenciamentoDeProcedimento = () => {
                         onPageChange={setCurrentPage}
                     />
                 </div>
+
+                <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+                    <CadastrarProcedimentoForm onClose={handleModalClose} />
+                </Modal>
+
 
             </div>
         </div>
