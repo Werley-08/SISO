@@ -41,3 +41,15 @@
     flex: 13.5%;
     margin-left: var(--spacing-md);
 }
+
+.paciente-container__content__table {
+    flex: 88%;
+    margin: var(--spacing-xl);
+}
+
+.paciente-container__content__pagination {
+    flex: 2%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
+}

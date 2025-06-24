@@ -8,10 +8,13 @@ import Pagination from "@/components/Pagination/Pagination";
 import { type Paciente } from "@/types/Paciente";
 import { pacienteService } from "@/services/pacienteService"
 import Modal from "@/components/Modal/Modal";
-import CadastrarPacienteForm from "@/components/forms/paciente/CadastrarPacienteForm";
+import CadastrarPacienteForm from "@/components/forms/paciente/CadastrarPacienteForm/CadastrarPacienteForm";
+import EditarPacienteForm from "@/components/forms/paciente/EditarPacienteForm/EditarPacienteForm";
 
 const GerenciamentoDePaciente = () => {
     const [showModal, setShowModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedPaciente, setSelectedPaciente] = useState<Paciente | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [pacientes, setPacientes] = useState<Paciente[]>([]);
     const [loading, setLoading] = useState(true);
@@ -29,7 +32,8 @@ const GerenciamentoDePaciente = () => {
     );
 
     const handleEdit = (paciente: Paciente) => {
-        // FALTA IMPLEMENTAR
+        setSelectedPaciente(paciente);
+        setShowEditModal(true);
     };
 
     const handleProfile = (paciente: Paciente) => {
@@ -83,7 +87,17 @@ const GerenciamentoDePaciente = () => {
                     />
                 </Modal>
 
-                <div className="profissional-container__content__table">
+                <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)}>
+                    {selectedPaciente && (
+                        <EditarPacienteForm
+                            paciente={selectedPaciente}
+                            onClose={() => setShowEditModal(false)}
+                            onSuccess={fetchPacientes}
+                        />
+                    )}
+                </Modal>
+
+                <div className="paciente-container__content__table">
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
@@ -91,7 +105,7 @@ const GerenciamentoDePaciente = () => {
                     )}
                 </div>
 
-                <div className="profissional-container__content__pagination">
+                <div className="paciente-container__content__pagination">
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
