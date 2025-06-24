@@ -7,8 +7,9 @@ import ProcedimentoTable from "@/components/Tables/ProcedimentoTable/Procediment
 import Pagination from "@/components/Pagination/Pagination";
 import { type Procedimento } from "@/types/Procedimento";
 import { procedimentoService } from "@/services/procedimentoService"
-import CadastrarProcedimentoForm from "@/components/forms/Procedimentos/CadastrarProcedimentoForm";
+import CadastrarProcedimentoForm from "@/components/forms/Procedimentos/CadastrarProcedimentoForm/CadastrarProcedimentoForm";
 import Modal from "@/components/Modal/Modal";
+import EditarProcedimentoForm from "@/components/forms/Procedimentos/EditarProcedimentoForm/EditarProcedimentoForm";
 
 const GerenciamentoDeProcedimento = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -16,6 +17,7 @@ const GerenciamentoDeProcedimento = () => {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [procedimentoParaEditar, setProcedimentoParaEditar] = useState<Procedimento | null>(null);
     const itemsPerPage = 11;
 
     const filteredprocedimentos = procedimentos.filter((pac) =>
@@ -29,7 +31,7 @@ const GerenciamentoDeProcedimento = () => {
     );
 
     const handleEdit = (procedimento: Procedimento) => {
-        // FALTA IMPLEMENTAR
+        setProcedimentoParaEditar(procedimento);
     };
 
     const fetchProcedimentos = useCallback(async () => {
@@ -96,7 +98,18 @@ const GerenciamentoDeProcedimento = () => {
                 <Modal isOpen={isModalOpen} onClose={handleModalClose}>
                     <CadastrarProcedimentoForm onClose={handleModalClose} />
                 </Modal>
-
+                {procedimentoParaEditar && (
+                    <Modal isOpen onClose={() => setProcedimentoParaEditar(null)}>
+                        <EditarProcedimentoForm
+                            procedimento={procedimentoParaEditar}
+                            onClose={() => setProcedimentoParaEditar(null)}
+                            onSuccess={() => {
+                                setProcedimentoParaEditar(null);
+                                fetchProcedimentos();
+                            }}
+                        />
+                    </Modal>
+                )}
 
             </div>
         </div>
