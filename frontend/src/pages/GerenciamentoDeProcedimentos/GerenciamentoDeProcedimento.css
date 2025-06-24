@@ -1,31 +1,31 @@
 @import url('../../styles/variables.css');
 
-.paciente-container {
+.procedimento-container {
     display: flex;
     flex-direction: row;
     background-color: #fff;
 }
 
-.paciente-container__content {
+.procedimento-container__content {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.paciente-container__content__title {
+.procedimento-container__content__title {
     flex: 5%;
     padding: var(--spacing-md);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xl);
 }
 
-.paciente-container__content__title-line {
+.procedimento-container__content__title-line {
     width: 100%;
     height: 1px;
     background-color: var(--cor4);
 }
 
-.paciente-container__content__top {
+.procedimento-container__content__top {
     display: flex;
     flex-direction: row;
     flex: 5%;
@@ -33,21 +33,21 @@
     margin-right: var(--spacing-md);
 }
 
-.paciente-container__content__top .searchbar-container {
-    flex: 86.5%;
+.procedimento-container__content__top .searchbar-container {
+    flex: 83%;
 }
 
-.paciente-container__content__top .actionbutton-container {
-    flex: 13.5%;
+.procedimento-container__content__top .actionbutton-container {
+    flex: 17%;
     margin-left: var(--spacing-md);
 }
 
-.paciente-container__content__table {
+.procedimento-container__content__table {
     flex: 88%;
     margin: var(--spacing-xl);
 }
 
-.paciente-container__content__pagination {
+.procedimento-container__content__pagination {
     flex: 2%;
     display: flex;
     justify-content: center;
