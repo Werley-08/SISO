@@ -96,7 +96,7 @@ const GerenciamentoDePaciente = () => {
                         />
                     )}
                 </Modal>
-
+              
                 <div className="paciente-container__content__table">
                     {loading ? (
                         <div>Carregando...</div>
