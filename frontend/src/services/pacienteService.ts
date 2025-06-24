@@ -1,10 +1,31 @@
-import type { Responsavel } from '@/types/Responsavel';
 import api from './api';
 import type { Paciente } from '@/types/Paciente';
 
-type CadastrarPacienteData = Omit<Paciente, 'id' | 'status' | 'Responsavel'> & {
-    Responsavel?: Omit<Responsavel, 'id'>;
+type CadastrarPacienteData = {
+    nome: string;
+    data_nascimento: string;
+    telefone: string;
+    rua: string;
+    bairro: string;
+    cidade: string;
+    num_casa: string;
+    classificacao_etaria: string;
+    responsavel?: {
+        nome: string;
+        telefone: string;
+        parentesco: string;
+    };
 };
+
+type EditarPacienteData = Omit<Paciente, "status"> & {
+    responsavel?: {
+        id?: number;
+        nome: string;
+        telefone: string;
+        parentesco: string;
+    };
+};
+
 
 export const pacienteService = {
     listarPacientes: async (): Promise<Paciente[]> => {
@@ -15,4 +36,8 @@ export const pacienteService = {
     cadastrarPaciente: async (data: CadastrarPacienteData): Promise<void> => {
         await api.post('/paciente/cadastrar', data);
     },
-}; 
+
+    editarPaciente: async (data: EditarPacienteData): Promise<void> => {
+        await api.put(`/paciente/editar/${data.id}`, data);
+    }
+};
