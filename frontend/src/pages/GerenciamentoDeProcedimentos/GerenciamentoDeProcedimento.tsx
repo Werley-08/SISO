@@ -7,7 +7,7 @@ import ProcedimentoTable from "@/components/Tables/ProcedimentoTable/Procediment
 import Pagination from "@/components/Pagination/Pagination";
 import { type Procedimento } from "@/types/Procedimento";
 import { procedimentoService } from "@/services/procedimentoService"
-import CadastrarProcedimentoForm from "@/components/forms/Procedimentos/CadastrarProcedimentoForm";
+import CadastrarProcedimentoForm from "@/components/forms/Procedimentos/CadastrarProcedimentoForm/CadastrarProcedimentoForm";
 import Modal from "@/components/Modal/Modal";
 import EditarProcedimentoForm from "@/components/forms/Procedimentos/EditarProcedimentoForm/EditarProcedimentoForm";
 

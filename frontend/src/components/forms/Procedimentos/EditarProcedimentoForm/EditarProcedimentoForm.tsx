@@ -1,4 +1,4 @@
-import "../CadastrarProcedimentoForm.css"; 
+import "./EditarProcedimentoForm.css"; 
 import Button from "@/components/Button/Button";
 import FormDescriptor from "@/components/FormDescriptor/FormDescriptor";
 import InputField from "@/components/InputField/InputField";
@@ -49,6 +49,7 @@ const EditarProcedimentoForm = ({
 
     try {
       await procedimentoService.editarProcedimento(procedimento.id, {
+        id: procedimento.id,
         nome: formData.nome,
         preco: parseFloat(formData.preco),
         duracao_em_sessao: parseInt(formData.duracao_em_sessao, 10),
@@ -76,7 +77,7 @@ const EditarProcedimentoForm = ({
           name="nome"
           value={formData.nome}
           onChange={handleChange}
-          placeholder="Digite o nome do procedimento..."
+          placeholder="Digite o nome..."
           required
         />
       </div>

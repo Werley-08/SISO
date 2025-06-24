@@ -57,7 +57,7 @@ const CadastrarProcedimentoForm = ({ onClose, onSuccess }: CadastrarProcedimento
                     label="Nome"
                     value={formData.nome}
                     onChange={handleChange}
-                    placeholder="Digite o nome do procedimento..."
+                    placeholder="Digite o nome..."
                     name="nome"
                     required
                 />
