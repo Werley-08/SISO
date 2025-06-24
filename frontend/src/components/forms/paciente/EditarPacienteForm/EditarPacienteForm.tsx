@@ -1,53 +1,44 @@
-import FormDescriptor from '@/components/FormDescriptor/FormDescriptor';
-import './CadastrarPacienteForm.css';
-import Button from '@/components/Button/Button';
-import InputField from '@/components/InputField/InputField';
-import { useState } from 'react';
-import SelectField from '@/components/SelectField/SelectField';
-import { toast } from 'sonner';
-import { pacienteService } from '@/services/pacienteService';
+import FormDescriptor from "@/components/FormDescriptor/FormDescriptor";
+import "./EditarPacienteForm.css";
+import type { Paciente } from "@/types/Paciente";
+import { useState } from "react";
+import InputField from "@/components/InputField/InputField";
+import SelectField from "@/components/SelectField/SelectField";
+import Button from "@/components/Button/Button";
+import { toast } from "sonner";
+import { pacienteService } from "@/services/pacienteService";
 
-interface CadastrarPacienteFormProps {
+interface EditarPacienteFormProps {
     onClose: () => void;
+    paciente: Paciente;
     onSuccess?: () => void;
 }
 
-const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProps) => {
+const EditarPacienteForm = ({ onClose, paciente, onSuccess }: EditarPacienteFormProps) => {
     const [formData, setFormData] = useState({
-        nome: "",
-        data_nascimento: "",
-        telefone: "",
-        rua: "",
-        bairro: "",
-        cidade: "",
-        num_casa: "",
-        classificacao_etaria: "",
+        nome: paciente.nome,
+        data_nascimento: paciente.data_nascimento,
+        telefone: paciente.telefone,
+        rua: paciente.rua,
+        bairro: paciente.bairro,
+        cidade: paciente.cidade,
+        num_casa: paciente.num_casa,
+        classificacao_etaria: paciente.classificacao_etaria,
         responsavel: {
-            nome: "",
-            telefone: "",
-            parentesco: ""
+            nome: paciente.responsavel?.nome ?? "",
+            telefone: paciente.responsavel?.telefone ?? "",
+            parentesco: paciente.responsavel?.parentesco ?? ""
         }
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-
-        if (name === "classificacao_etaria") {
-            setFormData(prev => ({
-                ...prev,
-                classificacao_etaria: value,
-                responsavel: value === "MENOR"
-                    ? prev.responsavel
-                    : { nome: "", telefone: "", parentesco: "" }
-            }));
-        } else {
-            setFormData(prev => ({ ...prev, [name]: value }));
-        }
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleResponsavelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
             responsavel: {
                 ...prev.responsavel,
@@ -59,10 +50,7 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const requiredFields = ['nome', 'classificacao_etaria'];
-        const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
-
-        if (missingFields.length > 0) {
+        if (!formData.nome || !formData.classificacao_etaria) {
             toast.error("Preencha todos os campos obrigatórios.");
             return;
         }
@@ -75,28 +63,45 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
             }
         }
 
-        const { responsavel, ...baseData } = formData;
-        const payload = formData.classificacao_etaria === "MENOR"
-            ? { ...baseData, responsavel }
-            : baseData;
+        const payload = {
+            ...formData,
+            id: paciente.id,
+            responsavel:
+                formData.classificacao_etaria === "MENOR"
+                    ? (
+                        paciente.responsavel
+                            ? {
+                                id: paciente.responsavel.id,
+                                nome: formData.responsavel.nome,
+                                telefone: formData.responsavel.telefone,
+                                parentesco: formData.responsavel.parentesco
+                            }
+                            : {
+                                nome: formData.responsavel.nome,
+                                telefone: formData.responsavel.telefone,
+                                parentesco: formData.responsavel.parentesco
+                            }
+                    )
+                    : undefined
+        };
 
         try {
-            await pacienteService.cadastrarPaciente(payload);
-            toast.success("Paciente cadastrado com sucesso!");
+            await pacienteService.editarPaciente(payload);
+            toast.success("Paciente editado com sucesso!");
             onSuccess?.();
             onClose();
         } catch (error) {
-            toast.error("Erro ao cadastrar o paciente!");
-            console.error("Erro ao cadastrar paciente: ", error);
+            toast.error("Erro ao editar o paciente!");
+            console.error("Erro ao editar paciente: ", error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className='cadastrar-paciente-form'>
-            <h3>Cadastrar Paciente</h3>
+        <form onSubmit={handleSubmit} className="editar-paciente-form">
+            <h3>Editar Paciente</h3>
 
-            <FormDescriptor label={'Informações Gerais'} />
-            <div className='input-group'>
+            <FormDescriptor className="form-descriptor" label="Informações Gerais" />
+            <div className="input-group">
                 <InputField
                     label="Nome"
                     value={formData.nome}
@@ -111,6 +116,7 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
                     onChange={handleChange}
                     placeholder="(00) 0 0000-0000"
                     name="telefone"
+                    required
                 />
                 <InputField
                     label="Data de Nascimento"
@@ -204,4 +210,4 @@ const CadastrarPacienteForm = ({ onClose, onSuccess }: CadastrarPacienteFormProp
     );
 };
 
-export default CadastrarPacienteForm;
+export default EditarPacienteForm;
