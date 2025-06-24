@@ -6,4 +6,7 @@ export const procedimentoService = {
         const response = await api.get<Procedimento[]>('/procedimento/visualizarTodos');
         return response.data;
     },
+     cadastrarProcedimento: async (dados: Partial<Procedimento>): Promise<void> => {
+        await api.post('/procedimento/cadastrar', dados);
+    },
 }; 
