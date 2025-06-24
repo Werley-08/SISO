@@ -83,7 +83,7 @@ const GerenciamentoDePaciente = () => {
                     />
                 </Modal>
 
-                <div className="profissional-container__content__table">
+                <div className="paciente-container__content__table">
                     {loading ? (
                         <div>Carregando...</div>
                     ) : (
@@ -91,7 +91,7 @@ const GerenciamentoDePaciente = () => {
                     )}
                 </div>
 
-                <div className="profissional-container__content__pagination">
+                <div className="paciente-container__content__pagination">
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}

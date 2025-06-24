@@ -7,6 +7,7 @@ import { ReactComponent as DashboardIcon } from "../../../assets/icons/dashboard
 import { ReactComponent as PacientIcon } from "../../../assets/icons/Paciente-icon.svg"
 import { ReactComponent as UserIcon } from "../../../assets/icons/Usuario-icon.svg"
 import { ReactComponent as ScheduleIcon } from "../../../assets/icons/Agendamentos-icon.svg"
+import { ReactComponent as TeethIcon } from "../../../assets/icons/Teeth-icon.svg"
 import { ReactComponent as LogoutIcon } from "../../../assets/icons/Logout-icon.svg"
 import { useNavigate } from 'react-router-dom'
 
@@ -23,6 +24,10 @@ const Sidebar = () => {
 
     const handlePacienteClick = () => {
         navigate('/GerenciamentoDePaciente');
+    };
+
+    const handleProcedimentoClick = () => {
+        navigate('/GerenciamentoDeProcedimento');
     };
 
     const dropdownOptions = [
@@ -73,6 +78,13 @@ const Sidebar = () => {
                     </div>
                     <div className="menu-item">
                         <SidebarOption icon={<ScheduleIcon />} text="Agendamentos"/>
+                    </div>
+                    <div className="menu-item">
+                        <SidebarOption 
+                            icon={<TeethIcon />} 
+                            text="Procedimentos"
+                            onClick={handleProcedimentoClick}   
+                        />
                     </div>
                 </div>
 
