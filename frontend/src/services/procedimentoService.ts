@@ -8,5 +8,8 @@ export const procedimentoService = {
     },
      cadastrarProcedimento: async (dados: Partial<Procedimento>): Promise<void> => {
         await api.post('/procedimento/cadastrar', dados);
-    },
+    }
+    ,editarProcedimento: async (id: number, dados: Partial<Procedimento>): Promise<void> => {
+    await api.put(`/procedimento/editar/${id}`, dados);
+  },
 }; 
