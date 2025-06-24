@@ -90,3 +90,25 @@ INSERT INTO pacientes (classificacao_etaria, status, nome, data_nascimento, tele
 ('MENOR', 'INATIVO', 'Caio Nogueira', '2010-07-27', '(85) 98888-8080', 'Rua Rocha Lima', 'Papicu', 'Fortaleza', 906, 8),
 ('MENOR', 'ATIVO', 'Helena Ribeiro', '2016-05-03', '(85) 98888-9090', 'Av. Pontes Vieira', 'Centro', 'Fortaleza', 1001, 9),
 ('MENOR', 'ATIVO', 'Lucas Almeida', '2013-08-17', '(85) 98888-0000', 'Rua Ildefonso Albano', 'Joaquim Távora', 'Fortaleza', 1111, 10);
+
+INSERT INTO procedimentos (nome, preco, duracao_em_sessao) VALUES
+('Limpeza dentária', 150.00, 1),
+('Clareamento dental a laser', 800.00, 2),
+('Clareamento caseiro', 500.00, 2),
+('Aplicação de flúor', 100.00, 1),
+('Extração de dente decíduo', 120.00, 1),
+('Extração de dente permanente', 300.00, 1),
+('Tratamento de canal - anterior', 900.00, 3),
+('Tratamento de canal - posterior', 1200.00, 4),
+('Restauração de dente com resina', 250.00, 1),
+('Restauração de dente com amálgama', 200.00, 1),
+('Colocação de faceta de porcelana', 1300.00, 2),
+('Instalação de aparelho fixo', 1500.00, 2),
+('Manutenção de aparelho', 150.00, 1),
+('Remoção de tártaro', 180.00, 1),
+('Cirurgia de gengiva', 600.00, 2),
+('Implante dentário unitário', 2500.00, 3),
+('Enxerto ósseo', 2000.00, 3),
+('Raio-X panorâmico', 120.00, 1),
+('Prótese total superior', 1600.00, 2),
+('Prótese parcial removível', 1200.00, 2);
