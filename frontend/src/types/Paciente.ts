@@ -1,9 +1,5 @@
-import type { Responsavel } from "./Responsavel";
-
 export interface Paciente {
     id: number;
-    classificacaoEtaria: string;
-    status: string;
     nome: string;
     data_nascimento: string;
     telefone: string;
@@ -11,5 +7,13 @@ export interface Paciente {
     bairro: string;
     cidade: string;
     num_casa: string;
-    Responsavel: Responsavel | null;
+    classificacao_etaria: string;
+    status: string;
+    responsavel?: {
+        id?: number; 
+        nome: string;
+        telefone: string;
+        parentesco: string;
+    };
+
 }

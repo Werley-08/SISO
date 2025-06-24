@@ -28,7 +28,8 @@ public class AuthService implements IAuthService{
 
         var usuarioSenha = new UsernamePasswordAuthenticationToken(usuario.getUsername(),usuario.getSenha());
         var auth = authenticationManager.authenticate(usuarioSenha);
-        var token = tokenService.generatedToken((Usuario) auth.getPrincipal());
-        return ResponseEntity.ok(new AuthResponseDTO(token));
+        Usuario usuarioLogado = (Usuario) auth.getPrincipal();
+        var token = tokenService.generatedToken(usuarioLogado);
+        return ResponseEntity.ok(new AuthResponseDTO(token, usuarioLogado.getRole()));
     }
 }

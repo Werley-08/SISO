@@ -1,8 +1,14 @@
 package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.ProcedimentoCreateDTO;
+import com.siso.siso.dto.response.EspecialidadeResponseDTO;
 import com.siso.siso.dto.response.ProcedimentoResponseDTO;
+import com.siso.siso.dto.update.ProcedimentoUpdateDTO;
+import com.siso.siso.model.Especialidade;
 import com.siso.siso.model.Procedimento;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public interface ProcedimentoMapper {
     static Procedimento toModel(ProcedimentoCreateDTO procedimentoCreateDTO) {
@@ -10,18 +16,31 @@ public interface ProcedimentoMapper {
                 null,
                 procedimentoCreateDTO.getNome(),
                 procedimentoCreateDTO.getPreco(),
-                procedimentoCreateDTO.getDescricao(),
                 procedimentoCreateDTO.getDuracao_em_sessao()
+        );
+    }
+
+    static Procedimento toModel(ProcedimentoUpdateDTO procedimentoUpdateDTO) {
+        return new Procedimento(
+                procedimentoUpdateDTO.getId(),
+                procedimentoUpdateDTO.getNome(),
+                procedimentoUpdateDTO.getPreco(),
+                procedimentoUpdateDTO.getDuracao_em_sessao()
         );
     }
 
     static ProcedimentoResponseDTO toDTO(Procedimento procedimento){
         return new ProcedimentoResponseDTO(
-                procedimento.getIdProcedimento(),
+                procedimento.getId(),
                 procedimento.getNome(),
                 procedimento.getPreco(),
-                procedimento.getDescricao(),
                 procedimento.getDuracao_em_sessao()
         );
+    }
+
+    static List<ProcedimentoResponseDTO> toDTO(List<Procedimento> procedimentos) {
+        return procedimentos.stream()
+                .map(ProcedimentoMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }

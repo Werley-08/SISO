@@ -9,13 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "procedimentos")
 public class Procedimento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProcedimento;
+    private Integer id;
 
     @Column(nullable = false)
     private String nome;
@@ -24,16 +25,5 @@ public class Procedimento {
     private float preco;
 
     @Column(nullable = false)
-    private String descricao;
-
-    @Column(nullable = false)
     private int duracao_em_sessao;
-
-    public Procedimento(Integer id,String nome, float preco, String descricao, int duracao_sessao) {
-        this.idProcedimento = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.descricao = descricao;
-        this.duracao_em_sessao = duracao_sessao;
-    }
 }

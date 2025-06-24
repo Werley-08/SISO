@@ -24,8 +24,8 @@ const PatientTableRow = ({ paciente, className = "", onEdit, onProfile}: Props) 
                     <span>
                         <Label
                             className='label-container'
-                            text={paciente?.classificacaoEtaria}
-                            color={paciente?.classificacaoEtaria == 'MENOR' ? '#A78BFA' : '#0F766E'} />
+                            text={paciente?.classificacao_etaria}
+                            color={paciente?.classificacao_etaria == 'MENOR' ? '#A78BFA' : '#0F766E'} />
                     </span> 
                 </div>
                 <div className='patientTable-row-container-content__item'> 

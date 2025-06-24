@@ -16,7 +16,7 @@ public class Responsavel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_responsavel;
+    private Integer id;
 
     @Column(nullable = false)
     private String nome;

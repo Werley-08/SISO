@@ -12,8 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PacienteResponseDTO {
-    private Integer id_paciente;
-    private ClassificacaoEtaria classificacaoEtaria;
+    private Integer id;
+    private ClassificacaoEtaria classificacao_etaria;
     private Status status;
     private String nome;
     private String data_nascimento;

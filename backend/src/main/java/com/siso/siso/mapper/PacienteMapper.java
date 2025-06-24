@@ -2,6 +2,7 @@ package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.PacienteCreateDTO;
 import com.siso.siso.dto.response.PacienteResponseDTO;
+import com.siso.siso.dto.update.PacienteUpdateDTO;
 import com.siso.siso.model.Paciente;
 import com.siso.siso.model.enums.Status;
 
@@ -16,7 +17,7 @@ public interface PacienteMapper {
 
         return new Paciente(
                 null,
-                pacienteCreateDTO.getClassificacaoEtaria(),
+                pacienteCreateDTO.getClassificacao_etaria(),
                 Status.INATIVO,
                 pacienteCreateDTO.getNome(),
                 formatDate(pacienteCreateDTO.getData_nascimento()),
@@ -29,10 +30,27 @@ public interface PacienteMapper {
         );
     }
 
+    static Paciente toModel(PacienteUpdateDTO pacienteUpdateDTO) {
+
+        return new Paciente(
+                pacienteUpdateDTO.getId(),
+                pacienteUpdateDTO.getClassificacao_etaria(),
+                Status.INATIVO,
+                pacienteUpdateDTO.getNome(),
+                formatDate(pacienteUpdateDTO.getData_nascimento()),
+                pacienteUpdateDTO.getTelefone(),
+                pacienteUpdateDTO.getRua(),
+                pacienteUpdateDTO.getBairro(),
+                pacienteUpdateDTO.getCidade(),
+                pacienteUpdateDTO.getNum_casa(),
+                ResponsavelMapper.toModel(pacienteUpdateDTO.getResponsavel())
+        );
+    }
+
     static PacienteResponseDTO toDTO(Paciente paciente) {
         return new PacienteResponseDTO(
-                paciente.getId_paciente(),
-                paciente.getClassificacaoEtaria(),
+                paciente.getId(),
+                paciente.getClassificacao_etaria(),
                 paciente.getStatus(),
                 paciente.getNome(),
                 formatDate(paciente.getData_nascimento()),

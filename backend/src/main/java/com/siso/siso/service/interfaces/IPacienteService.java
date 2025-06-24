@@ -7,4 +7,5 @@ import java.util.List;
 public interface IPacienteService {
     Paciente cadastrarPaciente(Paciente paciente);
     List<Paciente> visualizarPacientes();
+    Paciente editarPaciente(Paciente paciente, Integer id);
 }

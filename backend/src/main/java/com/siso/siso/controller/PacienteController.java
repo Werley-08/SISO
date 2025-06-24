@@ -2,6 +2,7 @@ package com.siso.siso.controller;
 
 import com.siso.siso.dto.create.PacienteCreateDTO;
 import com.siso.siso.dto.response.PacienteResponseDTO;
+import com.siso.siso.dto.update.PacienteUpdateDTO;
 import com.siso.siso.service.interfaces.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,10 @@ public class PacienteController {
     @GetMapping("/visualizarTodos")
     public List<PacienteResponseDTO> visualizarPacientes(){
         return toDTO(pacienteService.visualizarPacientes());
+    }
+
+    @PutMapping("/editar/{id}")
+    public PacienteResponseDTO editarPaciente(@RequestBody PacienteUpdateDTO pacienteUpdateDTO, @PathVariable Integer id){
+        return toDTO(pacienteService.editarPaciente(toModel(pacienteUpdateDTO), id));
     }
 }

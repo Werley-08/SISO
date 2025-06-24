@@ -10,9 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProcedimentoResponseDTO {
-    private Integer idProcedimento;
+    private Integer id;
     private String nome;
     private float preco;
-    private String descricao;
     private int duracao_em_sessao;
 }
