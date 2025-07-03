@@ -13,6 +13,7 @@ type Props = {
 };
 
 const PatientTableRow = ({ paciente, className = "", onEdit, onProfile}: Props) => {
+    const role = localStorage.getItem('role');
 
     return (
         <div className={`patientTable-row-container ${className}`}>
@@ -41,7 +42,7 @@ const PatientTableRow = ({ paciente, className = "", onEdit, onProfile}: Props) 
                         className='actionmenu-container'
                         icons={[
                             { icon: <EyeIcon />, onClick:() => onProfile?.(paciente!) }, 
-                            { icon: <PencilIcon />, onClick: () => onEdit?.(paciente!) }
+                            ...(role === 'RECEPCIONISTA' ? [{ icon: <PencilIcon />, onClick: () => onEdit?.(paciente!) }] : [])
                         ]}
                     />
                 </div>
