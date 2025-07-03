@@ -20,6 +20,7 @@ const GerenciamentoDePaciente = () => {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const itemsPerPage = 11;
+    const role = localStorage.getItem('role');
 
     const filteredPacientes = pacientes.filter((pac) =>
         pac.nome.toLowerCase().includes(searchTerm.toLowerCase())
@@ -77,7 +78,9 @@ const GerenciamentoDePaciente = () => {
                             setCurrentPage(1);
                         }}
                     />
-                    <ActionButton text="Adicionar Paciente" className="actionbutton-container" onClick={() => setShowModal(true)} />
+                    {role === 'RECEPCIONISTA' && (
+                        <ActionButton text="Adicionar Paciente" className="actionbutton-container" onClick={() => setShowModal(true)} />
+                    )}
                 </div>
 
                 <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
