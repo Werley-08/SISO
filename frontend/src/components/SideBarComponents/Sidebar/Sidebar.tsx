@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
     const navigate = useNavigate();
+    const role = localStorage.getItem('role') || '';
 
     const handleLogoClick = () => {
         navigate('/Dashboard');
@@ -24,6 +25,16 @@ const Sidebar = () => {
 
     const handlePacienteClick = () => {
         navigate('/GerenciamentoDePaciente');
+    };
+
+    const handleAgendamentoClick = () => {
+        // FALTA IMPLEMENTAR AS PAGES
+        // if (role === 'RECEPCIONISTA') {
+        //     navigate('/GerenciamentoDeAgendamento');
+        // } 
+        // if (role === 'PROFISSIONAL_DA_SAUDE') {
+        //     navigate('/GerenciamentoDeAgendaProfissional');
+        // }
     };
 
     const handleProcedimentoClick = () => {
@@ -41,6 +52,68 @@ const Sidebar = () => {
         }
     ];
 
+    // Definição centralizada das opções de menu
+    const menuOptions = [
+        {
+            key: 'dashboard',
+            component: (
+                <SidebarOption 
+                    icon={<DashboardIcon />} 
+                    text="Dashboard"
+                    onClick={handleDashboardClick}
+                />
+            ),
+            allowedRoles: ['ADMIN', 'RECEPCIONISTA', 'PROFISSIONAL', 'PROFISSIONAL_DA_SAUDE'],
+        },
+        {
+            key: 'pacientes',
+            component: (
+                <SidebarOption 
+                    icon={<PacientIcon />} 
+                    text="Pacientes"
+                    onClick={handlePacienteClick}
+                />
+            ),
+            allowedRoles: ['RECEPCIONISTA', 'PROFISSIONAL', 'PROFISSIONAL_DA_SAUDE'],
+        },
+        {
+            key: 'usuarios',
+            component: (
+                <SidebarDropdown 
+                    icon={<UserIcon />} 
+                    text="Usuários" 
+                    options={dropdownOptions}
+                />
+            ),
+            allowedRoles: ['ADMIN', 'PROFISSIONAL'],
+        },
+        {
+            key: 'agendamentos',
+            component: (
+                <SidebarOption 
+                    icon={<ScheduleIcon />} 
+                    text="Agendamentos" 
+                    onClick={handleAgendamentoClick}
+                />
+            ),
+            allowedRoles: ['RECEPCIONISTA', 'PROFISSIONAL', 'PROFISSIONAL_DA_SAUDE'],
+        },
+        {
+            key: 'procedimentos',
+            component: (
+                <SidebarOption 
+                    icon={<TeethIcon />} 
+                    text="Procedimentos"
+                    onClick={handleProcedimentoClick}   
+                />
+            ),
+            allowedRoles: ['ADMIN', 'PROFISSIONAL'],
+        },
+    ];
+
+    // Filtra as opções de menu conforme a role
+    const filteredMenuOptions = menuOptions.filter(option => option.allowedRoles.includes(role));
+
     return (
         <div className="sidebar-container">
             <div className="sidebar-content">
@@ -55,37 +128,11 @@ const Sidebar = () => {
                 </div>
 
                 <div className="sidebar-menu">
-                    <div className="menu-item">
-                        <SidebarOption 
-                            icon={<DashboardIcon />} 
-                            text="Dashboard"
-                            onClick={handleDashboardClick}
-                        />
-                    </div>
-                    <div className="menu-item">
-                        <SidebarOption 
-                            icon={<PacientIcon />} 
-                            text="Pacientes"
-                            onClick={handlePacienteClick}
-                        />
-                    </div>
-                    <div className="menu-item">
-                        <SidebarDropdown 
-                            icon={<UserIcon />} 
-                            text="Usuários" 
-                            options={dropdownOptions}
-                        />
-                    </div>
-                    <div className="menu-item">
-                        <SidebarOption icon={<ScheduleIcon />} text="Agendamentos"/>
-                    </div>
-                    <div className="menu-item">
-                        <SidebarOption 
-                            icon={<TeethIcon />} 
-                            text="Procedimentos"
-                            onClick={handleProcedimentoClick}   
-                        />
-                    </div>
+                    {filteredMenuOptions.map(option => (
+                        <div className="menu-item" key={option.key}>
+                            {option.component}
+                        </div>
+                    ))}
                 </div>
 
                 <div className="sidebar-footer">
