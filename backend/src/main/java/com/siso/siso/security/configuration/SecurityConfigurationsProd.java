@@ -64,11 +64,15 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN")
 
+                        //Anamnese endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/anamnese/cadastrar").hasAnyRole("PROFISSIONAL_DA_SAUDE")
+
                         // Horarios de Atendimeento endpoints
                         .requestMatchers(HttpMethod.POST, "/api/horarioAtendimento/cadastrar/{idProfissional}").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/horarioAtendimento/deletar/{idProfissional}/{idHorario}").hasAnyRole("ADMIN")
 
                 )
+
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
