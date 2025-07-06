@@ -2,6 +2,7 @@ package com.siso.siso.service;
 
 import com.siso.siso.model.HorarioAtendimento;
 import com.siso.siso.model.ProfissionalDaSaude;
+import com.siso.siso.repository.interfaces.IHorarioAtendimentoRepository;
 import com.siso.siso.repository.interfaces.IProfissionalDaSaudeRepository;
 import com.siso.siso.service.interfaces.IHorarioAtendimentoService;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,12 +15,16 @@ import java.time.LocalTime;
 public class HorarioAtendimentoService implements IHorarioAtendimentoService {
 
     private final IProfissionalDaSaudeRepository profissionalDaSaudeRepository;
+    private final IHorarioAtendimentoRepository horarioAtendimentoRepository;
 
     @Autowired
-    public HorarioAtendimentoService(IProfissionalDaSaudeRepository profissionalDaSaudeRepository) {
+    public HorarioAtendimentoService(IProfissionalDaSaudeRepository profissionalDaSaudeRepository,
+                                     IHorarioAtendimentoRepository horarioAtendimentoRepository) {
         this.profissionalDaSaudeRepository = profissionalDaSaudeRepository;
+        this.horarioAtendimentoRepository = horarioAtendimentoRepository;
     }
 
+    @Override
     public ProfissionalDaSaude cadastrarHorarioAtendimento(Integer idProfissional, HorarioAtendimento horarioAtendimento){
 
         ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(idProfissional)
@@ -42,6 +47,24 @@ public class HorarioAtendimentoService implements IHorarioAtendimentoService {
         horarioAtendimento.setProfissional_da_saude(profissionalDaSaude);
         profissionalDaSaude.getHorarios_atendimento().add(horarioAtendimento);
         return profissionalDaSaudeRepository.save(profissionalDaSaude);
+    }
+
+    @Override
+    public void deletarHorarioAtendimento(Integer idProfissional, Integer idHorario) {
+        ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(idProfissional)
+                .orElseThrow(() -> new EntityNotFoundException("Não existe um profissional cadastrado com esse id."));
+
+        HorarioAtendimento horarioAtendimento = horarioAtendimentoRepository.findById(idHorario)
+                .orElseThrow(() -> new EntityNotFoundException("Não existe um horário cadastrado com esse id."));
+
+        boolean removido = profissionalDaSaude.getHorarios_atendimento()
+                .removeIf(h -> h.getId().equals(idHorario));
+
+        if (!removido) {
+            throw new EntityNotFoundException("Esse horário não pertence ao profissional informado.");
+        }
+
+        profissionalDaSaudeRepository.save(profissionalDaSaude);
     }
 
     private boolean horariosConflitam(LocalTime inicio1, LocalTime fim1, LocalTime inicio2, LocalTime fim2) {

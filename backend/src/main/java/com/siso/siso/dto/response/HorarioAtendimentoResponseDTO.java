@@ -14,7 +14,7 @@ import java.time.LocalTime;
 public class HorarioAtendimentoResponseDTO {
 
     private Integer id;
-    private DiaSemana dia_semana;
+    private String dia_semana;
     private LocalTime horario_inicio;
     private LocalTime horario_fim;
 }

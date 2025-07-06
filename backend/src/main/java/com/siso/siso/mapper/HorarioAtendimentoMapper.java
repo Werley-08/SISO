@@ -12,7 +12,7 @@ public interface HorarioAtendimentoMapper {
     static HorarioAtendimentoResponseDTO toDTO(HorarioAtendimento horarioAtendimentoDTO) {
         return new HorarioAtendimentoResponseDTO(
                 horarioAtendimentoDTO.getId(),
-                horarioAtendimentoDTO.getDia_semana(),
+                horarioAtendimentoDTO.getDia_semana().getDescricao(),
                 horarioAtendimentoDTO.getHorario_inicio(),
                 horarioAtendimentoDTO.getHorario_fim()
         );
