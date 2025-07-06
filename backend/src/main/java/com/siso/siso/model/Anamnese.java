@@ -24,12 +24,15 @@ public class Anamnese {
     private float altura;
 
     @Column(nullable = false)
-    private boolean medicamentos;
+    private String alergias;
 
     @Column(nullable = false)
+    private boolean medicamentos;
+
+    @Column(name = "doencascronica", nullable=false)
     private boolean doencasCronica;
 
     @OneToOne
-    @JoinColumn(name = "paciente_id")
-    private Paciente id_paciente;
+    @JoinColumn(name = "idpaciente")
+    private Paciente idPaciente;
 }

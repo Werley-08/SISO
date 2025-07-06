@@ -63,7 +63,11 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.POST, "/api/procedimento/cadastrar").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN")
+
+                        //Anamnese endpoints
+                        .requestMatchers(HttpMethod.POST, "/api/anamnese/cadastrar").hasAnyRole("PROFISSIONAL_DA_SAUDE")
                 )
+
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

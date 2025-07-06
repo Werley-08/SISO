@@ -13,7 +13,8 @@ import lombok.Setter;
 public class AnamneseCreateDTO {
     private float peso;
     private float altura;
+    private String alergias;
     private boolean medicamentos;
     private boolean doencasCronica;
-    private Paciente id_paciente;
+    private Paciente idPaciente;
 }
