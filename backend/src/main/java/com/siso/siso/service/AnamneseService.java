@@ -7,6 +7,7 @@ import com.siso.siso.model.ProfissionalDaSaude;
 import com.siso.siso.repository.interfaces.IPacienteRepository;
 import com.siso.siso.service.interfaces.IAnamneseService;
 import com.siso.siso.repository.interfaces.IAnamneseRepository;
+import org.hibernate.sql.ast.tree.expression.Over;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,10 @@ public class AnamneseService implements IAnamneseService {
         return anamneseRepository.save(anamnese);
     }
 
+    @Override
+    public Anamnese visualizarAnamnese(Integer id){
+        return anamneseRepository.findById(id)
+                .orElseThrow(() -> new  RuntimeException("anamnese não encontrada"));
+    }
 
 }

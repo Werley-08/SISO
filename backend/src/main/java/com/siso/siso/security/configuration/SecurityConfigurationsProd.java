@@ -66,6 +66,10 @@ public class SecurityConfigurationsProd{
 
                         //Anamnese endpoints
                         .requestMatchers(HttpMethod.POST, "/api/anamnese/cadastrar").hasAnyRole("PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.POST, "/api/anamnese/editar/{id").hasAnyRole("PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.POST, "/api/anamnese/visualizar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE", "RECEPCIONISTA")
+
+
 
                         // Horarios de Atendimeento endpoints
                         .requestMatchers(HttpMethod.POST, "/api/horarioAtendimento/cadastrar/{idProfissional}").hasAnyRole("ADMIN")

@@ -7,7 +7,6 @@ import com.siso.siso.dto.update.AnamneseUpdateDTO;
 import com.siso.siso.service.interfaces.IAnamneseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import static com.siso.siso.mapper.AnamneseMapper.*;
 
 @RestController
@@ -28,7 +27,11 @@ public class AnamneseController {
     @PutMapping("/editar/{id}")
     public AnamneseResponseDTO editarAnamnese(@PathVariable Integer id, @RequestBody AnamneseUpdateDTO anamneseUpdateDTO ){
         return toDTO(anamneseService.editarAnamnese(toModelUp(anamneseUpdateDTO),id));
-
-
     }
+
+    @GetMapping("/visualizar/{id}")
+    public AnamneseResponseDTO visualizarAnamnese(@PathVariable Integer id){
+        return toDTO(anamneseService.visualizarAnamnese(id));
+    }
+
 }
