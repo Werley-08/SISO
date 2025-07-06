@@ -2,6 +2,7 @@ package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.AnamneseCreateDTO;
 import com.siso.siso.dto.response.AnamneseResponseDTO;
+import com.siso.siso.dto.update.AnamneseUpdateDTO;
 import com.siso.siso.model.Anamnese;
 
 public interface AnamneseMapper {
@@ -29,4 +30,17 @@ public interface AnamneseMapper {
                 anamneseDTO.getIdPaciente()
         );
     }
+
+    static Anamnese toModelUp(AnamneseUpdateDTO anamneseDTO) {
+        return new Anamnese(
+                anamneseDTO.getId(),
+                anamneseDTO.getPeso(),
+                anamneseDTO.getAltura(),
+                anamneseDTO.getAlergias(),
+                anamneseDTO.isMedicamentos(),
+                anamneseDTO.isDoencasCronica(),
+                anamneseDTO.getIdPaciente()
+        );
+    }
+
 }
