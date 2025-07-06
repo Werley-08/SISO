@@ -50,8 +50,21 @@ public class HorarioAtendimentoService implements IHorarioAtendimentoService {
     }
 
     @Override
-    public void deletarHorarioAtendimento(Integer id){
-        horarioAtendimentoRepository.deleteById(id);
+    public void deletarHorarioAtendimento(Integer idProfissional, Integer idHorario) {
+        ProfissionalDaSaude profissionalDaSaude = profissionalDaSaudeRepository.findById(idProfissional)
+                .orElseThrow(() -> new EntityNotFoundException("Não existe um profissional cadastrado com esse id."));
+
+        HorarioAtendimento horarioAtendimento = horarioAtendimentoRepository.findById(idHorario)
+                .orElseThrow(() -> new EntityNotFoundException("Não existe um horário cadastrado com esse id."));
+
+        boolean removido = profissionalDaSaude.getHorarios_atendimento()
+                .removeIf(h -> h.getId().equals(idHorario));
+
+        if (!removido) {
+            throw new EntityNotFoundException("Esse horário não pertence ao profissional informado.");
+        }
+
+        profissionalDaSaudeRepository.save(profissionalDaSaude);
     }
 
     private boolean horariosConflitam(LocalTime inicio1, LocalTime fim1, LocalTime inicio2, LocalTime fim2) {

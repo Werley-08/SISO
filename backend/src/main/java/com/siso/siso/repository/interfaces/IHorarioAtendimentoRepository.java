@@ -1,5 +1,9 @@
 package com.siso.siso.repository.interfaces;
 
+import com.siso.siso.model.HorarioAtendimento;
+
+import java.util.Optional;
+
 public interface IHorarioAtendimentoRepository {
-    void deleteById(Integer id);
+    Optional<HorarioAtendimento> findById(Integer id);
 }
