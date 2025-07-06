@@ -25,4 +25,9 @@ public class HorarioAtendimentoController{
                                                                       @PathVariable Integer idProfissional) {
         return toDTO(horarioAtendimentoService.cadastrarHorarioAtendimento(idProfissional, toModel(horarioAtendimentoDTO)));
     }
+
+    @DeleteMapping("/deletar/{id}")
+    public void deletarHorarioAtendimento(@PathVariable Integer id) {
+        horarioAtendimentoService.deletarHorarioAtendimento(id);
+    }
 }
