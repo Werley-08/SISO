@@ -7,8 +7,6 @@ import java.util.List;
 public interface IEspecialidadeService {
 
     Especialidade cadastrarEspecialidade(Especialidade especialidade);
-
     Especialidade editarEspecialidade(Integer id, Especialidade especialidade);
-
     List<Especialidade> visualizarEspecialidades();
 }

@@ -1,6 +1,7 @@
 package com.siso.siso.repository.interfaces;
 
 import com.siso.siso.model.ProfissionalDaSaude;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;

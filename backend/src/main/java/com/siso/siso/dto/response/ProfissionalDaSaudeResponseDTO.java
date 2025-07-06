@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -23,4 +25,5 @@ public class ProfissionalDaSaudeResponseDTO {
     private String cidade;
     private String numero_casa;
     private Especialidade especialidade;
+    private List<HorarioAtendimentoResponseDTO> horarios_atendimento;
 }
