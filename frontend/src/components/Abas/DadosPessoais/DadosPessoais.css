@@ -1,0 +1,11 @@
+@import url("@/styles/variables.css");
+
+.pacienteProfile-tabContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+.pacienteProfile-tabContent .formDescriptor {
+    width: 100%;
+}
