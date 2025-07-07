@@ -1,0 +1,49 @@
+@import url("@/styles/variables.css");
+
+.tableschedule-container {
+    background-color: var(--cor12);
+    border-radius: var(--border-radius-lg);
+    padding-top: 30px;
+    padding: 30px var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+    margin: 10px;
+}
+
+.tableschedule-container-chapters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tableschedule-container-chapters__title {
+    flex: 1;
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-md);
+}
+
+.iconWithText-scheduletable {
+    margin: 5px;
+}
+
+.iconWithText-scheduletable .iconWithText-container__text {
+    font-size: 18px;
+}
+
+.iconWithText-scheduletable .iconWithText-container__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.actionButton-container {
+    margin-right: 10px;
+    min-width: 10rem;
+}
