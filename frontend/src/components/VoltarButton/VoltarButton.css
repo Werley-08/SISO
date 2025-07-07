@@ -1,0 +1,33 @@
+.voltar-button { 
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--cor10); /* mesma cor da sidebar */
+  font-size: var(--font-size-md); /* mesmo tamanho da sidebar */
+  font-weight: var(--font-weight-semibold); /* mesmo peso da sidebar */
+  padding: 0.6rem 1rem;
+  background-color: transparent;
+  border: none;
+  width: fit-content;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: 6px;
+  font-family: 'Inter', 'Segoe UI', sans-serif; /* legível e moderna */
+}
+
+.voltar-button:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* leve destaque no hover */
+  color: var(--cor1); /* cor mais escura no hover */
+}
+
+.voltar-button:focus {
+  outline: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.voltar-button__icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--cor10); /* mesma cor da sidebar */
+}
