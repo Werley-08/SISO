@@ -1,10 +1,13 @@
 import api from './api';
 import type { Usuarios } from '../types/Usuarios';
+import type { HorariosDeAtendimento } from '@/types/HorariosDeAtendimento';
 
 type CadastrarProfissionalData = Omit<Usuarios, 'id' | 'role' | 'status'>;
 type EditarProfissionalData = Omit<Usuarios, 'role' | 'especialidade'> & {
     especialidade: { id: number };
 };
+
+type CadastrarHorarioDeAtendimento = Omit<HorariosDeAtendimento, 'id'>;
 
 export const profissionalDaSaudeService = {
     listarProfissionais: async (): Promise<Usuarios[]> => {
@@ -18,5 +21,10 @@ export const profissionalDaSaudeService = {
 
     editarProfissional: async (id: number, data: EditarProfissionalData): Promise<void> => {
         await api.put(`/profissionalDaSaude/editar/${id}`, data);
+    },
+
+    cadastrarHorarioDeAtendimento: async (id: number, data: CadastrarHorarioDeAtendimento): Promise<Usuarios> => {
+        const response = await api.post(`/horarioAtendimento/cadastrar/${id}`, data);
+        return response.data;
     }
 }; 
