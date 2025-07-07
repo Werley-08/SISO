@@ -1,0 +1,25 @@
+.cadastrarHorarioAtendimentoForm .form-descriptor {
+  margin-top: var(--spacing-lg);
+}
+
+.input-group-horarioAtendimento {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.timeinput-container input[type="time"] {
+  height: 2.5rem;
+  padding: 0 var(--spacing-sm);
+  border: 1px solid var(--cor-borda, #ccc);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+}

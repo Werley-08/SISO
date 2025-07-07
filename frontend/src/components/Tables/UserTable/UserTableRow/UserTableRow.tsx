@@ -3,16 +3,18 @@ import type { Usuarios } from '../../../../types/Usuarios';
 import Label from '../../../Label/Label';
 import { ReactComponent as PencilIcon } from "@/assets/icons/Pencil-icon.svg"
 import { ReactComponent as EyeIcon } from "@/assets/icons/Eye-icon.svg"
+import { ReactComponent as ClockIcon } from "@/assets/icons/Clock-icon.svg"
 import ActionMenu from '../../../ActionMenu/ActionMenu';
 
 type Props = {
     className?: string;
-    usuario?: Usuarios;
+    usuario: Usuarios;
     onEdit?: (usuario: Usuarios) => void;
     onProfile?: (usuario: Usuarios) => void;
+    onSchedule?: (usuario: Usuarios) => void;
 };
 
-const UserTableRow = ({ usuario, className = "", onEdit, onProfile }: Props) => {
+const UserTableRow = ({ usuario, className = "", onEdit, onProfile, onSchedule }: Props) => {
 
     return (
         <div className={`usertable-row-container ${className}`}>
@@ -35,8 +37,9 @@ const UserTableRow = ({ usuario, className = "", onEdit, onProfile }: Props) => 
                     <ActionMenu
                         className='actionmenu-container'
                         icons={[
-                            { icon: <EyeIcon />, onClick:() => onProfile?.(usuario!) }, 
-                            { icon: <PencilIcon />, onClick: () => onEdit?.(usuario!) }
+                            { icon: <EyeIcon />, onClick: () => onProfile?.(usuario!) },
+                            { icon: <PencilIcon />, onClick: () => onEdit?.(usuario!) },
+                            ...(usuario?.role === 'PROFISSIONAL DA SAÚDE' ? [{ icon: <ClockIcon />, onClick: () => onSchedule?.(usuario!) }] : [])
                         ]}
                     />
                 </div>

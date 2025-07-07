@@ -1,0 +1,42 @@
+@import url("@/styles/variables.css");
+
+.timeinput-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.timeinput-container label {
+    margin-bottom: 4px;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-md);
+    color: var(--cor6);
+}
+
+.timeinput-container input[type="time"] {
+    width: 200px;
+    height: 2.7rem;
+    padding: 0 var(--spacing-sm);
+    border: 1px solid var(--cor8);
+    border-radius: var(--border-radius-md);
+    background-color: var(--cor3);
+    font-size: var(--font-size-md);
+    line-height: 1;
+    color: var(--cor4);
+    outline: none;
+    transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.timeinput-container input[type="time"]:hover {
+    border-color: var(--cor10);
+}
+
+.timeinput-container input[type="time"]:focus {
+    border-color: var(--cor1);
+    box-shadow: 0 0 0 2px rgba(72, 201, 176, 0.25);
+}
+
+.timeinput-container input[type="time"]::placeholder {
+    color: var(--cor5);
+}
