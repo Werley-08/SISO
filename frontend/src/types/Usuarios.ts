@@ -1,4 +1,5 @@
 import type { Especialidade } from './Especialidade.ts';
+import type { HorariosDeAtendimento } from './HorariosDeAtendimento.ts';
 
 export interface Usuarios {
   id: number;
@@ -13,4 +14,5 @@ export interface Usuarios {
   cidade: string;
   numero_casa: string;
   especialidade: Especialidade | null;
+  horarios_atendimento?: HorariosDeAtendimento[];
 }
