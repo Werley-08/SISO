@@ -26,5 +26,9 @@ export const profissionalDaSaudeService = {
     cadastrarHorarioDeAtendimento: async (id: number, data: CadastrarHorarioDeAtendimento): Promise<Usuarios> => {
         const response = await api.post(`/horarioAtendimento/cadastrar/${id}`, data);
         return response.data;
+    },
+
+    deletarHorarioDeAtendimento: async (idProfissional: number, idHorario: number) => {
+        await api.delete(`/horarioAtendimento/deletar/${idProfissional}/${idHorario}`);
     }
 }; 

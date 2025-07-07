@@ -21,9 +21,16 @@ const ProfessionalScheduleTable = ({ profissional }: ProfessionalScheduleTablePr
 
 
     const handleSuccess = (profissionalAtualizado: Usuarios) => {
-    setProf(profissionalAtualizado); 
-    setShowAddModal(false);
-};
+        setProf(profissionalAtualizado);
+        setShowAddModal(false);
+    };
+
+    const handleDeleted = (idHorario: number) => {
+        setProf(prev => ({
+            ...prev,
+            horarios_atendimento: prev.horarios_atendimento?.filter(h => h.id !== idHorario) ?? [],
+        }));
+    }
 
     return (
         <>
@@ -51,7 +58,7 @@ const ProfessionalScheduleTable = ({ profissional }: ProfessionalScheduleTablePr
 
                 <div className="tableschedule-container-content">
                     {prof.horarios_atendimento?.map(horario => (
-                        <ProfessionalScheduleRow key={horario.id} horario={horario} />
+                        <ProfessionalScheduleRow key={horario.id} horario={horario} idProfissional={prof.id} onDeleted={handleDeleted} />
                     ))}
                 </div>
             </div>
