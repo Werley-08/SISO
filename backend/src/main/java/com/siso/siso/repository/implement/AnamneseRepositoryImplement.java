@@ -1,6 +1,7 @@
 package com.siso.siso.repository.implement;
 
 import com.siso.siso.model.Anamnese;
+import com.siso.siso.model.Paciente;
 import com.siso.siso.repository.AnamneseRepository;
 import com.siso.siso.repository.interfaces.IAnamneseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,7 @@ public class AnamneseRepositoryImplement implements IAnamneseRepository {
     }
 
     @Override
-    public Optional<Anamnese> findById(Integer id){
-        return anamneseRepository.findById(id);
+    public Optional<Anamnese> findByPaciente(Paciente paciente){
+        return anamneseRepository.findByPaciente(paciente);
     }
-
 }

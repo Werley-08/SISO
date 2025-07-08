@@ -23,4 +23,5 @@ public class PacienteResponseDTO {
     private String cidade;
     private Integer num_casa;
     private ResponsavelResponseDTO responsavel;
+    private AnamneseResponseDTO anamnese;
 }

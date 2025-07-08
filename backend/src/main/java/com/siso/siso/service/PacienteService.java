@@ -1,10 +1,13 @@
 package com.siso.siso.service;
 
+import com.siso.siso.model.Anamnese;
 import com.siso.siso.model.Paciente;
 import com.siso.siso.model.Responsavel;
 import com.siso.siso.model.enums.ClassificacaoEtaria;
+import com.siso.siso.repository.interfaces.IAnamneseRepository;
 import com.siso.siso.repository.interfaces.IPacienteRepository;
 import com.siso.siso.repository.interfaces.IResponsavelRepository;
+import com.siso.siso.service.interfaces.IAnamneseService;
 import com.siso.siso.service.interfaces.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,17 +15,22 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PacienteService implements IPacienteService {
 
     private final IPacienteRepository pacienteRepository;
     private final IResponsavelRepository responsavelRepository;
+    private final IAnamneseRepository anamneseRepository;
 
     @Autowired
-    public PacienteService(IPacienteRepository pacienteRepository, IResponsavelRepository responsavelRepository) {
+    public PacienteService(IPacienteRepository pacienteRepository,
+                           IResponsavelRepository responsavelRepository,
+                           IAnamneseRepository anamneseRepository) {
         this.pacienteRepository = pacienteRepository;
         this.responsavelRepository = responsavelRepository;
+        this.anamneseRepository = anamneseRepository;
     }
 
     @Override
@@ -58,6 +66,11 @@ public class PacienteService implements IPacienteService {
 
         if (paciente.getClassificacao_etaria().equals(ClassificacaoEtaria.MENOR) && paciente.getResponsavel() == null) {
             throw new IllegalArgumentException("Um paciente menor de idade não pode ser editado sem um responsável associado!");
+        }
+
+        Optional<Anamnese> anamnese = anamneseRepository.findByPaciente(paciente);
+        if (anamnese.isPresent()) {
+            paciente.setAnamnese(anamnese.get());
         }
 
         Responsavel responsavel = paciente.getResponsavel();
