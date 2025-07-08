@@ -4,6 +4,7 @@ import type { Paciente } from '@/types/Paciente';
 import Avatar from '@/components/Avatar/Avatar';
 import Tabs from '@/components/tabs/Tabs';
 import DadosPessoais from '@/components/Abas/DadosPessoais/DadosPessoais';
+import Anamnese from '@/components/Abas/AnamneseAba/Anamnese';
 
 interface PacienteProfileProps {
   paciente: Paciente;
@@ -15,7 +16,10 @@ const PacienteProfile: React.FC<PacienteProfileProps> = ({ paciente }) => {
       rotulo: "Dados pessoais",
       conteudo: <DadosPessoais paciente={paciente} />,
     },
-    // outras abas aqui
+   {
+    rotulo: "Anamnese",
+    conteudo: <Anamnese paciente={paciente} />,
+  },
   ];
 
   return (
