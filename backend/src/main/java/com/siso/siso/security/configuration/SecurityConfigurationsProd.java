@@ -66,10 +66,10 @@ public class SecurityConfigurationsProd{
 
                         //Anamnese endpoints
                         .requestMatchers(HttpMethod.POST, "/api/anamnese/cadastrar").hasAnyRole("PROFISSIONAL_DA_SAUDE")
-                        .requestMatchers(HttpMethod.POST, "/api/anamnese/editar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE")
-                        .requestMatchers(HttpMethod.POST, "/api/anamnese/visualizar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.PUT, "/api/anamnese/editar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.GET, "/api/anamnese/visualizar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE", "RECEPCIONISTA")
 
-                        // Horarios de Atendimeento endpoints
+                        // Horarios de Atendimento endpoints
                         .requestMatchers(HttpMethod.POST, "/api/horarioAtendimento/cadastrar/{idProfissional}").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/horarioAtendimento/deletar/{idProfissional}/{idHorario}").hasAnyRole("ADMIN")
 

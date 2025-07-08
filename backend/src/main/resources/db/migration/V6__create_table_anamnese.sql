@@ -4,6 +4,6 @@ CREATE TABLE anamnese(
     altura REAL not null,
     alergias VARCHAR not null,
     medicamentos BOOLEAN not null,
-    doencasCronica BOOLEAN not null,
-    idPaciente INTEGER NOT NULL REFERENCES pacientes(id)
+    doencas_cronicas BOOLEAN not null,
+    id_paciente INTEGER NOT NULL REFERENCES pacientes(id)
 );

@@ -8,14 +8,17 @@ import com.siso.siso.model.Anamnese;
 public interface AnamneseMapper {
 
     static AnamneseResponseDTO toDTO(Anamnese anamnese) {
+        if (anamnese == null)
+            return null;
+
         return new AnamneseResponseDTO(
                 anamnese.getId(),
                 anamnese.getPeso(),
                 anamnese.getAltura(),
                 anamnese.getAlergias(),
                 anamnese.isMedicamentos(),
-                anamnese.isDoencasCronica(),
-                anamnese.getIdPaciente()
+                anamnese.isDoencas_cronicas(),
+                anamnese.getPaciente().getId()
         );
     }
 
@@ -26,21 +29,20 @@ public interface AnamneseMapper {
                 anamneseDTO.getAltura(),
                 anamneseDTO.getAlergias(),
                 anamneseDTO.isMedicamentos(),
-                anamneseDTO.isDoencasCronica(),
-                anamneseDTO.getIdPaciente()
+                anamneseDTO.isDoencas_cronicas(),
+                anamneseDTO.getPaciente()
         );
     }
 
-    static Anamnese toModelUp(AnamneseUpdateDTO anamneseDTO) {
+    static Anamnese toModel(AnamneseUpdateDTO anamneseDTO) {
         return new Anamnese(
                 anamneseDTO.getId(),
                 anamneseDTO.getPeso(),
                 anamneseDTO.getAltura(),
                 anamneseDTO.getAlergias(),
                 anamneseDTO.isMedicamentos(),
-                anamneseDTO.isDoencasCronica(),
-                anamneseDTO.getIdPaciente()
+                anamneseDTO.isDoencas_cronicas(),
+                anamneseDTO.getPaciente()
         );
     }
-
 }
