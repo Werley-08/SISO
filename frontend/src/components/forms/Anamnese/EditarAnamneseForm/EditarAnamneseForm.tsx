@@ -15,6 +15,10 @@ interface EditarAnamneseFormProps {
 }
 
 const EditarAnamneseForm = ({ anamnese, onClose, onSuccess }: EditarAnamneseFormProps) => {
+    console.log("Anamnese recebida:", anamnese);
+    console.log("ID do paciente:", anamnese.idPaciente);
+
+
     const [formData, setFormData] = useState({
         peso: anamnese.peso.toString(),
         altura: anamnese.altura.toString(),
@@ -38,13 +42,14 @@ const EditarAnamneseForm = ({ anamnese, onClose, onSuccess }: EditarAnamneseForm
 
         const payload = {
             id: anamnese.id,
-            idPaciente: anamnese.idPaciente, 
             peso: parseFloat(formData.peso),
             altura: parseFloat(formData.altura),
             alergias: formData.alergias,
             medicamentos: formData.medicamentos === "true",
-            doencasCronica: formData.doencasCronica === "true"
+            doencasCronica: formData.doencasCronica === "true", // camelCase aqui (pra frontend)
+            paciente: { id: anamnese.idPaciente }
         };
+
 
         try {
             await anamneseService.editarAnamnese(payload);
@@ -56,6 +61,8 @@ const EditarAnamneseForm = ({ anamnese, onClose, onSuccess }: EditarAnamneseForm
             console.error(error);
         }
     };
+
+
 
     return (
         <form onSubmit={handleSubmit} className="editar-anamnese-form">

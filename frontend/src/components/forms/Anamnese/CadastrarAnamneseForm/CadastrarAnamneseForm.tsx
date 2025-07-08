@@ -23,7 +23,7 @@ const CadastrarAnamneseForm = ({
         altura: "",
         alergias: "",
         medicamentos: "false",
-        doencasCronica: "false", 
+        doencas_cronicas: "false",
     });
 
     const handleChange = (
@@ -42,12 +42,12 @@ const CadastrarAnamneseForm = ({
         }
 
         const payload = {
-            peso: parseFloat(formData.peso),
-            altura: parseFloat(formData.altura),
+            peso: Number(formData.peso),
+            altura: Number(formData.altura),
             alergias: formData.alergias,
             medicamentos: formData.medicamentos === "true",
-            doencasCronica: formData.doencasCronica === "true", 
-            idPaciente: idPaciente,
+            doencas_cronicas: formData.doencas_cronicas === "true", 
+            paciente: { id: idPaciente },                       
         };
         console.log("Payload enviado:", payload);
 
@@ -104,8 +104,8 @@ const CadastrarAnamneseForm = ({
                 />
                 <SelectField
                     label="Possui doenças crônicas?"
-                    value={formData.doencasCronica}
-                    name="doencasCronica" 
+                    value={formData.doencas_cronicas}
+                    name="doencasCronica"
                     options={[
                         { id: "true", nome: "Sim" },
                         { id: "false", nome: "Não" },
