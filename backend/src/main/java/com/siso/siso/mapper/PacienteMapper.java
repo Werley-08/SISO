@@ -26,7 +26,8 @@ public interface PacienteMapper {
                 pacienteCreateDTO.getBairro(),
                 pacienteCreateDTO.getCidade(),
                 pacienteCreateDTO.getNum_casa(),
-                ResponsavelMapper.toModel(pacienteCreateDTO.getResponsavel())
+                ResponsavelMapper.toModel(pacienteCreateDTO.getResponsavel()),
+                null
         );
     }
 
@@ -43,7 +44,8 @@ public interface PacienteMapper {
                 pacienteUpdateDTO.getBairro(),
                 pacienteUpdateDTO.getCidade(),
                 pacienteUpdateDTO.getNum_casa(),
-                ResponsavelMapper.toModel(pacienteUpdateDTO.getResponsavel())
+                ResponsavelMapper.toModel(pacienteUpdateDTO.getResponsavel()),
+                null
         );
     }
 
@@ -59,7 +61,8 @@ public interface PacienteMapper {
                 paciente.getBairro(),
                 paciente.getCidade(),
                 paciente.getNum_casa(),
-                ResponsavelMapper.toDTO(paciente.getResponsavel())
+                ResponsavelMapper.toDTO(paciente.getResponsavel()),
+                AnamneseMapper.toDTO(paciente.getAnamnese())
         );
     }
 

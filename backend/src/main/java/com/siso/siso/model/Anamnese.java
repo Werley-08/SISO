@@ -29,10 +29,10 @@ public class Anamnese {
     @Column(nullable = false)
     private boolean medicamentos;
 
-    @Column(name = "doencascronica", nullable=false)
-    private boolean doencasCronica;
+    @Column(name = "doencas_cronicas", nullable=false)
+    private boolean doencas_cronicas;
 
     @OneToOne
-    @JoinColumn(name = "idpaciente")
-    private Paciente idPaciente;
+    @JoinColumn(name = "id_paciente")
+    private Paciente paciente;
 }

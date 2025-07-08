@@ -54,4 +54,7 @@ public class Paciente {
     @OneToOne()
     @JoinColumn(name = "id_responsavel")
     private Responsavel responsavel;
+
+    @OneToOne(mappedBy = "paciente")
+    private Anamnese anamnese;
 }

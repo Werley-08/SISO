@@ -1,13 +1,10 @@
 package com.siso.siso.service;
 
 import com.siso.siso.model.Anamnese;
-import com.siso.siso.model.Especialidade;
 import com.siso.siso.model.Paciente;
-import com.siso.siso.model.ProfissionalDaSaude;
 import com.siso.siso.repository.interfaces.IPacienteRepository;
 import com.siso.siso.service.interfaces.IAnamneseService;
 import com.siso.siso.repository.interfaces.IAnamneseRepository;
-import org.hibernate.sql.ast.tree.expression.Over;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +22,21 @@ public class AnamneseService implements IAnamneseService {
 
     @Override
     public Anamnese cadastrarAnamnese(Anamnese anamnese){
-        Paciente paciente = pacienteRepository.findById(anamnese.getIdPaciente().getId())
+        Paciente paciente = pacienteRepository.findById(anamnese.getPaciente().getId())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
 
+
+
+        anamnese.setPaciente(paciente);
         return anamneseRepository.save(anamnese);
     }
 
     @Override
-    public Anamnese editarAnamnese(Anamnese anamnese, Integer id){
-        Anamnese anamneseAtual = anamneseRepository.findById(id)
+    public Anamnese editarAnamnese(Anamnese anamnese, Integer idPaciente){
+        Paciente paciente = pacienteRepository.findById(idPaciente)
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+
+        Anamnese anamneseAtual = anamneseRepository.findByPaciente(paciente)
                 .orElseThrow(() -> new  RuntimeException("anamnese não existe no sistema"));
 
 
@@ -45,9 +48,11 @@ public class AnamneseService implements IAnamneseService {
     }
 
     @Override
-    public Anamnese visualizarAnamnese(Integer id){
-        return anamneseRepository.findById(id)
+    public Anamnese visualizarAnamnese(Integer idPaciente){
+        Paciente paciente = pacienteRepository.findById(idPaciente)
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+
+        return anamneseRepository.findByPaciente(paciente)
                 .orElseThrow(() -> new  RuntimeException("anamnese não encontrada"));
     }
-
 }

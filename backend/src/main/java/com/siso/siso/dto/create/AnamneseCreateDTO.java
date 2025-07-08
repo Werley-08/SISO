@@ -15,6 +15,6 @@ public class AnamneseCreateDTO {
     private float altura;
     private String alergias;
     private boolean medicamentos;
-    private boolean doencasCronica;
-    private Paciente idPaciente;
+    private boolean doencas_cronicas;
+    private Paciente paciente;
 }

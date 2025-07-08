@@ -10,5 +10,5 @@ CREATE TABLE pacientes(
     cidade  VARCHAR(255),
     num_casa INT,
     id_responsavel  INT,
-    CONSTRAINT fk_responsavel FOREIGN KEY (id_responsavel) REFERENCES Responsaveis (id)
+    CONSTRAINT fk_responsavel FOREIGN KEY (id_responsavel) REFERENCES responsaveis (id)
 );
