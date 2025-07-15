@@ -3,6 +3,7 @@ package com.siso.siso.mapper;
 import com.siso.siso.dto.create.ProfissionalDaSaudeCreateDTO;
 import com.siso.siso.dto.response.ProfissionalDaSaudeResponseDTO;
 import com.siso.siso.dto.update.ProfissionalDaSaudeUpdateDTO;
+import com.siso.siso.model.HorarioAtendimento;
 import com.siso.siso.model.ProfissionalDaSaude;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.Status;
@@ -26,7 +27,10 @@ public interface ProfissionalDaSaudeMapper {
                 profissionalDaSaude.getBairro(),
                 profissionalDaSaude.getCidade(),
                 profissionalDaSaude.getNumero_casa(),
-                profissionalDaSaude.getEspecialidade()
+                profissionalDaSaude.getEspecialidade(),
+                profissionalDaSaude.getHorarios_atendimento() == null
+                        ? null
+                        : HorarioAtendimentoMapper.toDTO(profissionalDaSaude.getHorarios_atendimento())
         );
     }
 
@@ -50,7 +54,8 @@ public interface ProfissionalDaSaudeMapper {
                 profissionalDaSaudeDTO.getBairro(),
                 profissionalDaSaudeDTO.getCidade(),
                 profissionalDaSaudeDTO.getNumero_casa(),
-                profissionalDaSaudeDTO.getEspecialidade()
+                profissionalDaSaudeDTO.getEspecialidade(),
+                null
         );
     }
 
@@ -68,7 +73,8 @@ public interface ProfissionalDaSaudeMapper {
                 profissionalDaSaudeDTO.getBairro(),
                 profissionalDaSaudeDTO.getCidade(),
                 profissionalDaSaudeDTO.getNumero_casa(),
-                profissionalDaSaudeDTO.getEspecialidade()
+                profissionalDaSaudeDTO.getEspecialidade(),
+                null
         );
     }
 }

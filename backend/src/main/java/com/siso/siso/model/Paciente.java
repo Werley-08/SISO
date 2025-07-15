@@ -18,6 +18,10 @@ import java.time.LocalDate;
 @Table(name = "pacientes")
 public class Paciente {
 
+    public Paciente(Integer id){
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -54,4 +58,7 @@ public class Paciente {
     @OneToOne()
     @JoinColumn(name = "id_responsavel")
     private Responsavel responsavel;
+
+    @OneToOne(mappedBy = "paciente")
+    private Anamnese anamnese;
 }

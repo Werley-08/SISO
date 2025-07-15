@@ -3,7 +3,6 @@
 .select-field {
   display: flex;
   flex-direction: column;
-  margin-right: var(--spacing-lg);
 }
 
 .select-field label {
@@ -18,7 +17,8 @@
   border: 1px solid var(--cor8);
   border-radius: var(--border-radius-lg);
   font-size: var(--font-size-md);
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  transition: border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
   background-color: var(--cor3);
 }
 

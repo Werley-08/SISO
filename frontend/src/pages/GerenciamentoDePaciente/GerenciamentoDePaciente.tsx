@@ -1,25 +1,29 @@
-import Sidebar from "../../components/SideBarComponents/Sidebar/Sidebar"
-import './GerenciamentoDePaciente.css'
+import Sidebar from "../../components/SideBarComponents/Sidebar/Sidebar";
+import './GerenciamentoDePaciente.css';
 import SearchBar from "@/components/SearchBar/SearchBar";
 import { useState, useEffect, useCallback } from "react";
 import ActionButton from "@/components/ActionButton/ActionButton";
 import PatientTable from "@/components/Tables/PatientTable/PatientTable/PatientTable";
 import Pagination from "@/components/Pagination/Pagination";
 import { type Paciente } from "@/types/Paciente";
-import { pacienteService } from "@/services/pacienteService"
+import { pacienteService } from "@/services/pacienteService";
 import Modal from "@/components/Modal/Modal";
 import CadastrarPacienteForm from "@/components/forms/paciente/CadastrarPacienteForm/CadastrarPacienteForm";
 import EditarPacienteForm from "@/components/forms/paciente/EditarPacienteForm/EditarPacienteForm";
+import PacienteProfile from "@/components/UserProfiles/PacienteProfile/PacienteProfile";
+import VoltarButton from "@/components/VoltarButton/VoltarButton";
 
 const GerenciamentoDePaciente = () => {
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [selectedPaciente, setSelectedPaciente] = useState<Paciente | null>(null);
+    const [showProfile, setShowProfile] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [pacientes, setPacientes] = useState<Paciente[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const itemsPerPage = 11;
+    const role = localStorage.getItem('role');
 
     const filteredPacientes = pacientes.filter((pac) =>
         pac.nome.toLowerCase().includes(searchTerm.toLowerCase())
@@ -37,7 +41,13 @@ const GerenciamentoDePaciente = () => {
     };
 
     const handleProfile = (paciente: Paciente) => {
-        // FALTA IMPLEMENTAR
+        setSelectedPaciente(paciente);
+        setShowProfile(true);
+    };
+
+    const handleBackToTable = () => {
+        setShowProfile(false);
+        setSelectedPaciente(null);
     };
 
     const fetchPacientes = useCallback(async () => {
@@ -64,58 +74,82 @@ const GerenciamentoDePaciente = () => {
 
             <div className="paciente-container__content">
                 <div className="paciente-container__content__title">
-                    Gerenciamento de pacientes
+                    {showProfile ? "Gerenciamento de pacientes > Perfil" : "Gerenciamento de pacientes"}
                     <div className="paciente-container__content__title-line"></div>
                 </div>
 
-                <div className="paciente-container__content__top">
-                    <SearchBar
-                        className="searchbar-container"
-                        value={searchTerm}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setSearchTerm(e.target.value);
-                            setCurrentPage(1);
-                        }}
-                    />
-                    <ActionButton text="Adicionar Paciente" className="actionbutton-container" onClick={() => setShowModal(true)} />
-                </div>
-
-                <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                    <CadastrarPacienteForm
-                        onClose={() => setShowModal(false)}
-                        onSuccess={fetchPacientes}
-                    />
-                </Modal>
-
-                <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)}>
-                    {selectedPaciente && (
-                        <EditarPacienteForm
-                            paciente={selectedPaciente}
-                            onClose={() => setShowEditModal(false)}
-                            onSuccess={fetchPacientes}
+                {showProfile && selectedPaciente ? (
+                    <>
+                        <VoltarButton
+                            onClick={handleBackToTable}
+                            className="actionbutton-container"
+                            text="Voltar"
                         />
-                    )}
-                </Modal>
-              
-                <div className="paciente-container__content__table">
-                    {loading ? (
-                        <div>Carregando...</div>
-                    ) : (
-                        <PatientTable pacientes={currentItems} className="patientTable-container" onEdit={handleEdit} onProfile={handleProfile} />
-                    )}
-                </div>
 
-                <div className="paciente-container__content__pagination">
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setCurrentPage}
-                    />
-                </div>
+                        <PacienteProfile paciente={selectedPaciente} />
+                    </>
+                ) : (
+                    <>
+                        <div className="paciente-container__content__top">
+                            <SearchBar
+                                className="searchbar-container"
+                                value={searchTerm}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                    setSearchTerm(e.target.value);
+                                    setCurrentPage(1);
+                                }}
+                            />
+                            {role === 'RECEPCIONISTA' && (
+                                <ActionButton
+                                    text="Adicionar Paciente"
+                                    className="actionbutton-container"
+                                    onClick={() => setShowModal(true)}
+                                />
+                            )}
+                        </div>
 
+                        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                            <CadastrarPacienteForm
+                                onClose={() => setShowModal(false)}
+                                onSuccess={fetchPacientes}
+                            />
+                        </Modal>
+
+                        <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)}>
+                            {selectedPaciente && (
+                                <EditarPacienteForm
+                                    paciente={selectedPaciente}
+                                    onClose={() => setShowEditModal(false)}
+                                    onSuccess={fetchPacientes}
+                                />
+                            )}
+                        </Modal>
+
+                        <div className="paciente-container__content__table">
+                            {loading ? (
+                                <div>Carregando...</div>
+                            ) : (
+                                <PatientTable
+                                    pacientes={currentItems}
+                                    className="patientTable-container"
+                                    onEdit={handleEdit}
+                                    onProfile={handleProfile}
+                                />
+                            )}
+                        </div>
+
+                        <div className="paciente-container__content__pagination">
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setCurrentPage}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
 };
 
-export default GerenciamentoDePaciente
+export default GerenciamentoDePaciente;

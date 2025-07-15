@@ -21,9 +21,10 @@ const Login = () => {
                 senha: password,
             });
 
-            const { token } = response.data;
+            const { token, role } = response.data;
 
             localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
             navigate('/DashBoard');
 
             toast.success("Logado com sucesso!");

@@ -14,6 +14,10 @@ import lombok.Setter;
 @Table(name = "procedimentos")
 public class Procedimento {
 
+    public Procedimento(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
