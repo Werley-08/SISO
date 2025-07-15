@@ -2,14 +2,14 @@ package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.TratamentoCreateDTO;
 import com.siso.siso.dto.response.TratamentoResponseDTO;
-import com.siso.siso.model.Paciente;
-import com.siso.siso.model.Procedimento;
-import com.siso.siso.model.ProfissionalDaSaude;
-import com.siso.siso.model.Tratamento;
+import com.siso.siso.model.*;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.StatusTratamento;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 import static com.siso.siso.utils.DateFormatter.formatDate;
@@ -26,7 +26,8 @@ public interface TratamentoMapper {
                 tratamentoCreateDTO.getOutras_informacoes(),
                 new ProfissionalDaSaude(tratamentoCreateDTO.getProfissional_id(), Role.PROFISSIONAL_DA_SAUDE),
                 new Procedimento(tratamentoCreateDTO.getProcedimento_id()),
-                new Paciente(tratamentoCreateDTO.getPaciente_id())
+                new Paciente(tratamentoCreateDTO.getPaciente_id()),
+                null
         );
     }
 
