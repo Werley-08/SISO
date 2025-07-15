@@ -35,6 +35,10 @@ public class ProfissionalDaSaude extends Usuario{
         this.horarios_atendimento = horarios_atendimento;
     }
 
+    public ProfissionalDaSaude(Integer id) {
+        super(id);
+    }
+
     @OneToOne
     @JoinColumn(name = "especialidade_id")
     private Especialidade especialidade;

@@ -24,6 +24,10 @@ import java.util.List;
 @Table(name = "usuarios")
 public abstract class Usuario implements UserDetails{
 
+    public Usuario(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
