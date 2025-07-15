@@ -41,7 +41,10 @@ public interface TratamentoMapper {
                 tratamento.getOutras_informacoes(),
                 ProfissionalDaSaudeMapper.toDTO(tratamento.getProfissional()),
                 ProcedimentoMapper.toDTO(tratamento.getProcedimento()),
-                PacienteMapper.toDTO(tratamento.getPaciente())
+                PacienteMapper.toDTO(tratamento.getPaciente()),
+                tratamento.getSessoes() == null
+                        ? null
+                        : SessaoMapper.toDTO(tratamento.getSessoes())
         );
     }
 

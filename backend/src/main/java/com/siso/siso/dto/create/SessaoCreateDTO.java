@@ -13,6 +13,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class SessaoCreateDTO {
     private String data;
-    private LocalTime hora;
+    private LocalTime hora_inicio;
+    private LocalTime hora_finalizacao;
     private String outras_informacoes;
 }

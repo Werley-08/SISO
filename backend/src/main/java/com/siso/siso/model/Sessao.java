@@ -1,5 +1,6 @@
 package com.siso.siso.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.siso.siso.model.enums.StatusSessao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,10 @@ public class Sessao {
     private LocalDate data;
 
     @Column(nullable = false)
-    private LocalTime hora;
+    private LocalTime hora_inicio;
+
+    @Column(nullable = false)
+    private LocalTime hora_finalizacao;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -36,6 +40,7 @@ public class Sessao {
     private String outras_informacoes;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "tratamento_id", nullable = false)
     private Tratamento tratamento;
 }

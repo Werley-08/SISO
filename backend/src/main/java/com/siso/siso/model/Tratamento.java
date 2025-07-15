@@ -1,5 +1,6 @@
 package com.siso.siso.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.siso.siso.model.enums.StatusTratamento;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -48,6 +49,7 @@ public class Tratamento {
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
-    @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Sessao> sessoes = new ArrayList<>();
 }

@@ -16,7 +16,8 @@ public interface SessaoMapper{
         return new Sessao(
                 null,
                 formatDate(sessaoCreateDTO.getData()),
-                sessaoCreateDTO.getHora(),
+                sessaoCreateDTO.getHora_inicio(),
+                sessaoCreateDTO.getHora_finalizacao(),
                 StatusSessao.PENDENTE,
                 sessaoCreateDTO.getOutras_informacoes(),
                 null
@@ -27,10 +28,11 @@ public interface SessaoMapper{
         return new SessaoResponseDTO(
                 sessao.getId(),
                 formatDate(sessao.getData()),
-                sessao.getHora(),
+                sessao.getHora_inicio(),
+                sessao.getHora_finalizacao(),
                 sessao.getStatus(),
                 sessao.getOutras_informacoes(),
-                TratamentoMapper.toDTO(sessao.getTratamento())
+                sessao.getTratamento().getId()
         );
     }
 

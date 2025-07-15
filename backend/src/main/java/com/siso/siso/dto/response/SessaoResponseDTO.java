@@ -12,8 +12,9 @@ import java.time.LocalTime;
 public class SessaoResponseDTO {
     private Integer id;
     private String data;
-    private LocalTime hora;
+    private LocalTime hora_inicio;
+    private LocalTime hora_finalizacao;
     private StatusSessao status;
     private String outras_informacoes;
-    private TratamentoResponseDTO tratamento;
+    private Integer id_tratamento;
 }
