@@ -77,7 +77,7 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.POST, "/api/tratamento/cadastrar").hasAnyRole("RECEPCIONISTA")
 
                         // Sessões
-                        /// ...
+                        .requestMatchers(HttpMethod.POST, "/api/sessao/cadastrar/{id_tratamento}").hasAnyRole("RECEPCIONISTA")
                 )
 
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
