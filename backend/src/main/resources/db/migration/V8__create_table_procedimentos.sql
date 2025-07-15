@@ -1,4 +1,4 @@
-CREATE TABLE PROCEDIMENTOS(
+CREATE TABLE procedimentos(
     id SERIAL primary key,
     nome VARCHAR(255) NOT NULL,
     preco REAL NOT NULL,
