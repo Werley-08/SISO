@@ -1,8 +1,8 @@
-CREATE TABLE tratamentos (
+CREATE TABLE tratamentos(
     id SERIAL PRIMARY KEY,
     data_inicio DATE NOT NULL,
     data_finalizacao DATE,
-    status VARCHAR(20) NOT,
+    status VARCHAR(20) NOT NULL,
     outras_informacoes TEXT,
     profissional_id INT NOT NULL,
     procedimento_id INT NOT NULL,

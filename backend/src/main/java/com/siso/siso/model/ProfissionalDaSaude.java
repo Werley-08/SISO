@@ -35,8 +35,8 @@ public class ProfissionalDaSaude extends Usuario{
         this.horarios_atendimento = horarios_atendimento;
     }
 
-    public ProfissionalDaSaude(Integer id) {
-        super(id);
+    public ProfissionalDaSaude(Integer id, Role role) {
+        super(id, role);
     }
 
     @OneToOne

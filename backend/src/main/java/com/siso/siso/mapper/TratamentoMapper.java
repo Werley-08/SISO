@@ -6,6 +6,7 @@ import com.siso.siso.model.Paciente;
 import com.siso.siso.model.Procedimento;
 import com.siso.siso.model.ProfissionalDaSaude;
 import com.siso.siso.model.Tratamento;
+import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.StatusTratamento;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface TratamentoMapper {
                 null,
                 StatusTratamento.EM_ANDAMENTO,
                 tratamentoCreateDTO.getOutras_informacoes(),
-                new ProfissionalDaSaude(tratamentoCreateDTO.getProfissional_id()),
+                new ProfissionalDaSaude(tratamentoCreateDTO.getProfissional_id(), Role.PROFISSIONAL_DA_SAUDE),
                 new Procedimento(tratamentoCreateDTO.getProcedimento_id()),
                 new Paciente(tratamentoCreateDTO.getPaciente_id())
         );
@@ -37,9 +38,9 @@ public interface TratamentoMapper {
                 formatDate(tratamento.getData_finalizacao()),
                 tratamento.getStatus(),
                 tratamento.getOutras_informacoes(),
-                tratamento.getProfissional(),
-                tratamento.getProcedimento(),
-                tratamento.getPaciente()
+                ProfissionalDaSaudeMapper.toDTO(tratamento.getProfissional()),
+                ProcedimentoMapper.toDTO(tratamento.getProcedimento()),
+                PacienteMapper.toDTO(tratamento.getPaciente())
         );
     }
 

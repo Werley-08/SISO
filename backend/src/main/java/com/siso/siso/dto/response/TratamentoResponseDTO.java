@@ -1,8 +1,5 @@
 package com.siso.siso.dto.response;
 
-import com.siso.siso.model.Paciente;
-import com.siso.siso.model.Procedimento;
-import com.siso.siso.model.ProfissionalDaSaude;
 import com.siso.siso.model.enums.StatusTratamento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +16,7 @@ public class TratamentoResponseDTO {
     private String data_finalizacao;
     private StatusTratamento status;
     private String outras_informacoes;
-    private ProfissionalDaSaude profissional;
-    private Procedimento procedimento;
-    private Paciente paciente;
+    private ProfissionalDaSaudeResponseDTO profissional;
+    private ProcedimentoResponseDTO procedimento;
+    private PacienteResponseDTO paciente;
 }

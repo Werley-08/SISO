@@ -24,8 +24,9 @@ import java.util.List;
 @Table(name = "usuarios")
 public abstract class Usuario implements UserDetails{
 
-    public Usuario(Integer id) {
+    public Usuario(Integer id, Role role) {
         this.id = id;
+        this.role = role;
     }
 
     @Id

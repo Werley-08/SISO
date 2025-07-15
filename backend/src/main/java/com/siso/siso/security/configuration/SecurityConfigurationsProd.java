@@ -64,7 +64,7 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN")
 
-                        //Anamnese endpoints
+                        // Anamnese endpoints
                         .requestMatchers(HttpMethod.POST, "/api/anamnese/cadastrar").hasAnyRole("PROFISSIONAL_DA_SAUDE")
                         .requestMatchers(HttpMethod.PUT, "/api/anamnese/editar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE")
                         .requestMatchers(HttpMethod.GET, "/api/anamnese/visualizar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE", "RECEPCIONISTA")
@@ -73,6 +73,11 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.POST, "/api/horarioAtendimento/cadastrar/{idProfissional}").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/horarioAtendimento/deletar/{idProfissional}/{idHorario}").hasAnyRole("ADMIN")
 
+                        // Tratamentos
+                        .requestMatchers(HttpMethod.POST, "/api/tratamento/cadastrar").hasAnyRole("RECEPCIONISTA")
+
+                        // Sessões
+                        /// ...
                 )
 
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
