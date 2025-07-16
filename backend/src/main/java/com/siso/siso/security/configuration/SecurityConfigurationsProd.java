@@ -78,6 +78,7 @@ public class SecurityConfigurationsProd{
 
                         // Sessões
                         .requestMatchers(HttpMethod.POST, "/api/sessao/cadastrar/{id_tratamento}").hasAnyRole("RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/sessao/visualizar").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
                 )
 
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
