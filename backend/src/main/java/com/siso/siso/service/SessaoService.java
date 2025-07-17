@@ -2,10 +2,14 @@ package com.siso.siso.service;
 
 import com.siso.siso.model.Sessao;
 import com.siso.siso.model.Tratamento;
+import com.siso.siso.model.Usuario;
+import com.siso.siso.model.enums.Role;
 import com.siso.siso.repository.interfaces.ISessaoRepository;
 import com.siso.siso.repository.interfaces.ITratamentoRepository;
 import com.siso.siso.service.interfaces.ISessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -37,6 +41,20 @@ public class SessaoService implements ISessaoService {
 
     @Override
     public List<Sessao> visualizarSessao(LocalDate data){
-        return sessaoRepository.findByData(data);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = (Usuario) authentication.getPrincipal();
+
+        if (usuario.getRole().equals(Role.RECEPCIONISTA)){
+            return sessaoRepository.findByData(data);
+        }
+
+        else if (usuario.getRole().equals(Role.PROFISSIONAL_DA_SAUDE)){
+            return sessaoRepository.findByDataAndProfissionalId(data, usuario.getId());
+        }
+
+        else {
+            throw new RuntimeException("Acesso de usuário inválido");
+        }
     }
 }
