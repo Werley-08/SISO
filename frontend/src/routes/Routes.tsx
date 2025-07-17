@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import GerenciamentoDePaciente from "@/pages/GerenciamentoDePaciente/GerenciamentoDePaciente";
 import GerenciamentoDeProcedimento from "@/pages/GerenciamentoDeProcedimentos/GerenciamentoDeProcedimento";
+import GerenciamentoDeAgendamentosRecepcionista from "@/pages/GerenciamentoDeAgendamentos/Recepcionista/GerenciamentoDeAgendamentosRecepcionista";
+import GerenciamentoDeAgendamentosProfissional from "@/pages/GerenciamentoDeAgendamentos/Profissional/GerenciamentoDeAgendamentosProfissional";
 
 function AppRoutes() {
   return (
@@ -49,6 +51,22 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <GerenciamentoDeProcedimento />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/GerenciamentoDeAgendamentosRecepcionista"
+          element={
+            <ProtectedRoute>
+              <GerenciamentoDeAgendamentosRecepcionista />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/GerenciamentoDeAgendamentosProfissional"
+          element={
+            <ProtectedRoute>
+              <GerenciamentoDeAgendamentosProfissional />
             </ProtectedRoute>
           }
         />
