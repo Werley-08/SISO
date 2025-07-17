@@ -11,7 +11,7 @@ const AgendamentosTable = ({ className = "", date}: Props) => {
     const diasDaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
     const days = [];
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 1; i <= 5; i++) {
         const newDate = new Date(date);
         newDate.setDate(newDate.getDate() + i);
 
