@@ -1,11 +1,13 @@
-import Sidebar from "../../../components/SideBarComponents/Sidebar/Sidebar"
-import './GerenciamentoDeAgendamentosRecepcionista.css'
+import Sidebar from "@/components/SideBarComponents/Sidebar/Sidebar"
+import './GerenciamentoDeAgendamentos.css'
 import ActionButton from "@/components/ActionButton/ActionButton";
 import DateSelector from "@/components/DateSelector/DateSelector";
 import AgendamentosTable from "@/components/Tables/AgendamentosTable/AgendamentosTable/AgendamentosTable";
 import { useState } from "react";
 
-const GerenciamentoDeAgendamentosRecepcionista = () => {
+const GerenciamentoDeAgendamentos = () => {
+
+    const role = localStorage.getItem('role') || '';
 
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -19,28 +21,33 @@ const GerenciamentoDeAgendamentosRecepcionista = () => {
     };
 
     return (
-        <div className="agendamentos-recepcionista-container">
-            <div className="agendamentos-recepcionista-container__sidebar">
+        <div className="agendamentos-container">
+            <div className="agendamentos-container__sidebar">
                 <Sidebar />
             </div>
 
-            <div className="agendamentos-recepcionista-container__content">
-                <div className="agendamentos-recepcionista-container__content__title">
+            <div className="agendamentos-container__content">
+                <div className="agendamentos-container__content__title">
                     Gerenciamento de Agendamentos
-                    <div className="agendamentos-recepcionista-container__content__title-line"></div>
+                    <div className="agendamentos-container__content__title-line"></div>
                 </div>
 
-                <div className="agendamentos-recepcionista-container__content__top">
+                <div className="agendamentos-container__content__top">
                     <DateSelector
                         label="Data Inicial"
                         value={formatDateForInput(selectedDate)}
                         onChange={handleDateChange}
                         className="dateselector-container"
                     />
-                    <ActionButton text="Realizar Agendamento" className="actionbutton-container"/>
+                    {role === 'RECEPCIONISTA' && (
+                        <ActionButton 
+                            text="Realizar Agendamento" 
+                            className="actionbutton-container"
+                        />
+                    )}
                 </div>
 
-                <div className="agendamentos-recepcionista-container__content__table">
+                <div className="agendamentos-container__content__table">
                     <AgendamentosTable date={selectedDate} />
                 </div>
 
@@ -49,4 +56,4 @@ const GerenciamentoDeAgendamentosRecepcionista = () => {
     );
 };
 
-export default GerenciamentoDeAgendamentosRecepcionista
+export default GerenciamentoDeAgendamentos

@@ -28,12 +28,7 @@ const Sidebar = () => {
     };
 
     const handleAgendamentoClick = () => {
-        if (role === 'RECEPCIONISTA') {
-            navigate('/GerenciamentoDeAgendamentosRecepcionista');
-        } 
-        if (role === 'PROFISSIONAL_DA_SAUDE') {
-            navigate('/GerenciamentoDeAgendamentosProfissional');
-        }
+        navigate('/GerenciamentoDeAgendamentos');
     };
 
     const handleProcedimentoClick = () => {
