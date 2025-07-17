@@ -1,0 +1,165 @@
+@import url("@/styles/variables.css");
+
+.agendamentos-column-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor3);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 1px 4px var(--cor9);
+    transition: transform var(--transition-fast);
+    overflow: hidden;
+    position: relative;
+}
+
+.agendamentos-column-container:hover {
+    transform: translateY(-2px);
+}
+
+.agendamentos-column-container__title{
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--cor4);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg, var(--cor2) 0%, var(--cor12) 100%);
+    border-radius: var(--border-radius-sm);
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px var(--cor9);
+    border: 1px solid var(--cor2);
+}
+
+.agendamentos-column-container__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--spacing-sm);
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: var(--spacing-xs);
+    min-height: 0;
+    /* Estilo para scroll suave */
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Estilização moderna da barra de scroll */
+.agendamentos-column-container__content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.agendamentos-column-container__content::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, var(--cor11) 0%, var(--cor2) 100%);
+    border-radius: 10px;
+    margin: 4px 0;
+    border: 1px solid var(--cor2);
+}
+
+.agendamentos-column-container__content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--cor1) 0%, var(--cor5) 100%);
+    border-radius: 10px;
+    border: 1px solid var(--cor1);
+    transition: all var(--transition-fast);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.agendamentos-column-container__content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--cor1) 0%, var(--cor6) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.agendamentos-column-container__content::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, var(--cor6) 0%, var(--cor1) 100%);
+    transform: scale(0.95);
+}
+
+/* Estilo para quando não há scroll (ocultar barra) */
+.agendamentos-column-container__content::-webkit-scrollbar-thumb:vertical {
+    min-height: 30px;
+}
+
+/* Para Firefox - scrollbar mais elegante */
+.agendamentos-column-container__content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor1) var(--cor11);
+}
+
+/* Indicadores de scroll nas bordas */
+.agendamentos-column-container__content::before,
+.agendamentos-column-container__content::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.agendamentos-column-container__content::before {
+    top: 0;
+    background: linear-gradient(180deg, var(--cor3) 0%, transparent 100%);
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+}
+
+.agendamentos-column-container__content::after {
+    bottom: 0;
+    background: linear-gradient(0deg, var(--cor3) 0%, transparent 100%);
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+}
+
+/* Mostrar indicadores quando há scroll */
+.agendamentos-column-container__content:hover::before,
+.agendamentos-column-container__content:hover::after {
+    opacity: 1;
+}
+
+.agendamentos-column-container__loading,
+.agendamentos-column-container__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    color: var(--cor6);
+    font-size: var(--font-size-sm);
+    text-align: center;
+    width: 100%;
+    background: linear-gradient(135deg, var(--cor11) 0%, var(--cor2) 100%);
+    border-radius: var(--border-radius-sm);
+    border: 2px dashed var(--cor5);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.agendamentos-column-container__loading::before,
+.agendamentos-column-container__empty::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(72, 201, 176, 0.1) 50%, transparent 70%);
+    animation: shimmer 2s infinite;
+    border-radius: var(--border-radius-sm);
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

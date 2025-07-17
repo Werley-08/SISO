@@ -1,0 +1,150 @@
+@import url("@/styles/variables.css");
+
+.agendamentos-card-container{
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
+}
+
+.agendamentos-card-container__card{
+    background: var(--cor3);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 2px 8px var(--cor9);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    border: 1px solid var(--cor2);
+    position: relative;
+    overflow: hidden;
+}
+
+.agendamentos-card-container__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--cor1) 0%, var(--cor2) 100%);
+    transition: width var(--transition-fast);
+}
+
+.agendamentos-card-container__card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--cor9);
+    border-color: var(--cor1);
+}
+
+.agendamentos-card-container__card:hover::before {
+    width: 6px;
+}
+
+.agendamentos-card-container__card-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.agendamentos-card-container__card-time {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--cor4);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    white-space: nowrap;
+}
+
+.agendamentos-card-container__card-time::before {
+    content: '🕐';
+    font-size: var(--font-size-sm);
+}
+
+.agendamentos-card-container__card-status {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    align-self: flex-start;
+}
+
+.agendamentos-card-container__card-status.realizada {
+    background-color: #10B981;
+    color: white;
+}
+
+.agendamentos-card-container__card-status.pendente {
+    background-color: #F59E0B;
+    color: white;
+}
+
+.agendamentos-card-container__card-status.cancelada {
+    background-color: #EF4444;
+    color: white;
+}
+
+.agendamentos-card-container__card-info {
+    font-size: var(--font-size-sm);
+    color: var(--cor6);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.agendamentos-card-container__card-info strong {
+    color: var(--cor4);
+    font-weight: var(--font-weight-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.agendamentos-card-container__card-info strong::before {
+    content: '•';
+    color: var(--cor1);
+    font-weight: bold;
+}
+
+/* Efeito de destaque para informações importantes */
+.agendamentos-card-container__card-info .highlight {
+    background: linear-gradient(135deg, var(--cor2) 0%, var(--cor12) 100%);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--cor1);
+    margin-top: var(--spacing-xs);
+}
+
+/* Animação sutil ao carregar */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.agendamentos-card-container__card {
+    animation: cardFadeIn 0.3s ease-out;
+}
+
+/* Efeito de foco para acessibilidade */
+.agendamentos-card-container__card:focus {
+    outline: 2px solid var(--cor1);
+    outline-offset: 2px;
+}
+
+/* Responsividade para cards menores */
+@media (max-width: 768px) {
+    .agendamentos-card-container__card {
+        padding: var(--spacing-sm);
+    }
+    
+    .agendamentos-card-container__card-time {
+        font-size: var(--font-size-sm);
+    }
+}

@@ -28,13 +28,12 @@ const Sidebar = () => {
     };
 
     const handleAgendamentoClick = () => {
-        // FALTA IMPLEMENTAR AS PAGES
-        // if (role === 'RECEPCIONISTA') {
-        //     navigate('/GerenciamentoDeAgendamento');
-        // } 
-        // if (role === 'PROFISSIONAL_DA_SAUDE') {
-        //     navigate('/GerenciamentoDeAgendaProfissional');
-        // }
+        if (role === 'RECEPCIONISTA') {
+            navigate('/GerenciamentoDeAgendamentosRecepcionista');
+        } 
+        if (role === 'PROFISSIONAL_DA_SAUDE') {
+            navigate('/GerenciamentoDeAgendamentosProfissional');
+        }
     };
 
     const handleProcedimentoClick = () => {
@@ -63,7 +62,7 @@ const Sidebar = () => {
                     onClick={handleDashboardClick}
                 />
             ),
-            allowedRoles: ['ADMIN', 'RECEPCIONISTA', 'PROFISSIONAL', 'PROFISSIONAL_DA_SAUDE'],
+            allowedRoles: ['ADMIN', 'RECEPCIONISTA', 'PROFISSIONAL_DA_SAUDE'],
         },
         {
             key: 'pacientes',
@@ -74,7 +73,7 @@ const Sidebar = () => {
                     onClick={handlePacienteClick}
                 />
             ),
-            allowedRoles: ['RECEPCIONISTA', 'PROFISSIONAL', 'PROFISSIONAL_DA_SAUDE'],
+            allowedRoles: ['RECEPCIONISTA', 'PROFISSIONAL_DA_SAUDE'],
         },
         {
             key: 'usuarios',
@@ -85,7 +84,7 @@ const Sidebar = () => {
                     options={dropdownOptions}
                 />
             ),
-            allowedRoles: ['ADMIN', 'PROFISSIONAL'],
+            allowedRoles: ['ADMIN'],
         },
         {
             key: 'agendamentos',
@@ -96,7 +95,7 @@ const Sidebar = () => {
                     onClick={handleAgendamentoClick}
                 />
             ),
-            allowedRoles: ['RECEPCIONISTA', 'PROFISSIONAL', 'PROFISSIONAL_DA_SAUDE'],
+            allowedRoles: ['RECEPCIONISTA', 'PROFISSIONAL_DA_SAUDE'],
         },
         {
             key: 'procedimentos',
@@ -107,7 +106,7 @@ const Sidebar = () => {
                     onClick={handleProcedimentoClick}   
                 />
             ),
-            allowedRoles: ['ADMIN', 'PROFISSIONAL'],
+            allowedRoles: ['ADMIN'],
         },
     ];
 

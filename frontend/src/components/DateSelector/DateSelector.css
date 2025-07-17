@@ -1,0 +1,99 @@
+@import url('@/styles/variables.css');
+
+.dateselector-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: var(--border-radius-lg);
+  background-color: var(--cor3);
+  border: 1px solid var(--cor2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: var(--spacing-xs);
+  min-height: 40px;
+  justify-content: flex-start;
+}
+
+.dateselector-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--cor1);
+  background-color: var(--cor2);
+}
+
+.dateselector-container__label {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--cor6);
+  transition: all 0.3s ease;
+  margin-right: var(--spacing-sm);
+  margin-left: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.dateselector-container__input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.dateselector-container__input {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--cor4);
+  background-color: transparent;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+.dateselector-container__input:hover {
+  background-color: rgba(72, 21, 176, 0.1);
+}
+
+.dateselector-container__input:focus {
+  outline: none;
+  background-color: rgba(72, 21, 176, 0.15);
+}
+
+.dateselector-container__input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.5);
+  transition: filter var(--transition-fast);
+}
+
+.dateselector-container__input::-webkit-calendar-picker-indicator:hover {
+  filter: invert(0.3);
+}
+
+.dateselector-container:hover .dateselector-container__label {
+  color: var(--cor4);
+}
+
+/* Estado de foco no container */
+.dateselector-container:focus-within {
+  border-color: var(--cor1);
+  box-shadow: 0 0 2px var(--cor2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .dateselector-container {
+    min-height: 50px;
+    padding: var(--spacing-xs);
+  }
+
+  .dateselector-container__input {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
