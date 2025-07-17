@@ -12,15 +12,6 @@ type Props = {
   DiaDaSemana: string;
 };
 
-/**
- * Componente de coluna para exibir agendamentos de um dia específico
- * 
- * Funcionalidades:
- * - Scroll vertical automático quando há muitos cards
- * - Estados de loading e vazio
- * - Carregamento dinâmico baseado no papel do usuário
- * - Altura responsiva com scroll interno
- */
 const AgendamentosColumn = ({ className = "", date, DiaDaSemana}: Props) => {
 
     const [sessoes, setSessoes] = useState<Sessao[]>([]);
@@ -30,13 +21,7 @@ const AgendamentosColumn = ({ className = "", date, DiaDaSemana}: Props) => {
     const fetchSessoes = useCallback(async () => {
         try {
             setLoading(true);
-            let data: SetStateAction<Sessao[]> = [];
-            if (role === 'RECEPCIONISTA') {
-                data = await sessaoService.listarSessoesRecepcionista(date);
-            } 
-            if (role === 'PROFISSIONAL_DA_SAUDE') {
-                // data = await sessaoService.listarSessoesProfissional(date);
-            }
+            const data = await sessaoService.listarSessoes(date);
             setSessoes(data);
         } catch (error) {
             console.error('Erro ao carregar os agendamentos:', error);

@@ -1,6 +1,6 @@
-@import url('../../../styles/variables.css');
+@import url('@/styles/variables.css');
 
-.agendamentos-recepcionista-container {
+.agendamentos-container {
     display: flex;
     flex-direction: row;
     background-color: #fff;
@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 
-.agendamentos-recepcionista-container__content {
+.agendamentos-container__content {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -16,20 +16,20 @@
     overflow: hidden;
 }
 
-.agendamentos-recepcionista-container__content__title {
+.agendamentos-container__content__title {
     flex-shrink: 0;
     padding: var(--spacing-md);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xl);
 }
 
-.agendamentos-recepcionista-container__content__title-line {
+.agendamentos-container__content__title-line {
     width: 100%;
     height: 1px;
     background-color: var(--cor4);
 }
 
-.agendamentos-recepcionista-container__content__top {
+.agendamentos-container__content__top {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -39,15 +39,15 @@
     gap: var(--spacing-md);
 }
 
-.agendamentos-recepcionista-container__content__top .dateselector-container {
+.agendamentos-container__content__top .dateselector-container {
     flex: 83%;
 }
 
-.agendamentos-recepcionista-container__content__top .actionbutton-container {
+.agendamentos-container__content__top .actionbutton-container {
     flex: 17%;
 }
 
-.agendamentos-recepcionista-container__content__table {
+.agendamentos-container__content__table {
     flex: 1;
     margin: var(--spacing-xl);
     min-height: 0;
@@ -58,7 +58,7 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .agendamentos-recepcionista-container__content__top {
+    .agendamentos-container__content__top {
         flex-direction: column;
         align-items: stretch;
         gap: var(--spacing-sm);
@@ -66,12 +66,12 @@
         margin-right: var(--spacing-sm);
     }
     
-    .agendamentos-recepcionista-container__content__top .dateselector-container,
-    .agendamentos-recepcionista-container__content__top .actionbutton-container {
+    .agendamentos-container__content__top .dateselector-container,
+    .agendamentos-container__content__top .actionbutton-container {
         min-width: auto;
     }
     
-    .agendamentos-recepcionista-container__content__table {
+    .agendamentos-container__content__table {
         margin: var(--spacing-md);
     }
 }
