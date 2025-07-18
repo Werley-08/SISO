@@ -79,6 +79,7 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.GET, "/api/tratamento/visualizarById/{id_tratamento}").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
                         .requestMatchers(HttpMethod.PUT, "/api/tratamento/anotacoes/{id_tratamento}").hasAnyRole("PROFISSIONAL_DA_SAUDE")
                         .requestMatchers(HttpMethod.PUT, "/api/tratamento/encerrar/{id_tratamento}").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.PUT, "/api/tratamento/interromper/{id_tratamento}").hasAnyRole("RECEPCIONISTA")
 
                         // Sessões
                         .requestMatchers(HttpMethod.POST, "/api/sessao/cadastrar/{id_tratamento}").hasAnyRole("RECEPCIONISTA")

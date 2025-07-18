@@ -12,4 +12,5 @@ public interface ITratamentoService {
     Tratamento visualizarTratamentoById(Integer id_tratamento);
     Tratamento atualizarAnotacoes(Tratamento tratamento, Integer id_tratamento);
     Tratamento encerrarTratamento(Integer id_tratamento);
+    Tratamento interromperTratamento(Integer id_tratamento);
 }

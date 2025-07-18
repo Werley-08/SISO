@@ -74,9 +74,23 @@ public class TratamentoService implements ITratamentoService {
     @Override
     public Tratamento encerrarTratamento(Integer id_tratamento){
         Tratamento tratamento = tratamentoRepository.findById(id_tratamento)
-                .orElseThrow(()-> new RuntimeException("tratamento não encontrado"));
+                .orElseThrow(()-> new RuntimeException("Tratamento não encontrado"));
 
         tratamento.setStatus(StatusTratamento.FINALIZADO);
+
+        return tratamentoRepository.save(tratamento);
+    }
+
+    @Override
+    public Tratamento interromperTratamento(Integer id_tratamento){
+        Tratamento tratamento = tratamentoRepository.findById(id_tratamento)
+                .orElseThrow(()-> new RuntimeException("Tratamento não encontrado"));
+
+        if (tratamento.getStatus() == StatusTratamento.FINALIZADO) {
+            throw new RuntimeException("Não é possível interromper um tratamento já finalizado.");
+        }
+
+        tratamento.setStatus(StatusTratamento.INTERROMPIDO);
 
         return tratamentoRepository.save(tratamento);
     }
