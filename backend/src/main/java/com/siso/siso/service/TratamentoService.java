@@ -1,6 +1,7 @@
 package com.siso.siso.service;
 
 import com.siso.siso.model.*;
+import com.siso.siso.model.enums.StatusTratamento;
 import com.siso.siso.repository.interfaces.*;
 import com.siso.siso.service.interfaces.ITratamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,15 @@ public class TratamentoService implements ITratamentoService {
         tratamentoExistente.setOutras_informacoes(tratamentoEditado.getOutras_informacoes());
 
         return tratamentoRepository.save(tratamentoExistente);
+    }
+
+    @Override
+    public Tratamento encerrarTratamento(Integer id_tratamento){
+        Tratamento tratamento = tratamentoRepository.findById(id_tratamento)
+                .orElseThrow(()-> new RuntimeException("tratamento não encontrado"));
+
+        tratamento.setStatus(StatusTratamento.FINALIZADO);
+
+        return tratamentoRepository.save(tratamento);
     }
 }

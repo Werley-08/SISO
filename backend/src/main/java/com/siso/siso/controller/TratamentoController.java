@@ -42,4 +42,9 @@ public class TratamentoController {
     public TratamentoResponseDTO atualizarAnotacoes(@RequestBody TratamentoUpdateDTO tratamentoUpdateDTO, @PathVariable Integer id_tratamento) {
         return toDTO(tratamentoService.atualizarAnotacoes(toModel(tratamentoUpdateDTO), id_tratamento));
     }
+
+    @PutMapping("/encerrar/{id_tratamento}")
+    public TratamentoResponseDTO encerrarTratamento(@PathVariable Integer id_tratamento) {
+        return toDTO(tratamentoService.encerrarTratamento(id_tratamento));
+    }
 }
