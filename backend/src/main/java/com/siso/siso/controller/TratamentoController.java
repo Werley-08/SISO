@@ -47,4 +47,9 @@ public class TratamentoController {
     public TratamentoResponseDTO encerrarTratamento(@PathVariable Integer id_tratamento) {
         return toDTO(tratamentoService.encerrarTratamento(id_tratamento));
     }
+
+    @PutMapping("/interromper/{id_tratamento}")
+    public TratamentoResponseDTO interromperTratamento(@PathVariable Integer id_tratamento) {
+        return toDTO(tratamentoService.interromperTratamento(id_tratamento));
+    }
 }
