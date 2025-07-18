@@ -30,5 +30,10 @@ export const profissionalDaSaudeService = {
 
     deletarHorarioDeAtendimento: async (idProfissional: number, idHorario: number) => {
         await api.delete(`/horarioAtendimento/deletar/${idProfissional}/${idHorario}`);
+    },
+
+    visualizarQtdProfissionais: async (): Promise<number> => {
+        const response = await api.get<number>('/estatisticas/visualizarQtdProfissionais');
+        return response.data;
     }
 }; 
