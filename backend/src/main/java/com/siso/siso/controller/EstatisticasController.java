@@ -21,4 +21,9 @@ public class EstatisticasController {
     public Long visualizarQtdPacientes() {
         return estatisticasService.visualizarQtdPacientes();
     }
+
+    @GetMapping("/visualizarQtdAgendamentos")
+    public Long visualizarQtdAgendamentos() {
+        return estatisticasService.visualizarQtdAgendamentos();
+    }
 }
