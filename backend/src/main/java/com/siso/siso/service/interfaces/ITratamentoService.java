@@ -11,4 +11,5 @@ public interface ITratamentoService {
     List<Tratamento> visualizarTratamentoByPaciente(Integer id_paciente);
     Tratamento visualizarTratamentoById(Integer id_tratamento);
     Tratamento atualizarAnotacoes(Tratamento tratamento, Integer id_tratamento);
+    Tratamento encerrarTratamento(Integer id_tratamento);
 }
