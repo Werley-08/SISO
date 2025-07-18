@@ -10,4 +10,5 @@ public interface IProfissionalDaSaudeRepository{
     ProfissionalDaSaude save(ProfissionalDaSaude profissionalDaSaude);
     Optional<ProfissionalDaSaude> findById(Integer id);
     List<ProfissionalDaSaude> findAll();
+    Long count();
 }
