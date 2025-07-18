@@ -57,4 +57,14 @@ public class SessaoService implements ISessaoService {
             throw new RuntimeException("Acesso de usuário inválido");
         }
     }
+
+    @Override
+    public Sessao atualizarAnotacoes(Sessao sessaoEditada, Integer id_sessao) {
+        Sessao sessaoExistente = sessaoRepository.findById(id_sessao)
+                .orElseThrow(()-> new RuntimeException("Sessão não encontrada"));
+
+        sessaoExistente.setOutras_informacoes(sessaoEditada.getOutras_informacoes());
+
+        return sessaoRepository.save(sessaoExistente);
+    }
 }
