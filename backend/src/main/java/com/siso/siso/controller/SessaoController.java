@@ -43,4 +43,14 @@ public class SessaoController {
     public SessaoResponseDTO atualizarAnotacoes(@RequestBody SessaoUpdateDTO sessaoUpdateDTO, @PathVariable Integer id_sessao) {
         return toDTO(sessaoService.atualizarAnotacoes(SessaoMapper.toModel(sessaoUpdateDTO), id_sessao));
     }
+
+    @PutMapping("/cancelar/{id_sessao}")
+    public SessaoResponseDTO cancelarSessao(@PathVariable Integer id_sessao) {
+        return toDTO(sessaoService.cancelarSessao(id_sessao));
+    }
+
+    @PutMapping("/concluir/{id_sessao}")
+    public SessaoResponseDTO concluirSesaao(@PathVariable Integer id_sessao) {
+        return toDTO(sessaoService.concluirSessao(id_sessao));
+    }
 }
