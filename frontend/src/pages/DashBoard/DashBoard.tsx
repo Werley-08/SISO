@@ -6,13 +6,14 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { profissionalDaSaudeService } from '@/services/profissionalDaSaudeService';
 import { useCallback } from 'react';
+import { pacienteService } from '@/services/pacienteService';
 
 const DashBoard = () => {
-    const pacientesCount = 120;
     const agendamentosCount = 45;
     const recepcionistasCount = 4;
     const [loading, setLoading] = useState(true);
     const [profissionaisCount, setProfissionaisCount] = useState(0);
+    const [pacientesCount, setPacientesCount] = useState(0);
 
     const role = localStorage.getItem('role') || '';
 
@@ -32,9 +33,13 @@ const DashBoard = () => {
     const fetchEstatisticas = useCallback(async () => {
         try {
             setLoading(true);
-            const data = await profissionalDaSaudeService.visualizarQtdProfissionais();
-            setProfissionaisCount(data);
-            
+
+            const data1 = await profissionalDaSaudeService.visualizarQtdProfissionais();
+            setProfissionaisCount(data1);
+
+            const data2 = await pacienteService.visualizarQtdPacientes();
+            setPacientesCount(data2);
+
         } catch (error) {
             console.error('Erro ao carregar estatísticas:', error);
         } finally {
