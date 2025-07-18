@@ -53,4 +53,10 @@ public class TratamentoService implements ITratamentoService {
 
         return tratamentoRepository.findByPaciente(paciente);
     }
+
+    @Override
+    public Tratamento visualizarTratamentoById(Integer id_tratamento){
+        return tratamentoRepository.findById(id_tratamento)
+                .orElseThrow(() -> new  RuntimeException("Tratamento não existe no sistema"));
+    }
 }

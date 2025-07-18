@@ -9,4 +9,5 @@ public interface ITratamentoService {
 
     Tratamento cadastrarTratamento(Tratamento tratamento);
     List<Tratamento> visualizarTratamentoByPaciente(Integer id_paciente);
+    Tratamento visualizarTratamentoById(Integer id_tratamento);
 }

@@ -31,4 +31,9 @@ public class TratamentoController {
     public List<TratamentoResponseDTO> visualizarTratamentoByPaciente(@PathVariable Integer id_paciente) {
         return toDTO(tratamentoService.visualizarTratamentoByPaciente(id_paciente));
     }
+
+    @GetMapping("/visualizarById/{id_tratamento}")
+    public TratamentoResponseDTO visualizarTratamentoById(@PathVariable Integer id_tratamento) {
+        return toDTO(tratamentoService.visualizarTratamentoById(id_tratamento));
+    }
 }
