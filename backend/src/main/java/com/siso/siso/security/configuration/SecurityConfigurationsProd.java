@@ -92,6 +92,8 @@ public class SecurityConfigurationsProd{
                         // Estatísticas
                         .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdPacientes").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
                         .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdAgendamentos").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdProfissionais").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdRecepcionistas").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
                 )
 
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
