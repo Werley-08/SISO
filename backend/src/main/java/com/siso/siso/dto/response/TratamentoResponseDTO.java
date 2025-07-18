@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,4 +21,5 @@ public class TratamentoResponseDTO {
     private ProfissionalDaSaudeResponseDTO profissional;
     private ProcedimentoResponseDTO procedimento;
     private PacienteResponseDTO paciente;
+    private List<SessaoResponseDTO> sessoes;
 }

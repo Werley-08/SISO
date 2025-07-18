@@ -1,5 +1,6 @@
 package com.siso.siso.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.siso.siso.model.enums.StatusTratamento;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -45,4 +48,8 @@ public class Tratamento {
     @ManyToOne
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Sessao> sessoes = new ArrayList<>();
 }

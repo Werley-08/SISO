@@ -1,7 +1,64 @@
-import Sidebar from "../../components/SideBarComponents/Sidebar/Sidebar"
-import './DashBoard.css'
+import Orb from '@/components/Animations/Backgrounds/Orb/Orb';
+import Sidebar from '../../components/SideBarComponents/Sidebar/Sidebar';
+import './DashBoard.css';
+import DashboardCard from '@/components/DashboardCard/DashboardCard';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { profissionalDaSaudeService } from '@/services/profissionalDaSaudeService';
+import { useCallback } from 'react';
+import { pacienteService } from '@/services/pacienteService';
+import { recepcionistaService } from '@/services/recepcionistaService';
+import { sessaoService } from '@/services/sessaoService';
 
 const DashBoard = () => {
+
+    const [loading, setLoading] = useState(true);
+    const [profissionaisCount, setProfissionaisCount] = useState(0);
+    const [pacientesCount, setPacientesCount] = useState(0);
+    const [recepcionistasCount, setRecepcionistasCount] = useState(0);
+    const [agendamentosCount, setAgendamentosCount] = useState(0);
+
+    const role = localStorage.getItem('role') || '';
+
+    const getRoleLabel = (role: string) => {
+        switch (role) {
+            case 'ADMIN':
+                return 'ADMINISTRADOR';
+            case 'RECEPCIONISTA':
+                return 'RECEPCIONISTA';
+            case 'PROFISSIONAL_DA_SAUDE':
+                return 'PROFISSIONAL DA SAÚDE';
+            default:
+                return 'Desconhecido';
+        }
+    };
+
+    const fetchEstatisticas = useCallback(async () => {
+        try {
+            setLoading(true);
+
+            const data1 = await profissionalDaSaudeService.visualizarQtdProfissionais();
+            setProfissionaisCount(data1);
+
+            const data2 = await pacienteService.visualizarQtdPacientes();
+            setPacientesCount(data2);
+
+            const data3 = await recepcionistaService.visualizarQtdRecepcionistas();
+            setRecepcionistasCount(data3);
+
+            const data4 = await sessaoService.visualizarQtdSessoes();
+            setAgendamentosCount(data4);
+
+        } catch (error) {
+            console.error('Erro ao carregar estatísticas:', error);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchEstatisticas();
+    }, [fetchEstatisticas]);
 
     return (
         <div className="dashboard-container">
@@ -10,10 +67,50 @@ const DashBoard = () => {
             </div>
 
             <div className="dashboard-container__content">
+                <div className="dashboard-role-indicator">
+                    <span>Perfil de usuário: {getRoleLabel(role)}</span>
+                </div>
+                <div className="dashboard-welcome-message">
+                    <h2>Bem-vindo ao Painel de Controle do SISO!</h2>
+                    <p>Aqui você pode acompanhar os principais indicadores do sistema.</p>
+                </div>
+                <div className="dashboard-animation">
+                    <Orb
+                        hoverIntensity={0.7}
+                        rotateOnHover={true}
+                        hue={40}
+                        forceHoverState={false}
+                    />
+                </div>
 
+                <div className="dashboard-main-row">
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Pacientes" value={pacientesCount} />
+                    )}
+
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Agendamentos" value={agendamentosCount} />
+                    )}
+
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Profissionais" value={profissionaisCount} />
+                    )}
+
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Recepcionistas" value={recepcionistasCount} />
+                    )}
+                </div>
             </div>
         </div>
     );
 };
 
-export default DashBoard
+export default DashBoard;

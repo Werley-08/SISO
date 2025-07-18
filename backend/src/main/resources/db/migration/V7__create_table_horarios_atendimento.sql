@@ -1,4 +1,4 @@
-CREATE TABLE horarios_atendimento (
+CREATE TABLE horarios_atendimento(
     id SERIAL PRIMARY KEY,
     dia_semana VARCHAR(20) NOT NULL,
     horario_inicio TIME NOT NULL,

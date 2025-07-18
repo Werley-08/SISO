@@ -39,5 +39,10 @@ export const pacienteService = {
 
     editarPaciente: async (data: EditarPacienteData): Promise<void> => {
         await api.put(`/paciente/editar/${data.id}`, data);
+    },
+
+    visualizarQtdPacientes: async (): Promise<number> => {
+        const response = await api.get<number>('/estatisticas/visualizarQtdPacientes');
+        return response.data;
     }
 };
