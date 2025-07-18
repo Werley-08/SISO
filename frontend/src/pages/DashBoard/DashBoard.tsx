@@ -18,17 +18,16 @@ const DashBoard = () => {
     const [recepcionistasCount, setRecepcionistasCount] = useState(0);
     const [agendamentosCount, setAgendamentosCount] = useState(0);
 
-
     const role = localStorage.getItem('role') || '';
 
     const getRoleLabel = (role: string) => {
         switch (role) {
             case 'ADMIN':
-                return 'Administrador';
+                return 'ADMINISTRADOR';
             case 'RECEPCIONISTA':
-                return 'Recepcionista';
+                return 'RECEPCIONISTA';
             case 'PROFISSIONAL_DA_SAUDE':
-                return 'Profissional da Saúde';
+                return 'PROFISSIONAL DA SAÚDE';
             default:
                 return 'Desconhecido';
         }
