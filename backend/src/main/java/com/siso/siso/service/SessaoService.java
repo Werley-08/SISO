@@ -4,6 +4,7 @@ import com.siso.siso.model.Sessao;
 import com.siso.siso.model.Tratamento;
 import com.siso.siso.model.Usuario;
 import com.siso.siso.model.enums.Role;
+import com.siso.siso.model.enums.StatusSessao;
 import com.siso.siso.repository.interfaces.ISessaoRepository;
 import com.siso.siso.repository.interfaces.ITratamentoRepository;
 import com.siso.siso.service.interfaces.ISessaoService;
@@ -66,5 +67,25 @@ public class SessaoService implements ISessaoService {
         sessaoExistente.setOutras_informacoes(sessaoEditada.getOutras_informacoes());
 
         return sessaoRepository.save(sessaoExistente);
+    }
+
+    @Override
+    public Sessao cancelarSessao(Integer id_sessao) {
+        Sessao sessao = sessaoRepository.findById(id_sessao)
+                .orElseThrow(()-> new RuntimeException("Sessão não encontrada"));
+
+        sessao.setStatus(StatusSessao.CANCELADA);
+
+        return sessaoRepository.save(sessao);
+    }
+
+    @Override
+    public Sessao concluirSessao(Integer id_sessao) {
+        Sessao sessao = sessaoRepository.findById(id_sessao)
+                .orElseThrow(()-> new RuntimeException("Sessão não encontrada"));
+
+        sessao.setStatus(StatusSessao.REALIZADA);
+
+        return sessaoRepository.save(sessao);
     }
 }
