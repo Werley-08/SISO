@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class SessaoRepositoryImplement implements ISessaoRepository {
@@ -33,5 +34,15 @@ public class SessaoRepositoryImplement implements ISessaoRepository {
     @Override
     public Long count(){
         return sessaoRepository.count();
+    }
+
+    @Override
+    public Optional<Sessao> findById(Integer id) {
+        return sessaoRepository.findById(id);
+    }
+
+    @Override
+    public Sessao save(Sessao sessao) {
+        return sessaoRepository.save(sessao);
     }
 }
