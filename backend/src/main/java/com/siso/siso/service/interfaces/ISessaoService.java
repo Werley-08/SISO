@@ -12,4 +12,5 @@ public interface ISessaoService {
     List<Sessao> visualizarSessao(LocalDate data);
     Sessao atualizarAnotacoes(Sessao sessao, Integer id_sessao);
     Sessao cancelarSessao(Integer id_sessao);
+    Sessao concluirSessao(Integer id_sessao);
 }

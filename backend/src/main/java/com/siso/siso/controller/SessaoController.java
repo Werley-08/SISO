@@ -46,4 +46,9 @@ public class SessaoController {
     public SessaoResponseDTO cancelarSessao(@PathVariable Integer id_sessao) {
         return toDTO(sessaoService.cancelarSessao(id_sessao));
     }
+
+    @PutMapping("/concluir/{id_sessao}")
+    public SessaoResponseDTO concluirSessao(@PathVariable Integer id_sessao) {
+        return toDTO(sessaoService.concluirSessao(id_sessao));
+    }
 }

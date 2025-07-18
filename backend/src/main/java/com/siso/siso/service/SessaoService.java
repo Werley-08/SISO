@@ -78,4 +78,14 @@ public class SessaoService implements ISessaoService {
 
         return sessaoRepository.save(sessao);
     }
+
+    @Override
+    public Sessao concluirSessao(Integer id_sessao) {
+        Sessao sessao = sessaoRepository.findById(id_sessao)
+                .orElseThrow(()-> new RuntimeException("Sessão não encontrada"));
+
+        sessao.setStatus(StatusSessao.REALIZADA);
+
+        return sessaoRepository.save(sessao);
+    }
 }
