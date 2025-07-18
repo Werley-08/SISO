@@ -11,4 +11,5 @@ public interface ISessaoService {
     Tratamento cadastrarSessao(Sessao sessao, Integer id_tratamento);
     List<Sessao> visualizarSessao(LocalDate data);
     Sessao atualizarAnotacoes(Sessao sessao, Integer id_sessao);
+    Sessao cancelarSessao(Integer id_sessao);
 }

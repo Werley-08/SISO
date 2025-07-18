@@ -4,9 +4,7 @@ import com.siso.siso.dto.create.SessaoCreateDTO;
 import com.siso.siso.dto.response.SessaoResponseDTO;
 import com.siso.siso.dto.response.TratamentoResponseDTO;
 import com.siso.siso.dto.update.SessaoUpdateDTO;
-import com.siso.siso.dto.update.TratamentoUpdateDTO;
 import com.siso.siso.mapper.SessaoMapper;
-import com.siso.siso.mapper.TratamentoMapper;
 import com.siso.siso.service.interfaces.ISessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +40,10 @@ public class SessaoController {
     @PutMapping("/anotacoes/{id_sessao}")
     public SessaoResponseDTO atualizarAnotacoes(@RequestBody SessaoUpdateDTO sessaoUpdateDTO, @PathVariable Integer id_sessao) {
         return toDTO(sessaoService.atualizarAnotacoes(SessaoMapper.toModel(sessaoUpdateDTO), id_sessao));
+    }
+
+    @PutMapping("/cancelar/{id_sessao}")
+    public SessaoResponseDTO cancelarSessao(@PathVariable Integer id_sessao) {
+        return toDTO(sessaoService.cancelarSessao(id_sessao));
     }
 }
