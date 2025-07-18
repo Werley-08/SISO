@@ -31,4 +31,9 @@ public class EstatisticasController {
     public Long visualizarQtdProfissionais() {
         return estatisticasService.visualizarQtdProfissionais();
     }
+
+    @GetMapping("/visualizarQtdRecepcionistas")
+    public Long visualizarQtdRecepcionistas() {
+        return estatisticasService.visualizarQtdRecepcionistas();
+    }
 }

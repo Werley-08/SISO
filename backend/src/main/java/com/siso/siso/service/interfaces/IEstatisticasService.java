@@ -4,4 +4,5 @@ public interface IEstatisticasService {
     Long visualizarQtdPacientes();
     Long visualizarQtdAgendamentos();
     Long visualizarQtdProfissionais();
+    Long visualizarQtdRecepcionistas();
 }
