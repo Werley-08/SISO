@@ -9,4 +9,5 @@ import java.util.List;
 public interface ISessaoRepository {
     List<Sessao> findByData(LocalDate date);
     List<Sessao> findByDataAndProfissionalId(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional);
+    Long count();
 }

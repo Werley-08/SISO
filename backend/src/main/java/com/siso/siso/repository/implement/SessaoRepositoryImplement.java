@@ -29,4 +29,9 @@ public class SessaoRepositoryImplement implements ISessaoRepository {
     public List<Sessao> findByDataAndProfissionalId(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional){
         return sessaoRepository.findByDataAndProfissionalId(data, id_profissional);
     }
+
+    @Override
+    public Long count(){
+        return sessaoRepository.count();
+    }
 }

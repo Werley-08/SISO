@@ -28,4 +28,7 @@ public class PacienteRepositoryImplement implements IPacienteRepository{
 
     @Override
     public Optional<Paciente> findById(Integer id){ return pacienteRepository.findById(id); }
+
+    @Override
+    public Long count(){ return pacienteRepository.count(); }
 }

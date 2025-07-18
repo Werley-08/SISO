@@ -9,4 +9,5 @@ public interface IPacienteRepository {
     Paciente save(Paciente paciente);
     List<Paciente> findAll();
     Optional<Paciente> findById(Integer id);
+    Long count();
 }
