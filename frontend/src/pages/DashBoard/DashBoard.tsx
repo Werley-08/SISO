@@ -2,12 +2,17 @@ import Orb from '@/components/Animations/Backgrounds/Orb/Orb';
 import Sidebar from '../../components/SideBarComponents/Sidebar/Sidebar';
 import './DashBoard.css';
 import DashboardCard from '@/components/DashboardCard/DashboardCard';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { profissionalDaSaudeService } from '@/services/profissionalDaSaudeService';
+import { useCallback } from 'react';
 
 const DashBoard = () => {
     const pacientesCount = 120;
     const agendamentosCount = 45;
-    const profissionaisCount = 12;
     const recepcionistasCount = 4;
+    const [loading, setLoading] = useState(true);
+    const [profissionaisCount, setProfissionaisCount] = useState(0);
 
     const role = localStorage.getItem('role') || '';
 
@@ -23,6 +28,23 @@ const DashBoard = () => {
                 return 'Desconhecido';
         }
     };
+
+    const fetchEstatisticas = useCallback(async () => {
+        try {
+            setLoading(true);
+            const data = await profissionalDaSaudeService.visualizarQtdProfissionais();
+            setProfissionaisCount(data);
+            
+        } catch (error) {
+            console.error('Erro ao carregar estatísticas:', error);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchEstatisticas();
+    }, [fetchEstatisticas]);
 
     return (
         <div className="dashboard-container">
@@ -48,10 +70,29 @@ const DashBoard = () => {
                 </div>
 
                 <div className="dashboard-main-row">
-                <DashboardCard title="Pacientes" value={pacientesCount} />
-                <DashboardCard title="Agendamentos" value={agendamentosCount} />
-                <DashboardCard title="Profissionais" value={profissionaisCount} />
-                <DashboardCard title="Recepcionistas" value={recepcionistasCount} />
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Pacientes" value={pacientesCount} />
+                    )}
+
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Agendamentos" value={agendamentosCount} />
+                    )}
+
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Profissionais" value={profissionaisCount} />
+                    )}
+
+                    {loading ? (
+                        <div>Carregando...</div>
+                    ) : (
+                        <DashboardCard title="Recepcionistas" value={recepcionistasCount} />
+                    )}
                 </div>
             </div>
         </div>
