@@ -8,13 +8,16 @@ import { profissionalDaSaudeService } from '@/services/profissionalDaSaudeServic
 import { useCallback } from 'react';
 import { pacienteService } from '@/services/pacienteService';
 import { recepcionistaService } from '@/services/recepcionistaService';
+import { sessaoService } from '@/services/sessaoService';
 
 const DashBoard = () => {
-    const agendamentosCount = 45;
+
     const [loading, setLoading] = useState(true);
     const [profissionaisCount, setProfissionaisCount] = useState(0);
     const [pacientesCount, setPacientesCount] = useState(0);
     const [recepcionistasCount, setRecepcionistasCount] = useState(0);
+    const [agendamentosCount, setAgendamentosCount] = useState(0);
+
 
     const role = localStorage.getItem('role') || '';
 
@@ -43,6 +46,9 @@ const DashBoard = () => {
 
             const data3 = await recepcionistaService.visualizarQtdRecepcionistas();
             setRecepcionistasCount(data3);
+
+            const data4 = await sessaoService.visualizarQtdSessoes();
+            setAgendamentosCount(data4);
 
         } catch (error) {
             console.error('Erro ao carregar estatísticas:', error);

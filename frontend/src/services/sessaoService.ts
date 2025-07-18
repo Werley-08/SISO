@@ -6,4 +6,9 @@ export const sessaoService = {
         const response = await api.get<Sessao[]>(`/sessao/visualizar?data=${date}`);
         return response.data;
     },
+
+    visualizarQtdSessoes: async (): Promise<number> => {
+        const response = await api.get<number>('/estatisticas/visualizarQtdAgendamentos');
+        return response.data;
+    }
 }; 
