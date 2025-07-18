@@ -2,6 +2,7 @@ package com.siso.siso.controller;
 
 import com.siso.siso.dto.create.TratamentoCreateDTO;
 import com.siso.siso.dto.response.TratamentoResponseDTO;
+import com.siso.siso.dto.update.TratamentoUpdateDTO;
 import com.siso.siso.service.interfaces.ITratamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,10 @@ public class TratamentoController {
     @GetMapping("/visualizarById/{id_tratamento}")
     public TratamentoResponseDTO visualizarTratamentoById(@PathVariable Integer id_tratamento) {
         return toDTO(tratamentoService.visualizarTratamentoById(id_tratamento));
+    }
+
+    @PutMapping("/anotacoes/{id_tratamento}")
+    public TratamentoResponseDTO atualizarAnotacoes(@RequestBody TratamentoUpdateDTO tratamentoUpdateDTO, @PathVariable Integer id_tratamento) {
+        return toDTO(tratamentoService.atualizarAnotacoes(toModel(tratamentoUpdateDTO), id_tratamento));
     }
 }

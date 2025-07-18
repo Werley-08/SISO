@@ -2,6 +2,7 @@ package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.TratamentoCreateDTO;
 import com.siso.siso.dto.response.TratamentoResponseDTO;
+import com.siso.siso.dto.update.TratamentoUpdateDTO;
 import com.siso.siso.model.*;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.StatusTratamento;
@@ -52,5 +53,11 @@ public interface TratamentoMapper {
         return tratamentos.stream()
                 .map(TratamentoMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    static Tratamento toModel(TratamentoUpdateDTO tratamentoUpdateDTO) {
+        Tratamento tratamento = new Tratamento();
+        tratamento.setOutras_informacoes(tratamentoUpdateDTO.getOutras_informacoes());
+        return tratamento;
     }
 }

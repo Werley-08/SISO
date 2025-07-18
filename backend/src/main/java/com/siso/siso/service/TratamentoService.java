@@ -59,4 +59,14 @@ public class TratamentoService implements ITratamentoService {
         return tratamentoRepository.findById(id_tratamento)
                 .orElseThrow(() -> new  RuntimeException("Tratamento não existe no sistema"));
     }
+
+    @Override
+    public Tratamento atualizarAnotacoes(Tratamento tratamentoEditado, Integer id_tratamento){
+        Tratamento tratamentoExistente = tratamentoRepository.findById(id_tratamento)
+                .orElseThrow(()-> new RuntimeException("Tratamento não encontrado"));
+
+        tratamentoExistente.setOutras_informacoes(tratamentoEditado.getOutras_informacoes());
+
+        return tratamentoRepository.save(tratamentoExistente);
+    }
 }
