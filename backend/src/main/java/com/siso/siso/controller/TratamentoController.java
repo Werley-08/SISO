@@ -4,10 +4,9 @@ import com.siso.siso.dto.create.TratamentoCreateDTO;
 import com.siso.siso.dto.response.TratamentoResponseDTO;
 import com.siso.siso.service.interfaces.ITratamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.siso.siso.mapper.TratamentoMapper.toDTO;
 import static com.siso.siso.mapper.TratamentoMapper.toModel;
@@ -26,5 +25,15 @@ public class TratamentoController {
     @PostMapping("/cadastrar")
     public TratamentoResponseDTO cadastrarTratamento(@RequestBody TratamentoCreateDTO tratamentoCreateDTO) {
         return toDTO(tratamentoService.cadastrarTratamento(toModel(tratamentoCreateDTO)));
+    }
+
+    @GetMapping("/visualizarTodosByPaciente/{id_paciente}")
+    public List<TratamentoResponseDTO> visualizarTratamentoByPaciente(@PathVariable Integer id_paciente) {
+        return toDTO(tratamentoService.visualizarTratamentoByPaciente(id_paciente));
+    }
+
+    @GetMapping("/visualizarById/{id_tratamento}")
+    public TratamentoResponseDTO visualizarTratamentoById(@PathVariable Integer id_tratamento) {
+        return toDTO(tratamentoService.visualizarTratamentoById(id_tratamento));
     }
 }

@@ -6,6 +6,8 @@ import com.siso.siso.service.interfaces.ITratamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TratamentoService implements ITratamentoService {
 
@@ -41,5 +43,20 @@ public class TratamentoService implements ITratamentoService {
         tratamento.setProcedimento(procedimento);
         tratamento.setProfissional(profissionalDaSaude);
         return tratamentoRepository.save(tratamento);
+    }
+
+    @Override
+    public List<Tratamento> visualizarTratamentoByPaciente(Integer id_paciente){
+
+        Paciente paciente = pacienteRepository.findById(id_paciente)
+                .orElseThrow(() -> new  RuntimeException("Paciente não existe no sistema"));
+
+        return tratamentoRepository.findByPaciente(paciente);
+    }
+
+    @Override
+    public Tratamento visualizarTratamentoById(Integer id_tratamento){
+        return tratamentoRepository.findById(id_tratamento)
+                .orElseThrow(() -> new  RuntimeException("Tratamento não existe no sistema"));
     }
 }

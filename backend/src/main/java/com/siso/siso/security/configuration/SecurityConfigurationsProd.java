@@ -75,6 +75,8 @@ public class SecurityConfigurationsProd{
 
                         // Tratamentos
                         .requestMatchers(HttpMethod.POST, "/api/tratamento/cadastrar").hasAnyRole("RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.GET, "/api/tratamento/visualizarTodosByPaciente/{id_paciente}").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.GET, "/api/tratamento/visualizarById/{id_tratamento}").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
 
                         // Sessões
                         .requestMatchers(HttpMethod.POST, "/api/sessao/cadastrar/{id_tratamento}").hasAnyRole("RECEPCIONISTA")
