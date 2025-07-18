@@ -15,5 +15,10 @@ export const recepcionistaService = {
 
     editarRecepcionista: async (id: number, data: RecepcionistaData): Promise<void> => {
         await api.put(`/recepcionista/editar/${id}`, data)
+    },
+
+    visualizarQtdRecepcionistas: async (): Promise<number> => {
+        const response = await api.get<number>('/estatisticas/visualizarQtdRecepcionistas');
+        return response.data;
     }
 }; 
