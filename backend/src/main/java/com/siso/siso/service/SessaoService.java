@@ -5,6 +5,7 @@ import com.siso.siso.model.Tratamento;
 import com.siso.siso.model.Usuario;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.StatusSessao;
+import com.siso.siso.model.enums.StatusTratamento;
 import com.siso.siso.repository.interfaces.ISessaoRepository;
 import com.siso.siso.repository.interfaces.ITratamentoRepository;
 import com.siso.siso.service.interfaces.ISessaoService;
@@ -34,6 +35,14 @@ public class SessaoService implements ISessaoService {
 
         Tratamento tratamento = tratamentoRepository.findById(id_tratamento)
                 .orElseThrow(() -> new  RuntimeException("Tratamento não existe no sistema"));
+
+        if(tratamento.getStatus() == StatusTratamento.FINALIZADO) {
+            throw new RuntimeException("Não é permitido cadastrar sessões para tratamentos finalizados");
+        }
+
+        if(tratamento.getStatus() == StatusTratamento.INTERROMPIDO) {
+            throw new RuntimeException("Não é permitido cadastrar sessões para tratamentos interrompidos");
+        }
 
         sessao.setTratamento(tratamento);
         tratamento.getSessoes().add(sessao);
