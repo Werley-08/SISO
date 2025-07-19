@@ -65,8 +65,8 @@ public class SecurityConfigurationsProd{
                         .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN")
 
                         // Anamnese
-                        .requestMatchers(HttpMethod.POST, "/api/anamnese/cadastrar").hasAnyRole("PROFISSIONAL_DA_SAUDE")
-                        .requestMatchers(HttpMethod.PUT, "/api/anamnese/editar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.POST, "/api/anamnese/cadastrar").hasAnyRole("PROFISSIONAL_DA_SAUDE", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.PUT, "/api/anamnese/editar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE", "RECEPCIONISTA")
                         .requestMatchers(HttpMethod.GET, "/api/anamnese/visualizar/{id}").hasAnyRole("PROFISSIONAL_DA_SAUDE", "RECEPCIONISTA")
 
                         // Horarios de Atendimento

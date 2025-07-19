@@ -21,9 +21,9 @@ type EditarAnamneseData = {
 };
 
 export const anamneseService = {
-    listarPorPaciente: async (pacienteId: number): Promise<Anamnese | null> => {
+    visualizarAnamnese: async (pacienteId: number): Promise<Anamnese | null> => {
         const response = await api.get<Anamnese>(`/anamnese/visualizar/${pacienteId}`);
-        return response.data ?? null;
+        return response.data;
     },
 
     cadastrarAnamnese: async (data: CadastrarAnamneseData): Promise<void> => {
