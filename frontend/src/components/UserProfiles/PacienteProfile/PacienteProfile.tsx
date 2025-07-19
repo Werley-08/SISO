@@ -5,6 +5,7 @@ import Avatar from '@/components/Avatar/Avatar';
 import Tabs from '@/components/tabs/Tabs';
 import DadosPessoais from '@/components/Abas/DadosPessoais/DadosPessoais';
 import Anamnese from '@/components/Abas/AnamneseAba/Anamnese';
+import TratamentosAba from '@/components/Abas/TratamentosAba/TratamentosAba';
 
 interface PacienteProfileProps {
   paciente: Paciente;
@@ -16,10 +17,14 @@ const PacienteProfile: React.FC<PacienteProfileProps> = ({ paciente }) => {
       rotulo: "Dados pessoais",
       conteudo: <DadosPessoais paciente={paciente} />,
     },
-   {
-    rotulo: "Anamnese",
-    conteudo: <Anamnese paciente={paciente} />,
-  },
+    {
+      rotulo: "Anamnese",
+      conteudo: <Anamnese paciente={paciente} />,
+    },
+    {
+      rotulo: "Tratamentos",
+      conteudo: <TratamentosAba paciente={paciente} />
+    }
   ];
 
   return (
@@ -29,8 +34,8 @@ const PacienteProfile: React.FC<PacienteProfileProps> = ({ paciente }) => {
       </div>
 
       <div className="pacienteProfile-content">
-            <Tabs abas={tabs} />
-   
+        <Tabs abas={tabs} />
+
       </div>
     </div>
   );

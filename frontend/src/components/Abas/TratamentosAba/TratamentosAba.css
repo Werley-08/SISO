@@ -1,0 +1,17 @@
+@import url("@/styles/variables.css");
+
+.tratamentosAba-contentTop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: var(--spacing-md);
+    margin-right: var(--spacing-md);
+}
+
+.tratamentosAba-titulo {
+    flex: 80%;
+}
+
+.tratamentosAba-contentTop .tratamentosAba-actionButton {
+    flex: 20%;
+}
