@@ -1,6 +1,7 @@
 package com.siso.siso.repository.interfaces;
 
 import com.siso.siso.model.Sessao;
+import com.siso.siso.model.enums.StatusSessao;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
@@ -13,5 +14,9 @@ public interface ISessaoRepository {
     Long count();
     Optional<Sessao> findById(Integer id);
     Sessao save(Sessao sessao);
-    List<Sessao> findByProfissionalId(Integer id_profissional);
+    List<Sessao> findPendentesByProfissionalAndData(
+            @Param("profissionalId") Integer profissional_id,
+            @Param("status") StatusSessao status,
+            @Param("data") LocalDate data
+    );
 }
