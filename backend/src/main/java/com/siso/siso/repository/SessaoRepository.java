@@ -1,6 +1,7 @@
 package com.siso.siso.repository;
 
 import com.siso.siso.model.Sessao;
+import com.siso.siso.model.enums.StatusSessao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +22,16 @@ public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
       AND s.data = :data
 """)
     List<Sessao> findByDataAndProfissionalId(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional);
+
+    @Query("""
+    SELECT s FROM Sessao s
+    WHERE s.tratamento.profissional.id = :profissional_id
+    AND s.status = :status
+    AND s.data = :data
+""")
+    List<Sessao> findPendentesByProfissionalAndData(
+            @Param("profissionalId") Integer profissional_id,
+            @Param("status") StatusSessao status,
+            @Param("data") LocalDate data
+    );
 }

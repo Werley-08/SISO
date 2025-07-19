@@ -1,0 +1,101 @@
+.agendamentoInfo-container {
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.agendamentoInfo-section {
+  margin-bottom: 1.5rem;
+}
+
+.agendamentoInfo-section:last-child {
+  margin-bottom: 0;
+}
+
+.agendamentoInfo-section .form-descriptor {
+  margin-bottom: 1rem;
+}
+
+.agendamentoInfo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.agendamentoInfo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.agendamentoInfo-item:hover {
+  transform: translateY(-2px);
+}
+
+.agendamentoInfo-item-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.agendamentoInfo-item:hover .agendamentoInfo-item-label {
+  color: var(--cor1);
+}
+
+.agendamentoInfo-item-value {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: var(--background-primary);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.agendamentoInfo-item:hover .agendamentoInfo-item-value {
+  border-color: var(--cor1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.agendamentoInfo-observations {
+  background-color: var(--background-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.agendamentoInfo-observations:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--cor1);
+}
+
+.agendamentoInfo-observations::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--cor1) 0%, var(--cor2) 100%);
+  border-radius: 8px 0 0 8px;
+  transition: width 0.3s ease;
+}
+
+.agendamentoInfo-observations:hover::before {
+  width: 6px;
+}
+
+.agendamentoInfo-observations-text {
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+} 

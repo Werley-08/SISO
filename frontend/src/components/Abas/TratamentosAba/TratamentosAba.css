@@ -1,0 +1,52 @@
+@import url("@/styles/variables.css");
+
+.tratamentosAba-content {
+  padding: 15px;
+}
+
+.tratamentosAba-contentTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.tratamentosAba-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex: 80%;
+}
+
+.tratamentosAba-actionButton {
+  flex: 20%;
+}
+
+.tratamentosAba-lista {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f7fafc;
+}
+
+.tratamentosAba-lista:empty::after {
+  content: 'Nenhum tratamento cadastrado';
+  display: block;
+  text-align: center;
+  padding: 40px 20px;
+  color: #718096;
+  font-style: italic;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  border: 2px dashed #cbd5e0;
+  margin: 20px 0;
+}

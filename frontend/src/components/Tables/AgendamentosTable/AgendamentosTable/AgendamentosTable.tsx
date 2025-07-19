@@ -1,12 +1,14 @@
 import './AgendamentosTable.css'
 import AgendamentosColumn from '../AgendamentosColumn/AgendamentosColumn';
+import type { Sessao } from '@/types/Sessao';
 
 type Props = {
   className?: string;
   date: Date;
+  onCardClick?: (sessao: Sessao) => void;
 };
 
-const AgendamentosTable = ({ className = "", date}: Props) => {
+const AgendamentosTable = ({ className = "", date, onCardClick}: Props) => {
 
     const diasDaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
     const days = [];
@@ -30,6 +32,7 @@ const AgendamentosTable = ({ className = "", date}: Props) => {
                         key={`${item.data}-${index}`}
                         date={item.data} 
                         DiaDaSemana={item.diaSemana} 
+                        onCardClick={onCardClick}
                     />
                 ))}
             </div>

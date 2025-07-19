@@ -97,6 +97,6 @@ public abstract class Usuario implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.status == Status.ATIVO;
     }
 }

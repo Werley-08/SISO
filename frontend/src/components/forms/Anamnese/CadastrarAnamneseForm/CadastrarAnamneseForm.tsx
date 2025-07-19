@@ -22,8 +22,8 @@ const CadastrarAnamneseForm = ({
         peso: "",
         altura: "",
         alergias: "",
-        medicamentos: "false",
-        doencas_cronicas: "false",
+        medicamentos: "",
+        doencas_cronicas: "",
     });
 
     const handleChange = (
@@ -36,8 +36,21 @@ const CadastrarAnamneseForm = ({
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.peso || !formData.altura) {
-            toast.error("Preencha peso e altura.");
+        // Validação dos campos obrigatórios
+        if (!formData.peso || isNaN(Number(formData.peso)) || Number(formData.peso) <= 0) {
+            toast.error("Preencha um peso válido.");
+            return;
+        }
+        if (!formData.altura || isNaN(Number(formData.altura)) || Number(formData.altura) <= 0) {
+            toast.error("Preencha uma altura válida.");
+            return;
+        }
+        if (formData.medicamentos !== "true" && formData.medicamentos !== "false") {
+            toast.error("Selecione se faz uso de medicamentos.");
+            return;
+        }
+        if (formData.doencas_cronicas !== "true" && formData.doencas_cronicas !== "false") {
+            toast.error("Selecione se possui doenças crônicas.");
             return;
         }
 
@@ -50,7 +63,6 @@ const CadastrarAnamneseForm = ({
             paciente: { id: idPaciente },                       
         };
         console.log("Payload enviado:", payload);
-
 
         try {
             await anamneseService.cadastrarAnamnese(payload);
@@ -97,6 +109,7 @@ const CadastrarAnamneseForm = ({
                     value={formData.medicamentos}
                     name="medicamentos"
                     options={[
+                        { id: "", nome: "Selecione..." },
                         { id: "true", nome: "Sim" },
                         { id: "false", nome: "Não" },
                     ]}
@@ -105,8 +118,9 @@ const CadastrarAnamneseForm = ({
                 <SelectField
                     label="Possui doenças crônicas?"
                     value={formData.doencas_cronicas}
-                    name="doencasCronica"
+                    name="doencas_cronicas"
                     options={[
+                        { id: "", nome: "Selecione..." },
                         { id: "true", nome: "Sim" },
                         { id: "false", nome: "Não" },
                     ]}

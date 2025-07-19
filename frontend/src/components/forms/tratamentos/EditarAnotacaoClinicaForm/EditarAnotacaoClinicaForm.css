@@ -1,28 +1,35 @@
 @import url("@/styles/variables.css");
 
-.input-field {
+.editarAnotacaoClinicaForm {
   display: flex;
   flex-direction: column;
-  margin-right: var(--spacing-lg);
 }
 
-.input-label {
-  margin-bottom: var(--spacing-sm);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-md);
+.editarAnotacaoClinicaForm h3 {
   color: var(--cor6);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-md);
 }
 
-.input-element {
+.editarAnotacaoClinicaForm textarea {
   padding: var(--spacing-md) var(--spacing-lg);
   border: 1px solid var(--cor8);
   border-radius: var(--border-radius-lg);
   font-size: var(--font-size-md);
+  font-family: inherit;
   transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
-.input-element:focus {
+.editarAnotacaoClinicaForm textarea:focus {
   border-color: var(--cor1);
   box-shadow: 0 0 5px var(--cor9);
   outline: none;
 }
+
+.editarAnotacaoClinicaForm-botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+} 

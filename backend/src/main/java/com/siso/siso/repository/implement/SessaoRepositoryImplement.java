@@ -1,6 +1,7 @@
 package com.siso.siso.repository.implement;
 
 import com.siso.siso.model.Sessao;
+import com.siso.siso.model.enums.StatusSessao;
 import com.siso.siso.repository.SessaoRepository;
 import com.siso.siso.repository.interfaces.ISessaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,14 @@ public class SessaoRepositoryImplement implements ISessaoRepository {
     @Override
     public Sessao save(Sessao sessao) {
         return sessaoRepository.save(sessao);
+    }
+    
+    @Override
+    public List<Sessao> findPendentesByProfissionalAndData(
+            @Param("profissionalId") Integer profissional_id,
+            @Param("status") StatusSessao status,
+            @Param("data") LocalDate data
+    ){
+        return sessaoRepository.findPendentesByProfissionalAndData(profissional_id, status, data);
     }
 }
