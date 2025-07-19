@@ -45,4 +45,9 @@ public class SessaoRepositoryImplement implements ISessaoRepository {
     public Sessao save(Sessao sessao) {
         return sessaoRepository.save(sessao);
     }
+    
+    @Override
+    public List<Sessao> findByProfissionalId(Integer id_profissional){
+        return sessaoRepository.findByProfissionalId(id_profissional);
+    }
 }
