@@ -60,30 +60,6 @@
     font-size: var(--font-size-sm);
 }
 
-.agendamentos-card-container__card-status {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius-sm);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    text-transform: uppercase;
-    align-self: flex-start;
-}
-
-.agendamentos-card-container__card-status.realizada {
-    background-color: #10B981;
-    color: white;
-}
-
-.agendamentos-card-container__card-status.pendente {
-    background-color: #F59E0B;
-    color: white;
-}
-
-.agendamentos-card-container__card-status.cancelada {
-    background-color: #EF4444;
-    color: white;
-}
-
 .agendamentos-card-container__card-info {
     font-size: var(--font-size-sm);
     color: var(--cor6);

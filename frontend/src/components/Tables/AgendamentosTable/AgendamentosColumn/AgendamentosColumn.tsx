@@ -10,9 +10,10 @@ type Props = {
   className?: string;
   date: string;
   DiaDaSemana: string;
+  onCardClick?: (sessao: Sessao) => void;
 };
 
-const AgendamentosColumn = ({ className = "", date, DiaDaSemana}: Props) => {
+const AgendamentosColumn = ({ className = "", date, DiaDaSemana, onCardClick}: Props) => {
 
     const [sessoes, setSessoes] = useState<Sessao[]>([]);
     const [loading, setLoading] = useState(true);
@@ -50,7 +51,11 @@ const AgendamentosColumn = ({ className = "", date, DiaDaSemana}: Props) => {
                     </div>
                 ) : (
                     sessoes.map((sessao) => (
-                        <AgendamentosCard key={sessao.id} sessao={sessao} />
+                        <AgendamentosCard 
+                            key={sessao.id} 
+                            sessao={sessao} 
+                            onCardClick={onCardClick}
+                        />
                     ))
                 )}
             </div>
