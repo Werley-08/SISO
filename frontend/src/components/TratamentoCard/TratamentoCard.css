@@ -1,0 +1,147 @@
+.tratamentoCard {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tratamentoCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tratamentoCard:hover {
+  transform: translateY(-1px) scale(1.005);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.tratamentoCard:hover::before {
+  opacity: 1;
+}
+
+.tratamentoCard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tratamentoCard-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.tratamentoCard-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.tratamentoCard-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #4a5568;
+  line-height: 1.3;
+  display: flex;
+  align-items: baseline;
+}
+
+.tratamentoCard-info p strong {
+  color: #2d3748;
+  font-weight: 600;
+  min-width: 90px;
+  margin-right: 4px;
+}
+
+.tratamentoCard-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  min-height: 28px;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}
+
+.icon-button:active {
+  transform: scale(1.05);
+}
+
+.icon-button svg {
+  width: 14px;
+  height: 14px;
+  fill: #4a5568;
+  transition: fill 0.2s ease;
+}
+
+.icon-button:hover svg {
+  fill: #2c3e50;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .tratamentoCard {
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .tratamentoCard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .tratamentoCard-header h3 {
+    font-size: 0.9rem;
+  }
+  
+  .tratamentoCard-info p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+  }
+  
+  .tratamentoCard-info p strong {
+    min-width: auto;
+    margin-right: 0;
+  }
+  
+  .tratamentoCard-actions {
+    justify-content: center;
+  }
+}

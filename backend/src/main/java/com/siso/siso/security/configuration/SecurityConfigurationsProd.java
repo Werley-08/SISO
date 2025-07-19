@@ -46,7 +46,7 @@ public class SecurityConfigurationsProd{
                         // Profissional da Saúde
                         .requestMatchers(HttpMethod.POST, "/api/profissionalDaSaude/cadastrar").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizar/{id}").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizarTodos").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/profissionalDaSaude/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
                         .requestMatchers(HttpMethod.PUT, "/api/profissionalDaSaude/editar/{id}").hasAnyRole("ADMIN")
 
                         // Especialidade
@@ -61,7 +61,7 @@ public class SecurityConfigurationsProd{
 
                         // Procedimentos
                         .requestMatchers(HttpMethod.POST, "/api/procedimento/cadastrar").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/procedimento/visualizarTodos").hasAnyRole("ADMIN", "RECEPCIONISTA")
                         .requestMatchers(HttpMethod.PUT, "/api/procedimento/editar/{id}").hasAnyRole("ADMIN")
 
                         // Anamnese
