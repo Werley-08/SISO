@@ -1,0 +1,71 @@
+.pacienteInfo-container {
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.pacienteInfo-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.pacienteInfo-section {
+  margin-bottom: 1.5rem;
+}
+
+.pacienteInfo-section:last-child {
+  margin-bottom: 0;
+}
+
+.pacienteInfo-section .form-descriptor {
+  margin-bottom: 1rem;
+}
+
+.pacienteInfo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.pacienteInfo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.pacienteInfo-item:hover {
+  transform: translateY(-2px);
+}
+
+.pacienteInfo-item-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.pacienteInfo-item:hover .pacienteInfo-item-label {
+  color: var(--cor1);
+}
+
+.pacienteInfo-item-value {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: var(--background-primary);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.pacienteInfo-item:hover .pacienteInfo-item-value {
+  border-color: var(--cor1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+} 

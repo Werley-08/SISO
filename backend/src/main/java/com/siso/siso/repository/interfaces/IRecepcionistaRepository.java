@@ -9,4 +9,5 @@ public interface IRecepcionistaRepository {
     Recepcionista save(Recepcionista recepcionista);
     Optional<Recepcionista> findById(Integer id);
     List<Recepcionista> findAll();
+    Long count();
 }

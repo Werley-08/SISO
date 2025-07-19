@@ -84,10 +84,16 @@ public class SecurityConfigurationsProd{
                         // Sessões
                         .requestMatchers(HttpMethod.POST, "/api/sessao/cadastrar/{id_tratamento}").hasAnyRole("RECEPCIONISTA")
                         .requestMatchers(HttpMethod.GET, "/api/sessao/visualizar").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.PUT, "api/sessao/anotacoes/{id_sessao}").hasAnyRole("PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.PUT, "/api/sessao/cancelar/{id_sessao}").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.PUT, "/api/sessao/concluir/{id_sessao}").hasAnyRole("RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+
 
                         // Estatísticas
                         .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdPacientes").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
                         .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdAgendamentos").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdProfissionais").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
+                        .requestMatchers(HttpMethod.GET, "/api/estatisticas/visualizarQtdRecepcionistas").hasAnyRole("ADMIN","RECEPCIONISTA", "PROFISSIONAL_DA_SAUDE")
                 )
 
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

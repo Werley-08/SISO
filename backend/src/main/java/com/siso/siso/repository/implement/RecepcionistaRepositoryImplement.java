@@ -32,4 +32,8 @@ public class RecepcionistaRepositoryImplement implements IRecepcionistaRepositor
         return recepcionistaRepository.findAll();
     }
 
+    @Override
+    public Long count() {
+        return recepcionistaRepository.count();
+    }
 }

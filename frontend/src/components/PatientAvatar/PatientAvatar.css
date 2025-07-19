@@ -1,0 +1,83 @@
+.patientAvatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  transition: all 0.3s ease;
+}
+
+.patientAvatar-circle {
+  flex: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 250px;
+  background-color: var(--cor1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.patientAvatar-circle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.patientAvatar-circle-text {
+  color: var(--cor3);
+  transition: all 0.3s ease;
+}
+
+.patientAvatar-circle:hover .patientAvatar-circle-text {
+  transform: scale(1.1);
+  color: var(--cor3);
+}
+
+.patientAvatar-name {
+  flex: 5%;
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-xl);
+  transition: all 0.3s ease;
+}
+
+.patientAvatar-circle:hover + .patientAvatar-name {
+  color: var(--cor1);
+  transform: translateY(-2px);
+}
+
+/* Tamanhos */
+.patientAvatar-small .patientAvatar-circle {
+  height: 60px;
+  width: 60px;
+}
+
+.patientAvatar-small .patientAvatar-circle-text {
+  font-size: 24px;
+}
+
+.patientAvatar-small .patientAvatar-name {
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.patientAvatar-medium .patientAvatar-circle {
+  height: 20vh;
+  width: 20vh;
+}
+
+.patientAvatar-medium .patientAvatar-circle-text {
+  font-size: 90px;
+}
+
+.patientAvatar-large .patientAvatar-circle {
+  height: 25vh;
+  width: 25vh;
+}
+
+.patientAvatar-large .patientAvatar-circle-text {
+  font-size: 120px;
+}
+
+/* Variante sem nome */
+.patientAvatar-container:not(:has(.patientAvatar-name)) {
+  gap: 0;
+} 

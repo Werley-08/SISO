@@ -33,4 +33,7 @@ public class ProfissionalDaSaudeRepositoryImplement implements IProfissionalDaSa
     public List<ProfissionalDaSaude> findAll() {
         return profissionalDaSaudeRepository.findAll();
     }
+
+    @Override
+    public Long count(){ return profissionalDaSaudeRepository.count(); }
 }

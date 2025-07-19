@@ -2,7 +2,10 @@ package com.siso.siso.mapper;
 
 import com.siso.siso.dto.create.SessaoCreateDTO;
 import com.siso.siso.dto.response.SessaoResponseDTO;
+import com.siso.siso.dto.update.SessaoUpdateDTO;
+import com.siso.siso.dto.update.TratamentoUpdateDTO;
 import com.siso.siso.model.Sessao;
+import com.siso.siso.model.Tratamento;
 import com.siso.siso.model.enums.StatusSessao;
 
 import java.util.List;
@@ -40,5 +43,11 @@ public interface SessaoMapper{
         return sessoes.stream()
                 .map(SessaoMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    static Sessao toModel(SessaoUpdateDTO sessaoUpdateDTO) {
+        Sessao sessao = new Sessao();
+        sessao.setOutras_informacoes(sessaoUpdateDTO.getOutras_informacoes());
+        return sessao;
     }
 }
