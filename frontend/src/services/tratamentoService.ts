@@ -18,9 +18,15 @@ export const tratamentoService = {
     cadastrarTratamento: async (data: CadastrarTratamentoData): Promise<void> => {
         await api.post('/tratamento/cadastrar', data);
     },
-      
+
     visualizarTratamentoById: async (id: number): Promise<Tratamento> => {
         const response = await api.get<Tratamento>(`/tratamento/visualizarById/${id}`);
         return response.data;
     },
+
+    editarAnotacaoClinica: async (id: number, anotacao: string): Promise<void> => {
+        await api.put(`/tratamento/anotacoes/${id}`, {
+            outras_informacoes: anotacao
+        });
+    }
 };
