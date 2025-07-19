@@ -7,14 +7,18 @@ import type { Paciente } from "@/types/Paciente";
 import { tratamentoService } from "@/services/tratamentoService";
 import type { Tratamento } from "@/types/Tratamento";
 import TratamentoCard from "@/components/TratamentoCard/TratamentoCard";
+import EditarAnotacaoClinicaForm from "@/components/forms/tratamentos/EditarAnotacaoClinicaForm/EditarAnotacaoClinicaForm";
 
 interface TratamentosAbaProps {
     paciente: Paciente;
 }
 
 const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
+    const role = localStorage.getItem('role');
+
     const [showModalCadastro, setShowModalCadastro] = useState(false);
     const [listaTratamentos, setListaTratamentos] = useState<Tratamento[]>([]);
+    const [tratamentoSelecionado, setTratamentoSelecionado] = useState<Tratamento | null>(null);
 
     const fetchTratamentos = useCallback(async () => {
         try {
@@ -35,12 +39,14 @@ const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
         <div className="tratamentosAba-content">
             <div className="tratamentosAba-contentTop">
                 <div className="tratamentosAba-titulo">Tratamentos</div>
-                <ActionButton text="Cadastrar Tratamento" className="tratamentosAba-actionButton" onClick={() => { setShowModalCadastro(true) }} />
+                {role === 'RECEPCIONISTA' && (<ActionButton text="Cadastrar Tratamento" className="tratamentosAba-actionButton" onClick={() => { setShowModalCadastro(true) }} />)}
             </div>
             <div className="tratamentosAba-lista">
                 {listaTratamentos.map(trat => (
                     <TratamentoCard
                         tratamento={trat}
+                        onEditarAnotacao={() => setTratamentoSelecionado(trat)}
+                        onUpdate={fetchTratamentos}
                     />
                 ))}
             </div>
@@ -53,6 +59,19 @@ const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
                         setShowModalCadastro(false);
                     }}
                 />
+            </Modal>
+
+            <Modal isOpen={!!tratamentoSelecionado} onClose={() => setTratamentoSelecionado(null)}>
+                {tratamentoSelecionado && (
+                    <EditarAnotacaoClinicaForm
+                        tratamento={tratamentoSelecionado}
+                        onClose={() => setTratamentoSelecionado(null)}
+                        onSuccess={() => {
+                            fetchTratamentos();
+                            setTratamentoSelecionado(null);
+                        }}
+                    />
+                )}
             </Modal>
 
         </div>
