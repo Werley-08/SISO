@@ -8,6 +8,7 @@ import { tratamentoService } from "@/services/tratamentoService";
 import type { Tratamento } from "@/types/Tratamento";
 import TratamentoCard from "@/components/TratamentoCard/TratamentoCard";
 import EditarAnotacaoClinicaForm from "@/components/forms/tratamentos/EditarAnotacaoClinicaForm/EditarAnotacaoClinicaForm";
+import SessoesTratamentoModal from "./SessoesTratamentoModal/SessoesTratamentoModal";
 
 interface TratamentosAbaProps {
     paciente: Paciente;
@@ -19,6 +20,7 @@ const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
     const [showModalCadastro, setShowModalCadastro] = useState(false);
     const [listaTratamentos, setListaTratamentos] = useState<Tratamento[]>([]);
     const [tratamentoSelecionado, setTratamentoSelecionado] = useState<Tratamento | null>(null);
+    const [tratamentoSessoesSelecionado, setTratamentoSessoesSelecionado] = useState<Tratamento | null>(null);
 
     const fetchTratamentos = useCallback(async () => {
         try {
@@ -47,6 +49,7 @@ const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
                         tratamento={trat}
                         onEditarAnotacao={() => setTratamentoSelecionado(trat)}
                         onUpdate={fetchTratamentos}
+                        onVerSessoes={() => setTratamentoSessoesSelecionado(trat)}
                     />
                 ))}
             </div>
@@ -70,6 +73,16 @@ const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
                             fetchTratamentos();
                             setTratamentoSelecionado(null);
                         }}
+                    />
+                )}
+            </Modal>
+
+            {/* Modal de sessões do tratamento */}
+            <Modal isOpen={!!tratamentoSessoesSelecionado} onClose={() => setTratamentoSessoesSelecionado(null)}>
+                {tratamentoSessoesSelecionado && (
+                    <SessoesTratamentoModal
+                        tratamento={tratamentoSessoesSelecionado}
+                        onClose={() => setTratamentoSessoesSelecionado(null)}
                     />
                 )}
             </Modal>
