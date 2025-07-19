@@ -25,7 +25,9 @@ public class AnamneseService implements IAnamneseService {
         Paciente paciente = pacienteRepository.findById(anamnese.getPaciente().getId())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
 
-
+        if(anamneseRepository.findByPaciente(paciente).isPresent()) {
+            throw new RuntimeException("Paciente já tem uma anamnese associada a ele");
+        }
 
         anamnese.setPaciente(paciente);
         return anamneseRepository.save(anamnese);
