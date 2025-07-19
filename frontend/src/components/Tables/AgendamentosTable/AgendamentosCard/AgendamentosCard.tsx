@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react';
 import './AgendamentosCard.css'
 import type { Sessao } from '@/types/Sessao';
+import { useCallback } from 'react';
+import { tratamentoService } from '@/services/tratamentoService';
+import type { Tratamento } from '@/types/Tratamento';
 
 type Props = {
   className?: string;
@@ -8,8 +12,24 @@ type Props = {
 
 const AgendamentosCard = ({ className = "", sessao }: Props) => {
 
+    const [currentTratamento, setCurrentTratamento] = useState<Tratamento | null>(null);
+
+    const fetchTratamento = useCallback(async () => {
+        try {
+            const data = await tratamentoService.visualizarTratamentoById(sessao.id_tratamento);
+            setCurrentTratamento(data);
+        } catch (error) {
+            console.error('Erro ao carregar o tratamento associado a essa sessão', error);
+        } finally {
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchTratamento();
+    }, [fetchTratamento]);
+
     const formatarHorario = (hora: string) => {
-        return hora.substring(0, 5); // Remove segundos se houver
+        return hora.substring(0, 5);
     };
 
     const getStatusClass = (status: string) => {
@@ -37,6 +57,7 @@ const AgendamentosCard = ({ className = "", sessao }: Props) => {
                     </div>
                 </div>
                 <div className='agendamentos-card-container__card-info'>
+                    <div><strong>Paciente:</strong> {currentTratamento?.paciente?.nome || 'Carregando...'}</div>
                     <div><strong>Data:</strong> {sessao.data}</div>
                     {sessao.outras_informacoes && (
                         <div className="highlight">
