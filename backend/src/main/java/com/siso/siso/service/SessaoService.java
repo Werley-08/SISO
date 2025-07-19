@@ -105,36 +105,40 @@ public class SessaoService implements ISessaoService {
 
     private boolean verificaHorario(Sessao sessao, Tratamento tratamento) {
         ProfissionalDaSaude profissional = tratamento.getProfissional();
+
+        if (!estaDentroDoHorarioDeAtendimento(sessao, profissional)) {
+            return false;
+        }
+
+        if (haConflitoComOutrasSessoes(sessao, profissional)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean estaDentroDoHorarioDeAtendimento(Sessao sessao, ProfissionalDaSaude profissional) {
         DiaSemana diaSessao = converterDia(sessao.getData().getDayOfWeek());
 
-        // Verifica se o horário está dentro do horário de atendimento
-        boolean dentroHorario = profissional.getHorarios_atendimento().stream()
+        return profissional.getHorarios_atendimento().stream()
                 .filter(h -> h.getDia_semana() == diaSessao)
                 .anyMatch(h ->
                         !sessao.getHora_inicio().isBefore(h.getHorario_inicio()) &&
                                 !sessao.getHora_finalizacao().isAfter(h.getHorario_fim())
                 );
+    }
 
-        if (!dentroHorario) {
-            return false;
-        }
+    private boolean haConflitoComOutrasSessoes(Sessao sessao, ProfissionalDaSaude profissional) {
+        List<Sessao> sessoesPendentes = sessaoRepository.findPendentesByProfissionalAndData(
+                profissional.getId(),
+                StatusSessao.PENDENTE,
+                sessao.getData()
+        );
 
-        // Verifica conflito com outras sessões pendentes do mesmo profissional
-        List<Sessao> sessoesPendentes = sessaoRepository.findByProfissionalId(profissional.getId()).stream()
-                .filter(s -> s.getStatus() == StatusSessao.PENDENTE)
-                .filter(s -> s.getData().equals(sessao.getData()))
-                .toList();
-
-        for (Sessao s : sessoesPendentes) {
-            boolean conflita =
-                    sessao.getHora_inicio().isBefore(s.getHora_finalizacao()) &&
-                            sessao.getHora_finalizacao().isAfter(s.getHora_inicio());
-
-            if (conflita) {
-                return false;
-            }
-        }
-        return true;
+        return sessoesPendentes.stream().anyMatch(s ->
+                sessao.getHora_inicio().isBefore(s.getHora_finalizacao()) &&
+                        sessao.getHora_finalizacao().isAfter(s.getHora_inicio())
+        );
     }
 
     private DiaSemana converterDia(DayOfWeek diaJava) {
