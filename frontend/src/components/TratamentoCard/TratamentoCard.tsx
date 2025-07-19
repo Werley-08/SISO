@@ -6,9 +6,13 @@ import Label from "../Label/Label";
 
 interface TratamentoCardProps {
   tratamento: Tratamento;
+  onEditarAnotacao: () => void;
+  onUpdate?: () => void;
 }
 
-const TratamentoCard = ({ tratamento }: TratamentoCardProps) => {
+const TratamentoCard = ({ onEditarAnotacao, tratamento }: TratamentoCardProps) => {
+  const role = localStorage.getItem('role');
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'EM_ANDAMENTO':
@@ -54,9 +58,15 @@ const TratamentoCard = ({ tratamento }: TratamentoCardProps) => {
         <button title="Ver sessões" className="icon-button">
           <EyeIcon />
         </button>
-        <button title="Editar anotação clínica" className="icon-button">
-          <CadernetaIcon />
-        </button>
+        {role !== 'RECEPCIONISTA' && (
+          <button
+            title="Editar anotação clínica"
+            className="icon-button"
+            onClick={onEditarAnotacao}
+          >
+            <CadernetaIcon />
+          </button>
+        )}
       </div>
     </div>
   );
