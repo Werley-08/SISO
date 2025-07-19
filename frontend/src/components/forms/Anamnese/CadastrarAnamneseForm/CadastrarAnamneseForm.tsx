@@ -59,8 +59,8 @@ const CadastrarAnamneseForm = ({
             altura: Number(formData.altura),
             alergias: formData.alergias,
             medicamentos: formData.medicamentos === "true",
-            doencas_cronicas: formData.doencas_cronicas === "true", 
-            paciente: { id: idPaciente },                       
+            doencas_cronicas: formData.doencas_cronicas === "true",
+            paciente: { id: idPaciente },
         };
         console.log("Payload enviado:", payload);
 
@@ -109,7 +109,6 @@ const CadastrarAnamneseForm = ({
                     value={formData.medicamentos}
                     name="medicamentos"
                     options={[
-                        { id: "", nome: "Selecione..." },
                         { id: "true", nome: "Sim" },
                         { id: "false", nome: "Não" },
                     ]}
@@ -120,7 +119,6 @@ const CadastrarAnamneseForm = ({
                     value={formData.doencas_cronicas}
                     name="doencas_cronicas"
                     options={[
-                        { id: "", nome: "Selecione..." },
                         { id: "true", nome: "Sim" },
                         { id: "false", nome: "Não" },
                     ]}
