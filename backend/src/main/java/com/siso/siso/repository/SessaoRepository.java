@@ -21,4 +21,5 @@ public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
       AND s.data = :data
 """)
     List<Sessao> findByDataAndProfissionalId(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional);
+    List<Sessao> findByProfissionalId(Integer id_profissional);
 }

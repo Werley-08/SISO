@@ -105,20 +105,36 @@ public class SessaoService implements ISessaoService {
 
     private boolean verificaHorario(Sessao sessao, Tratamento tratamento) {
         ProfissionalDaSaude profissional = tratamento.getProfissional();
-
         DiaSemana diaSessao = converterDia(sessao.getData().getDayOfWeek());
 
-        for (HorarioAtendimento horario : profissional.getHorarios_atendimento()) {
-            if (horario.getDia_semana() == diaSessao) {
-                LocalTime inicio = horario.getHorario_inicio();
-                LocalTime fim = horario.getHorario_fim();
+        // Verifica se o horário está dentro do horário de atendimento
+        boolean dentroHorario = profissional.getHorarios_atendimento().stream()
+                .filter(h -> h.getDia_semana() == diaSessao)
+                .anyMatch(h ->
+                        !sessao.getHora_inicio().isBefore(h.getHorario_inicio()) &&
+                                !sessao.getHora_finalizacao().isAfter(h.getHorario_fim())
+                );
 
-                if (!sessao.getHora_inicio().isBefore(inicio) && !sessao.getHora_finalizacao().isAfter(fim)) {
-                    return true;
-                }
+        if (!dentroHorario) {
+            return false;
+        }
+
+        // Verifica conflito com outras sessões pendentes do mesmo profissional
+        List<Sessao> sessoesPendentes = sessaoRepository.findByProfissionalId(profissional.getId()).stream()
+                .filter(s -> s.getStatus() == StatusSessao.PENDENTE)
+                .filter(s -> s.getData().equals(sessao.getData()))
+                .toList();
+
+        for (Sessao s : sessoesPendentes) {
+            boolean conflita =
+                    sessao.getHora_inicio().isBefore(s.getHora_finalizacao()) &&
+                            sessao.getHora_finalizacao().isAfter(s.getHora_inicio());
+
+            if (conflita) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     private DiaSemana converterDia(DayOfWeek diaJava) {

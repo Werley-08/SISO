@@ -13,4 +13,5 @@ public interface ISessaoRepository {
     Long count();
     Optional<Sessao> findById(Integer id);
     Sessao save(Sessao sessao);
+    List<Sessao> findByProfissionalId(Integer id_profissional);
 }
