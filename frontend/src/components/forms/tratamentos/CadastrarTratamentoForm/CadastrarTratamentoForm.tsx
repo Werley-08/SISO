@@ -61,6 +61,12 @@ const CadastrarTratamentoForm = ({ paciente, onClose, onSuccess }: CadastrarTrat
         setOutrasInformacoes(event.target.value);
     };
 
+    const formatarDataParaBR = (dataISO: string): string => {
+        const [ano, mes, dia] = dataISO.split("-");
+        return `${dia}/${mes}/${ano}`;
+    };
+
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -78,7 +84,7 @@ const CadastrarTratamentoForm = ({ paciente, onClose, onSuccess }: CadastrarTrat
         }
 
         const tratamentoPayload = {
-            data_inicio: dataInicio,
+            data_inicio: formatarDataParaBR(dataInicio),
             outras_informacoes: outrasInformacoes,
             profissional_id: profissionalSelecionado.id,
             procedimento_id: procedimentoSelecionado.id,
