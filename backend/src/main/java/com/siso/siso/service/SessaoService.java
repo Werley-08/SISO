@@ -1,8 +1,7 @@
 package com.siso.siso.service;
 
-import com.siso.siso.model.Sessao;
-import com.siso.siso.model.Tratamento;
-import com.siso.siso.model.Usuario;
+import com.siso.siso.model.*;
+import com.siso.siso.model.enums.DiaSemana;
 import com.siso.siso.model.enums.Role;
 import com.siso.siso.model.enums.StatusSessao;
 import com.siso.siso.model.enums.StatusTratamento;
@@ -14,7 +13,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -42,6 +43,10 @@ public class SessaoService implements ISessaoService {
 
         if(tratamento.getStatus() == StatusTratamento.INTERROMPIDO) {
             throw new RuntimeException("Não é permitido cadastrar sessões para tratamentos interrompidos");
+        }
+
+        if(!verificaHorario(sessao, tratamento)) {
+            throw new RuntimeException("Este horário de atendimento não está disponível");
         }
 
         sessao.setTratamento(tratamento);
@@ -96,5 +101,35 @@ public class SessaoService implements ISessaoService {
         sessao.setStatus(StatusSessao.REALIZADA);
 
         return sessaoRepository.save(sessao);
+    }
+
+    private boolean verificaHorario(Sessao sessao, Tratamento tratamento) {
+        ProfissionalDaSaude profissional = tratamento.getProfissional();
+
+        DiaSemana diaSessao = converterDia(sessao.getData().getDayOfWeek());
+
+        for (HorarioAtendimento horario : profissional.getHorarios_atendimento()) {
+            if (horario.getDia_semana() == diaSessao) {
+                LocalTime inicio = horario.getHorario_inicio();
+                LocalTime fim = horario.getHorario_fim();
+
+                if (!sessao.getHora_inicio().isBefore(inicio) && !sessao.getHora_finalizacao().isAfter(fim)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private DiaSemana converterDia(DayOfWeek diaJava) {
+        return switch (diaJava) {
+            case MONDAY -> DiaSemana.SEGUNDA;
+            case TUESDAY -> DiaSemana.TERCA;
+            case WEDNESDAY -> DiaSemana.QUARTA;
+            case THURSDAY -> DiaSemana.QUINTA;
+            case FRIDAY -> DiaSemana.SEXTA;
+            case SATURDAY -> DiaSemana.SABADO;
+            case SUNDAY -> DiaSemana.DOMINGO;
+        };
     }
 }
