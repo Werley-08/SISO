@@ -21,5 +21,11 @@ export const sessaoService = {
 
     cadastrarSessao: async(tratamentoID: number, data: CadastrarSessaoData): Promise<void> => {
         await api.post(`/sessao/cadastrar/${tratamentoID}`, data);
+    },
+
+    editarAnotacaoSessao: async (id: number, anotacao: string): Promise<void> => {
+        await api.put(`/sessao/anotacoes/${id}`, {
+            outras_informacoes: anotacao
+        });
     }
 }; 

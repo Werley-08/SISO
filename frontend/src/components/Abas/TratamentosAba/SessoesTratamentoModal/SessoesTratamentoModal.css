@@ -4,12 +4,15 @@
   max-width: 800px;
   max-height: 80vh;
   overflow-y: auto;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .sessoesTratamentoModal-header {
   margin-bottom: 16px;
   border-bottom: 2px solid rgba(0,0,0,0.05);
   padding-bottom: 10px;
+  width: 100%;
 }
 
 .sessoesTratamentoModal-titulo {
@@ -20,6 +23,7 @@
   display: flex;
   flex: 75%;
   align-items: center;
+  width: 100%;
 }
 
 .sessoesTratamentoModal-statusTratamento {
@@ -39,6 +43,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 .sessoesTratamentoModal-actionButton {
@@ -54,6 +59,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  width: 100%;
 }
 
 .sessaoCard {
@@ -102,4 +108,35 @@
   align-items: flex-start;
   gap: 2px;
   margin-left: 16px;
+}
+
+.sessaoCard-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sessaoCard .icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 16px;
+}
+
+.sessaoCard .icon-button:hover {
+  transform: scale(1.1);
+}
+
+.sessaoCard .icon-button:active {
+  transform: scale(1.05);
 }

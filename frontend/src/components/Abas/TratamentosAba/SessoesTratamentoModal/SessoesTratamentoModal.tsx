@@ -6,7 +6,9 @@ import "./SessoesTratamentoModal.css";
 import ActionButton from "@/components/ActionButton/ActionButton";
 import CadastrarSessaoForm from "@/components/forms/sessoes/CadastrarSessaoForm/CadastrarSessaoForm";
 import Modal from "@/components/Modal/Modal";
+import EditarAnotacaoSessaoForm from "../../../forms/sessoes/EditarAnotacaoSessaoForm/EditarAnotacaoSessaoForm";
 import { tratamentoService } from "@/services/tratamentoService";
+import { ReactComponent as CadernetaIcon } from "@/assets/icons/Caderneta-icon.svg";
 
 interface SessoesTratamentoModalProps {
   tratamento: Tratamento;
@@ -14,7 +16,9 @@ interface SessoesTratamentoModalProps {
 
 const SessoesTratamentoModal = ({ tratamento }: SessoesTratamentoModalProps) => {
   const [showModalCadastrar, setShowModalCadastrar] = useState(false);
+  const [sessaoSelecionada, setSessaoSelecionada] = useState<Sessao | null>(null);
   const [sessoes, setSessoes] = useState(tratamento.sessoes);
+  const role = localStorage.getItem('role');
 
   const atualizarSessoes = async () => {
     try {
@@ -57,7 +61,7 @@ const SessoesTratamentoModal = ({ tratamento }: SessoesTratamentoModalProps) => 
 
       <div className="sessoesTratamentoModal-botaoELista">
         <div className="sessoesTratamentoModal-titulo">Sessões do Tratamento</div>
-        <ActionButton text="Agendar Sessão" onClick={() => setShowModalCadastrar(true)} className="sessoesTratamentoModal-actionButton" />
+        {role === 'RECEPCIONISTA' && (<ActionButton text="Agendar Sessão" onClick={() => setShowModalCadastrar(true)} className="sessoesTratamentoModal-actionButton" />)}
       </div>
 
       <div className="sessoesTratamentoModal-lista">
@@ -65,25 +69,44 @@ const SessoesTratamentoModal = ({ tratamento }: SessoesTratamentoModalProps) => 
           <div>Nenhuma sessão registrada</div>
         ) : (
           sessoes.map(sessao => (
-            <SessaoCard key={sessao.id} sessao={sessao} />
+            <SessaoCard 
+              key={sessao.id} 
+              sessao={sessao} 
+              onEditarAnotacao={() => setSessaoSelecionada(sessao)}
+            />
           ))
         )}
       </div>
-        <Modal isOpen={showModalCadastrar} onClose={() => setShowModalCadastrar(false)}>
-          <CadastrarSessaoForm 
-            tratamentoID={tratamento.id} 
+      <Modal isOpen={showModalCadastrar} onClose={() => setShowModalCadastrar(false)}>
+        <CadastrarSessaoForm
+          tratamentoID={tratamento.id}
+          onSuccess={() => {
+            atualizarSessoes();
+            setShowModalCadastrar(false);
+          }}
+          onClose={() => { setShowModalCadastrar(false) }}
+        />
+      </Modal>
+
+      {/* Modal de editar anotação da sessão */}
+      <Modal isOpen={!!sessaoSelecionada} onClose={() => setSessaoSelecionada(null)}>
+        {sessaoSelecionada && (
+          <EditarAnotacaoSessaoForm
+            sessao={sessaoSelecionada}
+            onClose={() => setSessaoSelecionada(null)}
             onSuccess={() => {
               atualizarSessoes();
-              setShowModalCadastrar(false);
-            }} 
-            onClose={() => {setShowModalCadastrar(false)}} 
+              setSessaoSelecionada(null);
+            }}
           />
-        </Modal>
+        )}
+      </Modal>
     </div>
   );
 };
 
-function SessaoCard({ sessao }: { sessao: Sessao }) {
+function SessaoCard({ sessao, onEditarAnotacao }: { sessao: Sessao; onEditarAnotacao: () => void }) {
+  const role = localStorage.getItem('role');
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -107,6 +130,17 @@ function SessaoCard({ sessao }: { sessao: Sessao }) {
         </div>
         <div className="sessoesTratamentoModal-statusSessao"><Label text={(sessao.status)} color={getStatusColor(sessao.status)} /></div>
       </div>
+      {role !== 'RECEPCIONISTA' && (
+        <div className="sessaoCard-actions">
+          <button 
+            title="Editar anotação da sessão" 
+            className="icon-button" 
+            onClick={onEditarAnotacao}
+          >
+            <CadernetaIcon />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
