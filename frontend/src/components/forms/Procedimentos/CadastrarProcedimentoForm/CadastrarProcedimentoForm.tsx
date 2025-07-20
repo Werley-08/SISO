@@ -73,6 +73,7 @@ const CadastrarProcedimentoForm = ({ onClose, onSuccess }: CadastrarProcedimento
                     onChange={handleChange}
                     placeholder="Digite o preço..."
                     name="preco"
+                    min="1"
                     required
                 />
                 <InputField
@@ -82,6 +83,7 @@ const CadastrarProcedimentoForm = ({ onClose, onSuccess }: CadastrarProcedimento
                     onChange={handleChange}
                     placeholder="Digite a duração..."
                     name="duracao_em_sessao"
+                    min="1"
                     required
                 />
             </div>

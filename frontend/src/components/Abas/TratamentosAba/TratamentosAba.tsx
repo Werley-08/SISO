@@ -46,6 +46,7 @@ const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
             <div className="tratamentosAba-lista">
                 {listaTratamentos.map(trat => (
                     <TratamentoCard
+                        key={trat.id}
                         tratamento={trat}
                         onEditarAnotacao={() => setTratamentoSelecionado(trat)}
                         onUpdate={fetchTratamentos}
