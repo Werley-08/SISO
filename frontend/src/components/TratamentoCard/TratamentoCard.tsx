@@ -8,9 +8,10 @@ interface TratamentoCardProps {
   tratamento: Tratamento;
   onEditarAnotacao: () => void;
   onUpdate?: () => void;
+  onVerSessoes?: () => void;
 }
 
-const TratamentoCard = ({ onEditarAnotacao, tratamento }: TratamentoCardProps) => {
+const TratamentoCard = ({ onEditarAnotacao, tratamento, onVerSessoes }: TratamentoCardProps) => {
   const role = localStorage.getItem('role');
 
   const getStatusColor = (status: string) => {
@@ -55,7 +56,7 @@ const TratamentoCard = ({ onEditarAnotacao, tratamento }: TratamentoCardProps) =
       </div>
 
       <div className="tratamentoCard-actions">
-        <button title="Ver sessões" className="icon-button">
+        <button title="Ver sessões" className="icon-button" onClick={onVerSessoes}>
           <EyeIcon />
         </button>
         {role !== 'RECEPCIONISTA' && (

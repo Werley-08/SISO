@@ -30,7 +30,7 @@ public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
     AND s.data = :data
 """)
     List<Sessao> findPendentesByProfissionalAndData(
-            @Param("profissionalId") Integer profissional_id,
+            @Param("profissional_id") Integer profissional_id,
             @Param("status") StatusSessao status,
             @Param("data") LocalDate data
     );

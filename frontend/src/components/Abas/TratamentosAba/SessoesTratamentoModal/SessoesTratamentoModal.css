@@ -1,0 +1,105 @@
+/* Sessões do tratamento */
+.sessoesTratamentoModal-content {
+  padding: 15px;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.sessoesTratamentoModal-header {
+  margin-bottom: 16px;
+  border-bottom: 2px solid rgba(0,0,0,0.05);
+  padding-bottom: 10px;
+}
+
+.sessoesTratamentoModal-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  display: flex;
+  flex: 75%;
+  align-items: center;
+}
+
+.sessoesTratamentoModal-statusTratamento {
+    display: flex;
+    gap: 5px;
+}
+
+.sessoesTratamentoModal-statusSessao {
+    display: flex;
+    float: right;
+}
+
+.sessoesTratamentoModal-lista {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sessoesTratamentoModal-actionButton {
+  margin-bottom: 12px;
+  align-self: flex-end;
+  width: 160px;
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.sessoesTratamentoModal-botaoELista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.sessaoCard {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.95rem;
+  color: #4a5568;
+  max-width: 100%;
+}
+
+.sessaoCard strong {
+  color: #2d3748;
+  font-weight: 600;
+  min-width: 90px;
+  margin-right: 2px;
+}
+
+.sessaoCard-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sessaoCard-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 100%;
+}
+
+.sessaoCard-infos div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.sessoesTratamentoModal-statusSessao {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  margin-left: 16px;
+}

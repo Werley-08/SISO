@@ -121,7 +121,7 @@ public class SessaoService implements ISessaoService {
         DiaSemana diaSessao = converterDia(sessao.getData().getDayOfWeek());
 
         return profissional.getHorarios_atendimento().stream()
-                .filter(h -> h.getDia_semana() == diaSessao)
+                .filter(h -> h.getDia_semana().name().equals(diaSessao.name()))
                 .anyMatch(h ->
                         !sessao.getHora_inicio().isBefore(h.getHorario_inicio()) &&
                                 !sessao.getHora_finalizacao().isAfter(h.getHorario_fim())

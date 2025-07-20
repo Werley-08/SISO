@@ -1,10 +1,12 @@
 @import url("@/styles/variables.css");
 
 .pacienteProfile-tabContent {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 .dadosPessoais-container {
