@@ -9,6 +9,7 @@ import { useState } from "react";
 import type { Sessao } from "@/types/Sessao";
 import type { Tratamento } from "@/types/Tratamento";
 import { tratamentoService } from "@/services/tratamentoService";
+import SelecionarPacienteTable from "@/components/Tables/SelecionarPacienteTable/SelecionarPacienteTable/SelecionarPacienteTable";
 
 const GerenciamentoDeAgendamentos = () => {
 
@@ -16,6 +17,7 @@ const GerenciamentoDeAgendamentos = () => {
 
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalPacientes, setModalPacientes] = useState(false);
     const [selectedSessao, setSelectedSessao] = useState<Sessao | null>(null);
     const [selectedTratamento, setSelectedTratamento] = useState<Tratamento | null>(null);
 
@@ -70,6 +72,7 @@ const GerenciamentoDeAgendamentos = () => {
                         <ActionButton 
                             text="Realizar Agendamento" 
                             className="actionbutton-container"
+                            onClick={() => {setModalPacientes(true)}}
                         />
                     )}
                 </div>
@@ -88,6 +91,10 @@ const GerenciamentoDeAgendamentos = () => {
                             tratamento={selectedTratamento} 
                         />
                     )}
+                </Modal>
+
+                <Modal isOpen={modalPacientes} onClose={() => {setModalPacientes(false)}}>
+                    <SelecionarPacienteTable />
                 </Modal>
             </div>
         </div>
