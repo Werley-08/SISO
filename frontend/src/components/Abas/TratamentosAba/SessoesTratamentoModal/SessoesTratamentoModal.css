@@ -140,3 +140,54 @@
 .sessaoCard .icon-button:active {
   transform: scale(1.05);
 }
+
+.sessaoCard .icon-button.success svg {
+  fill: #10b981;
+  transition: fill 0.2s ease;
+}
+
+.sessaoCard .icon-button.success:hover svg {
+  fill: #059669;
+}
+
+.sessaoCard .icon-button.danger svg {
+  fill: #ef4444;
+  transition: fill 0.2s ease;
+}
+
+.sessaoCard .icon-button.danger:hover svg {
+  fill: #dc2626;
+}
+
+.sessaoCard .icon-button svg {
+  width: 20px;
+  height: 20px;
+  fill: #4a5568;
+  transition: fill 0.2s ease;
+}
+
+.sessaoCard .icon-button:hover svg {
+  fill: #2c3e50;
+}
+
+.modal-confirmacao-content {
+  text-align: center;
+  padding: 16px;
+}
+
+.modal-confirmacao-content h3 {
+  color: var(--cor6);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.modal-confirmacao-content p {
+  color: var(--cor6);
+  line-height: 1.5;
+}
+
+.modal-confirmacao-botoes {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+}

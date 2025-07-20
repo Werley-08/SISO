@@ -28,5 +28,13 @@ export const tratamentoService = {
         await api.put(`/tratamento/anotacoes/${id}`, {
             outras_informacoes: anotacao
         });
+    },
+
+    finalizarTratamento: async (id: number): Promise<void> => {
+        await api.put(`/tratamento/encerrar/${id}`);
+    },
+
+    interromperTratamento: async (id: number): Promise<void> => {
+        await api.put(`/tratamento/interromper/${id}`);
     }
 };
