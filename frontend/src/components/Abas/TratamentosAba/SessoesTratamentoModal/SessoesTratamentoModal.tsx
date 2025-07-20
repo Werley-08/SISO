@@ -4,15 +4,26 @@ import { useState } from "react";
 import Label from "@/components/Label/Label";
 import "./SessoesTratamentoModal.css";
 import ActionButton from "@/components/ActionButton/ActionButton";
-// import ModalCadastrarSessao from "./ModalCadastrarSessao"; // futuro
+import CadastrarSessaoForm from "@/components/forms/sessoes/CadastrarSessaoForm/CadastrarSessaoForm";
+import Modal from "@/components/Modal/Modal";
+import { tratamentoService } from "@/services/tratamentoService";
 
 interface SessoesTratamentoModalProps {
   tratamento: Tratamento;
-  onClose: () => void;
 }
 
-const SessoesTratamentoModal = ({ tratamento, onClose }: SessoesTratamentoModalProps) => {
+const SessoesTratamentoModal = ({ tratamento }: SessoesTratamentoModalProps) => {
   const [showModalCadastrar, setShowModalCadastrar] = useState(false);
+  const [sessoes, setSessoes] = useState(tratamento.sessoes);
+
+  const atualizarSessoes = async () => {
+    try {
+      const tratamentoAtualizado = await tratamentoService.visualizarTratamentoById(tratamento.id);
+      setSessoes(tratamentoAtualizado.sessoes);
+    } catch (error) {
+      console.error("Erro ao atualizar sessões:", error);
+    }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -46,27 +57,28 @@ const SessoesTratamentoModal = ({ tratamento, onClose }: SessoesTratamentoModalP
 
       <div className="sessoesTratamentoModal-botaoELista">
         <div className="sessoesTratamentoModal-titulo">Sessões do Tratamento</div>
-        <ActionButton text="Cadastrar Sessão" onClick={() => setShowModalCadastrar(true)} className="sessoesTratamentoModal-actionButton" />
+        <ActionButton text="Agendar Sessão" onClick={() => setShowModalCadastrar(true)} className="sessoesTratamentoModal-actionButton" />
       </div>
 
       <div className="sessoesTratamentoModal-lista">
-        {tratamento.sessoes.length === 0 ? (
+        {sessoes.length === 0 ? (
           <div>Nenhuma sessão registrada</div>
         ) : (
-          tratamento.sessoes.map(sessao => (
+          sessoes.map(sessao => (
             <SessaoCard key={sessao.id} sessao={sessao} />
           ))
         )}
       </div>
-
-      {/*
-      <ModalCadastrarSessao
-        isOpen={showModalCadastrar}
-        onClose={() => setShowModalCadastrar(false)}
-        tratamentoId={tratamento.id}
-        onSuccess={...}
-      />
-      */}
+        <Modal isOpen={showModalCadastrar} onClose={() => setShowModalCadastrar(false)}>
+          <CadastrarSessaoForm 
+            tratamentoID={tratamento.id} 
+            onSuccess={() => {
+              atualizarSessoes();
+              setShowModalCadastrar(false);
+            }} 
+            onClose={() => {setShowModalCadastrar(false)}} 
+          />
+        </Modal>
     </div>
   );
 };

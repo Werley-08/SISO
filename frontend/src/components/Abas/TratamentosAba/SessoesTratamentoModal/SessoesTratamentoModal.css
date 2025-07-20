@@ -1,6 +1,9 @@
 /* Sessões do tratamento */
 .sessoesTratamentoModal-content {
   padding: 15px;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .sessoesTratamentoModal-header {
@@ -64,6 +67,7 @@
   gap: 4px;
   font-size: 0.95rem;
   color: #4a5568;
+  max-width: 100%;
 }
 
 .sessaoCard strong {
@@ -84,6 +88,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  max-width: 100%;
+}
+
+.sessaoCard-infos div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .sessoesTratamentoModal-statusSessao {

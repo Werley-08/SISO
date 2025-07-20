@@ -82,7 +82,6 @@ const TratamentosAba = ({ paciente }: TratamentosAbaProps) => {
                 {tratamentoSessoesSelecionado && (
                     <SessoesTratamentoModal
                         tratamento={tratamentoSessoesSelecionado}
-                        onClose={() => setTratamentoSessoesSelecionado(null)}
                     />
                 )}
             </Modal>
