@@ -1,6 +1,6 @@
 import type { Tratamento } from "@/types/Tratamento";
 import type { Sessao } from "@/types/Sessao";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Label from "@/components/Label/Label";
 import "./SessoesTratamentoModal.css";
 import ActionButton from "@/components/ActionButton/ActionButton";
@@ -9,6 +9,11 @@ import Modal from "@/components/Modal/Modal";
 import EditarAnotacaoSessaoForm from "../../../forms/sessoes/EditarAnotacaoSessaoForm/EditarAnotacaoSessaoForm";
 import { tratamentoService } from "@/services/tratamentoService";
 import { ReactComponent as CadernetaIcon } from "@/assets/icons/Caderneta-icon.svg";
+import { ReactComponent as CheckIcon } from "@/assets/icons/Check-icon.svg";
+import { ReactComponent as CancelIcon } from "@/assets/icons/Cancel-icon.svg";
+import { sessaoService } from "@/services/sessaoService";
+import Button from "@/components/Button/Button";
+import { toast } from "sonner";
 
 interface SessoesTratamentoModalProps {
   tratamento: Tratamento;
@@ -17,8 +22,23 @@ interface SessoesTratamentoModalProps {
 const SessoesTratamentoModal = ({ tratamento }: SessoesTratamentoModalProps) => {
   const [showModalCadastrar, setShowModalCadastrar] = useState(false);
   const [sessaoSelecionada, setSessaoSelecionada] = useState<Sessao | null>(null);
+  const [showModalConfirmarCancelar, setShowModalConfirmarCancelar] = useState(false);
+  const [showModalConfirmarConcluir, setShowModalConfirmarConcluir] = useState(false);
+  const [sessaoParaAcao, setSessaoParaAcao] = useState<Sessao | null>(null);
   const [sessoes, setSessoes] = useState(tratamento.sessoes);
   const role = localStorage.getItem('role');
+
+  useEffect(() => {
+    const fetchSessoesAtualizadas = async () => {
+      try {
+        const tratamentoAtualizado = await tratamentoService.visualizarTratamentoById(tratamento.id);
+        setSessoes(tratamentoAtualizado.sessoes);
+      } catch (error) {
+        console.error("Erro ao buscar sessões atualizadas:", error);
+      }
+    };
+    fetchSessoesAtualizadas();
+  }, [tratamento.id]);
 
   const atualizarSessoes = async () => {
     try {
@@ -73,6 +93,15 @@ const SessoesTratamentoModal = ({ tratamento }: SessoesTratamentoModalProps) => 
               key={sessao.id} 
               sessao={sessao} 
               onEditarAnotacao={() => setSessaoSelecionada(sessao)}
+              onUpdate={atualizarSessoes}
+              onCancelar={(sessao) => {
+                setSessaoParaAcao(sessao);
+                setShowModalConfirmarCancelar(true);
+              }}
+              onConcluir={(sessao) => {
+                setSessaoParaAcao(sessao);
+                setShowModalConfirmarConcluir(true);
+              }}
             />
           ))
         )}
@@ -101,11 +130,66 @@ const SessoesTratamentoModal = ({ tratamento }: SessoesTratamentoModalProps) => 
           />
         )}
       </Modal>
+
+      {/* Modal de confirmação para cancelar sessão */}
+      <Modal isOpen={showModalConfirmarCancelar} onClose={() => setShowModalConfirmarCancelar(false)}>
+        <div className="modal-confirmacao-content">
+          <h3>Confirmar Cancelamento</h3>
+          <p>Tem certeza que deseja cancelar esta sessão?</p>
+        </div>
+          <div className="modal-confirmacao-botoes">
+            <Button label="Cancelar" variant="secondary" onClick={() => setShowModalConfirmarCancelar(false)} />
+            <Button label="Confirmar" onClick={() => {
+              if (sessaoParaAcao) {
+                sessaoService.cancelarSessao(sessaoParaAcao.id).then(() => {
+                  atualizarSessoes();
+                  setShowModalConfirmarCancelar(false);
+                  setSessaoParaAcao(null);
+                  toast.success("Sessão cancelada com sucesso!");
+                }).catch((error) => {
+                  console.error("Erro ao cancelar sessão:", error);
+                  toast.error("Erro ao cancelar sessão!");
+                });
+              }
+            }} />
+          </div>
+      </Modal>
+
+      {/* Modal de confirmação para concluir sessão */}
+      <Modal isOpen={showModalConfirmarConcluir} onClose={() => setShowModalConfirmarConcluir(false)}>
+        <div className="modal-confirmacao-content">
+          <h3>Confirmar Conclusão</h3>
+          <p>Tem certeza que deseja marcar esta sessão como realizada?</p>
+        </div>
+          <div className="modal-confirmacao-botoes">
+            <Button label="Cancelar" variant="secondary" onClick={() => setShowModalConfirmarConcluir(false)} />
+            <Button label="Confirmar" onClick={() => {
+              if (sessaoParaAcao) {
+                sessaoService.concluirSessao(sessaoParaAcao.id).then(() => {
+                  atualizarSessoes();
+                  setShowModalConfirmarConcluir(false);
+                  setSessaoParaAcao(null);
+                  toast.success("Sessão marcada como realizada!");
+                }).catch((error) => {
+                  console.error("Erro ao concluir sessão:", error);
+                  toast.error("Erro ao concluir sessão!");
+                });
+              }
+            }} />
+          </div>
+      </Modal>
     </div>
   );
 };
 
-function SessaoCard({ sessao, onEditarAnotacao }: { sessao: Sessao; onEditarAnotacao: () => void }) {
+function SessaoCard({ sessao, onEditarAnotacao, onCancelar, onConcluir }: { 
+  sessao: Sessao; 
+  onEditarAnotacao: () => void; 
+  onUpdate: () => void;
+  onCancelar: (sessao: Sessao) => void;
+  onConcluir: (sessao: Sessao) => void;
+}) {
+
   const role = localStorage.getItem('role');
 
   const getStatusColor = (status: string) => {
@@ -130,8 +214,26 @@ function SessaoCard({ sessao, onEditarAnotacao }: { sessao: Sessao; onEditarAnot
         </div>
         <div className="sessoesTratamentoModal-statusSessao"><Label text={(sessao.status)} color={getStatusColor(sessao.status)} /></div>
       </div>
-      {role !== 'RECEPCIONISTA' && (
         <div className="sessaoCard-actions">
+          {sessao.status === 'PENDENTE' && (
+            <>
+              <button 
+                title="Marcar como realizada" 
+                className="icon-button success" 
+                onClick={() => onConcluir(sessao)}
+              >
+                <CheckIcon />
+              </button>
+              <button 
+                title="Cancelar sessão" 
+                className="icon-button danger" 
+                onClick={() => onCancelar(sessao)}
+              >
+                <CancelIcon />
+              </button>
+            </>
+          )}
+          {role !== 'RECEPCIONISTA' && (
           <button 
             title="Editar anotação da sessão" 
             className="icon-button" 
@@ -139,8 +241,8 @@ function SessaoCard({ sessao, onEditarAnotacao }: { sessao: Sessao; onEditarAnot
           >
             <CadernetaIcon />
           </button>
+          )}
         </div>
-      )}
     </div>
   );
 }

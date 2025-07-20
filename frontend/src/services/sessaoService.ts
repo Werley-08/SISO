@@ -27,5 +27,13 @@ export const sessaoService = {
         await api.put(`/sessao/anotacoes/${id}`, {
             outras_informacoes: anotacao
         });
+    },
+
+    cancelarSessao: async(id: number): Promise<void> => {
+        await api.put(`/sessao/cancelar/${id}`);
+    },
+
+    concluirSessao: async(id: number): Promise<void> => {
+        await api.put(`/sessao/concluir/${id}`);
     }
 }; 
