@@ -2,6 +2,7 @@ import Sidebar from "../../components/SideBarComponents/Sidebar/Sidebar";
 import './GerenciamentoDePaciente.css';
 import SearchBar from "@/components/SearchBar/SearchBar";
 import { useState, useEffect, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import ActionButton from "@/components/ActionButton/ActionButton";
 import PatientTable from "@/components/Tables/PatientTable/PatientTable/PatientTable";
 import Pagination from "@/components/Pagination/Pagination";
@@ -18,6 +19,8 @@ const GerenciamentoDePaciente = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [selectedPaciente, setSelectedPaciente] = useState<Paciente | null>(null);
     const [showProfile, setShowProfile] = useState(false);
+    const [initialTabIndex, setInitialTabIndex] = useState<number | undefined>(undefined);
+    const location = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [pacientes, setPacientes] = useState<Paciente[]>([]);
     const [loading, setLoading] = useState(true);
@@ -48,6 +51,7 @@ const GerenciamentoDePaciente = () => {
     const handleBackToTable = () => {
         setShowProfile(false);
         setSelectedPaciente(null);
+        setInitialTabIndex(undefined);
     };
 
     const fetchPacientes = useCallback(async () => {
@@ -65,6 +69,14 @@ const GerenciamentoDePaciente = () => {
     useEffect(() => {
         fetchPacientes();
     }, [fetchPacientes]);
+
+    useEffect(() => {
+        if (location.state && location.state.paciente) {
+            setSelectedPaciente(location.state.paciente);
+            setShowProfile(true);
+            setInitialTabIndex(location.state.initialTabIndex);
+        }
+    }, [location.state]);
 
     return (
         <div className="paciente-container">
@@ -85,8 +97,7 @@ const GerenciamentoDePaciente = () => {
                             className="actionbutton-container"
                             text="Voltar"
                         />
-
-                        <PacienteProfile paciente={selectedPaciente} />
+                        <PacienteProfile paciente={selectedPaciente} initialTabIndex={initialTabIndex} />
                     </>
                 ) : (
                     <>

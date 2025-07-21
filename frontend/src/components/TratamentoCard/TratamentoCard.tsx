@@ -1,6 +1,8 @@
 import type { Tratamento } from "@/types/Tratamento";
 import { ReactComponent as EyeIcon } from "@/assets/icons/Eye-icon.svg";
 import { ReactComponent as CadernetaIcon } from "@/assets/icons/Caderneta-icon.svg";
+import { ReactComponent as CheckIcon } from "@/assets/icons/Check-icon.svg";
+import { ReactComponent as CancelIcon } from "@/assets/icons/Cancel-icon.svg";
 import "./TratamentoCard.css";
 import Label from "../Label/Label";
 
@@ -8,9 +10,12 @@ interface TratamentoCardProps {
   tratamento: Tratamento;
   onEditarAnotacao: () => void;
   onUpdate?: () => void;
+  onVerSessoes?: () => void;
+  onFinalizar?: (tratamento: Tratamento) => void;
+  onInterromper?: (tratamento: Tratamento) => void;
 }
 
-const TratamentoCard = ({ onEditarAnotacao, tratamento }: TratamentoCardProps) => {
+const TratamentoCard = ({ onEditarAnotacao, tratamento, onVerSessoes, onFinalizar, onInterromper }: TratamentoCardProps) => {
   const role = localStorage.getItem('role');
 
   const getStatusColor = (status: string) => {
@@ -55,16 +60,36 @@ const TratamentoCard = ({ onEditarAnotacao, tratamento }: TratamentoCardProps) =
       </div>
 
       <div className="tratamentoCard-actions">
-        <button title="Ver sessões" className="icon-button">
+        <button title="Ver sessões" className="icon-button" onClick={onVerSessoes}>
           <EyeIcon />
         </button>
-        {role !== 'RECEPCIONISTA' && (
+        {tratamento.status === 'EM_ANDAMENTO' && (
           <button
-            title="Editar anotação clínica"
-            className="icon-button"
-            onClick={onEditarAnotacao}
+            title="Finalizar tratamento"
+            className="icon-button success"
+            onClick={() => onFinalizar && onFinalizar(tratamento)}
           >
-            <CadernetaIcon />
+            <CheckIcon />
+          </button>
+        )}
+        {role !== 'RECEPCIONISTA' && (
+          <>
+            <button
+              title="Editar anotação clínica"
+              className="icon-button"
+              onClick={onEditarAnotacao}
+            >
+              <CadernetaIcon />
+            </button>
+          </>
+        )}
+        {role === 'RECEPCIONISTA' && tratamento.status === 'EM_ANDAMENTO' && (
+          <button
+            title="Interromper tratamento"
+            className="icon-button danger"
+            onClick={() => onInterromper && onInterromper(tratamento)}
+          >
+            <CancelIcon />
           </button>
         )}
       </div>

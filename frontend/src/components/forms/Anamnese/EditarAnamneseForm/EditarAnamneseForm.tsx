@@ -1,0 +1,128 @@
+import { useState } from "react";
+import FormDescriptor from "@/components/FormDescriptor/FormDescriptor";
+import InputField from "@/components/InputField/InputField";
+import SelectField from "@/components/SelectField/SelectField";
+import Button from "@/components/Button/Button";
+import { toast } from "sonner";
+import { anamneseService } from "@/services/anamneseService";
+import type { Anamnese } from "@/types/Anamnese";
+import "./EditarAnamneseForm.css";
+
+interface EditarAnamneseFormProps {
+  anamnese: Anamnese;
+  onClose: () => void;
+  onSuccess?: () => void;
+}
+
+const EditarAnamneseForm = ({ anamnese, onClose, onSuccess }: EditarAnamneseFormProps) => {
+  const [formData, setFormData] = useState({
+    peso: anamnese.peso.toString(),
+    altura: anamnese.altura.toString(),
+    alergias: anamnese.alergias || "",
+    medicamentos: anamnese.medicamentos ? "true" : "false",
+    doencas_cronicas: anamnese.doencasCronica ? "true" : "false",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.peso || isNaN(Number(formData.peso)) || Number(formData.peso) <= 0) {
+      toast.error("Preencha um peso válido.");
+      return;
+    }
+    if (!formData.altura || isNaN(Number(formData.altura)) || Number(formData.altura) <= 0) {
+      toast.error("Preencha uma altura válida.");
+      return;
+    }
+    if (formData.medicamentos !== "true" && formData.medicamentos !== "false") {
+      toast.error("Selecione se faz uso de medicamentos.");
+      return;
+    }
+    if (formData.doencas_cronicas !== "true" && formData.doencas_cronicas !== "false") {
+      toast.error("Selecione se possui doenças crônicas.");
+      return;
+    }
+    const payload = {
+      id: anamnese.id,
+      peso: Number(formData.peso),
+      altura: Number(formData.altura),
+      alergias: formData.alergias,
+      medicamentos: formData.medicamentos === "true",
+      doencasCronica: formData.doencas_cronicas === "true",
+      paciente: { id: anamnese.idPaciente },
+    };
+    try {
+      await anamneseService.editarAnamnese(payload);
+      toast.success("Anamnese editada com sucesso!");
+      onSuccess?.();
+      onClose();
+    } catch (error) {
+      toast.error("Erro ao editar anamnese!");
+      console.error(error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="editar-anamnese-form">
+      <h3>Editar Anamnese</h3>
+      <FormDescriptor label="Dados da Anamnese" />
+      <div className="input-group">
+        <InputField
+          label="Peso (kg)"
+          value={formData.peso}
+          onChange={handleChange}
+          name="peso"
+          placeholder="Ex: 70"
+          required
+        />
+        <InputField
+          label="Altura (cm)"
+          value={formData.altura}
+          onChange={handleChange}
+          name="altura"
+          placeholder="Ex: 170"
+          required
+        />
+        <InputField
+          label="Alergias"
+          value={formData.alergias}
+          onChange={handleChange}
+          name="alergias"
+          placeholder="Descreva as alergias (se houver)"
+        />
+        <SelectField
+          label="Faz uso de medicamentos?"
+          value={formData.medicamentos}
+          name="medicamentos"
+          options={[
+            { id: "true", nome: "Sim" },
+            { id: "false", nome: "Não" },
+          ]}
+          onChange={handleChange}
+        />
+        <SelectField
+          label="Possui doenças crônicas?"
+          value={formData.doencas_cronicas}
+          name="doencas_cronicas"
+          options={[
+            { id: "true", nome: "Sim" },
+            { id: "false", nome: "Não" },
+          ]}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="botoes">
+        <Button label="Cancelar" variant="secondary" onClick={onClose} />
+        <Button label="Salvar" type="submit" />
+      </div>
+    </form>
+  );
+};
+
+export default EditarAnamneseForm;

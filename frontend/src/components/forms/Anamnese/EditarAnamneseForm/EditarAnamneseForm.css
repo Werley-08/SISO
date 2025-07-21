@@ -1,4 +1,4 @@
-.cadastrar-anamnese-form {
+.editar-anamnese-form {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
@@ -8,33 +8,33 @@
   min-width: 340px;
 }
 
-.cadastrar-anamnese-form h3 {
+.editar-anamnese-form h3 {
   margin-bottom: var(--spacing-sm);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
 }
 
-.cadastrar-anamnese-form .input-group {
+.editar-anamnese-form .input-group {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--spacing-lg);
 }
 
 @media (max-width: 900px) {
-  .cadastrar-anamnese-form .input-group {
+  .editar-anamnese-form .input-group {
     grid-template-columns: 1fr;
   }
 }
 
-.cadastrar-anamnese-form .botoes {
+.editar-anamnese-form .botoes {
   display: flex;
   justify-content: flex-end;
   gap: var(--spacing-lg);
   margin-top: var(--spacing-xl);
 }
 
-.cadastrar-anamnese-form .form-descriptor {
+.editar-anamnese-form .form-descriptor {
   width: fit-content;
   max-width: none;
   margin-bottom: var(--spacing-xl);
-}
+} 

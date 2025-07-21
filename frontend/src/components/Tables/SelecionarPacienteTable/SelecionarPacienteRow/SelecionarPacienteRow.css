@@ -1,0 +1,32 @@
+@import url("@/styles/variables.css");
+
+.selecionarPacienteRow-container {
+    margin: var(--spacing-xs) 0;
+    transition: transform var(--transition-fast);
+}
+
+.selecionarPacienteRow-container:hover {
+    transform: scale(1.01);
+}
+
+.selecionarPacienteRow-container-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selecionarPacienteRow-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: var(--spacing-md) 0;
+    margin: 0;
+    background-color: var(--cor3);
+    min-height: 40px;
+}
+
+.selecionarPacienteRow-item span {
+    font-size: var(--font-size-sm);
+    box-shadow: var(--cor9);
+}

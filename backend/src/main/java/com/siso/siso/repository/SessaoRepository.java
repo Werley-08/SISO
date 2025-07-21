@@ -12,16 +12,19 @@ import java.util.List;
 
 @Repository
 public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
-    List<Sessao> findByData(LocalDate date);
+
+    @Query("SELECT s FROM Sessao s WHERE s.data = :data ORDER BY s.hora_inicio ASC")
+    List<Sessao> findByDataOrderByHora_inicioAsc(LocalDate data);
 
     @Query("""
     SELECT s
     FROM Sessao s
     JOIN s.tratamento t
     WHERE t.profissional.id = :id_profissional
-      AND s.data = :data
+    AND s.data = :data
+    ORDER BY s.hora_inicio ASC
 """)
-    List<Sessao> findByDataAndProfissionalId(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional);
+    List<Sessao> findByDataAndProfissionalIdOrderByHora_inicioAsc(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional);
 
     @Query("""
     SELECT s FROM Sessao s
@@ -30,7 +33,7 @@ public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
     AND s.data = :data
 """)
     List<Sessao> findPendentesByProfissionalAndData(
-            @Param("profissionalId") Integer profissional_id,
+            @Param("profissional_id") Integer profissional_id,
             @Param("status") StatusSessao status,
             @Param("data") LocalDate data
     );

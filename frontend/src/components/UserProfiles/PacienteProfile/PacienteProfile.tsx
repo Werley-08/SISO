@@ -3,15 +3,16 @@ import './PacienteProfile.css';
 import type { Paciente } from '@/types/Paciente';
 import Tabs from '@/components/tabs/Tabs';
 import DadosPessoais from '@/components/Abas/DadosPessoais/DadosPessoais';
-import Anamnese from '@/components/Abas/AnamneseAba/Anamnese';
 import TratamentosAba from '@/components/Abas/TratamentosAba/TratamentosAba';
 import PatientAvatar from '@/components/PatientAvatar/PatientAvatar';
+import Anamnese from '@/components/Abas/AnamneseAba/Anamnese';
 
 interface PacienteProfileProps {
   paciente: Paciente;
+  initialTabIndex?: number;
 }
 
-const PacienteProfile: React.FC<PacienteProfileProps> = ({ paciente }) => {
+const PacienteProfile: React.FC<PacienteProfileProps> = ({ paciente, initialTabIndex }) => {
   const tabs = [
     {
       rotulo: "Dados pessoais",
@@ -34,8 +35,7 @@ const PacienteProfile: React.FC<PacienteProfileProps> = ({ paciente }) => {
       </div>
 
       <div className="pacienteProfile-content">
-        <Tabs abas={tabs} />
-
+        <Tabs abas={tabs} initialTabIndex={initialTabIndex} />
       </div>
     </div>
   );

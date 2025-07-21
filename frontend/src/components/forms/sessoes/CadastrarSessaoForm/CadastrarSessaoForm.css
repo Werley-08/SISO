@@ -1,0 +1,16 @@
+@import url("@/styles/variables.css");
+
+.cadastrarSessaoForm-botoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.cadastrarSessaoForm-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}

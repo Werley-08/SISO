@@ -45,6 +45,14 @@ public class SessaoService implements ISessaoService {
             throw new RuntimeException("Não é permitido cadastrar sessões para tratamentos interrompidos");
         }
 
+        if (sessao.getHora_inicio().isAfter(sessao.getHora_finalizacao())){
+            throw new RuntimeException("O horário de início da sessão deve ser anterior ao horário de finalização");
+        }
+
+        if (sessao.getData().isBefore(LocalDate.now())) {
+            throw new RuntimeException("A data da sessão deve ser hoje ou uma data futura");
+        }
+
         if(!verificaHorario(sessao, tratamento)) {
             throw new RuntimeException("Este horário de atendimento não está disponível");
         }
@@ -61,11 +69,11 @@ public class SessaoService implements ISessaoService {
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
         if (usuario.getRole().equals(Role.RECEPCIONISTA)){
-            return sessaoRepository.findByData(data);
+            return sessaoRepository.findByDataOrderByHora_inicioAsc(data);
         }
 
         else if (usuario.getRole().equals(Role.PROFISSIONAL_DA_SAUDE)){
-            return sessaoRepository.findByDataAndProfissionalId(data, usuario.getId());
+            return sessaoRepository.findByDataAndProfissionalIdOrderByHora_inicioAsc(data, usuario.getId());
         }
 
         else {
@@ -121,7 +129,7 @@ public class SessaoService implements ISessaoService {
         DiaSemana diaSessao = converterDia(sessao.getData().getDayOfWeek());
 
         return profissional.getHorarios_atendimento().stream()
-                .filter(h -> h.getDia_semana() == diaSessao)
+                .filter(h -> h.getDia_semana().name().equals(diaSessao.name()))
                 .anyMatch(h ->
                         !sessao.getHora_inicio().isBefore(h.getHorario_inicio()) &&
                                 !sessao.getHora_finalizacao().isAfter(h.getHorario_fim())

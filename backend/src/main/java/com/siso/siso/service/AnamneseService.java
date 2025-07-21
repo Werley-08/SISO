@@ -46,6 +46,7 @@ public class AnamneseService implements IAnamneseService {
             throw new IllegalArgumentException("O id da anamnese não pode ser atualizado!");
         }
 
+        anamnese.setPaciente(paciente);
         return anamneseRepository.save(anamnese);
     }
 

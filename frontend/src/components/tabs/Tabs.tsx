@@ -8,10 +8,11 @@ interface Aba {
 
 interface AbasProps {
   abas: Aba[];
+  initialTabIndex?: number;
 }
 
-const Abas: React.FC<AbasProps> = ({ abas }) => {
-  const [indiceAtivo, setIndiceAtivo] = useState(0);
+const Abas: React.FC<AbasProps> = ({ abas, initialTabIndex = 0 }) => {
+  const [indiceAtivo, setIndiceAtivo] = useState(initialTabIndex);
 
   return (
     <div className="abas-container">

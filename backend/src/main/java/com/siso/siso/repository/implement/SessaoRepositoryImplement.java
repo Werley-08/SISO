@@ -23,13 +23,13 @@ public class SessaoRepositoryImplement implements ISessaoRepository {
     }
 
     @Override
-    public List<Sessao> findByData(LocalDate date){
-        return sessaoRepository.findByData(date);
+    public List<Sessao> findByDataOrderByHora_inicioAsc(LocalDate date){
+        return sessaoRepository.findByDataOrderByHora_inicioAsc(date);
     }
 
     @Override
-    public List<Sessao> findByDataAndProfissionalId(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional){
-        return sessaoRepository.findByDataAndProfissionalId(data, id_profissional);
+    public List<Sessao> findByDataAndProfissionalIdOrderByHora_inicioAsc(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional){
+        return sessaoRepository.findByDataAndProfissionalIdOrderByHora_inicioAsc(data, id_profissional);
     }
 
     @Override

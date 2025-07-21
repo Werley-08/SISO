@@ -10,6 +10,7 @@ interface InputFieldProps {
   name: string;
   required?: boolean;
   disabled?: boolean;
+  min?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -21,6 +22,7 @@ const InputField: React.FC<InputFieldProps> = ({
   name,
   required = false,
   disabled = false,
+  min,
 }) => (
   <div className="input-field">
     <label className="input-label">{label}</label>
@@ -33,6 +35,7 @@ const InputField: React.FC<InputFieldProps> = ({
       name={name}
       required={required}
       disabled={disabled}
+      min={min}
     />
   </div>
 );
