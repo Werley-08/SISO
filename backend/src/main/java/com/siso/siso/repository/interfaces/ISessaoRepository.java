@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ISessaoRepository {
-    List<Sessao> findByData(LocalDate date);
-    List<Sessao> findByDataAndProfissionalId(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional);
+    List<Sessao> findByDataOrderByHora_inicioAsc(LocalDate date);
+    List<Sessao> findByDataAndProfissionalIdOrderByHora_inicioAsc(@Param("data") LocalDate data, @Param("id_profissional") Integer id_profissional);
     Long count();
     Optional<Sessao> findById(Integer id);
     Sessao save(Sessao sessao);
