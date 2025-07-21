@@ -45,6 +45,14 @@ public class SessaoService implements ISessaoService {
             throw new RuntimeException("Não é permitido cadastrar sessões para tratamentos interrompidos");
         }
 
+        if (sessao.getHora_inicio().isAfter(sessao.getHora_finalizacao())){
+            throw new RuntimeException("O horário de início da sessão deve ser anterior ao horário de finalização");
+        }
+
+        if (sessao.getData().isBefore(LocalDate.now())) {
+            throw new RuntimeException("A data da sessão deve ser hoje ou uma data futura");
+        }
+
         if(!verificaHorario(sessao, tratamento)) {
             throw new RuntimeException("Este horário de atendimento não está disponível");
         }
