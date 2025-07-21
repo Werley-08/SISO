@@ -7,6 +7,8 @@ import { anamneseService } from "@/services/anamneseService";
 import msgImage from "@/assets/images/msg.png";
 import type { Anamnese } from "@/types/Anamnese";
 import FormDescriptor from "@/components/FormDescriptor/FormDescriptor";
+import ActionButton from "@/components/ActionButton/ActionButton";
+import EditarAnamneseForm from "@/components/forms/Anamnese/EditarAnamneseForm/EditarAnamneseForm";
 import "./Anamnese.css"
 
 interface AnamneseProps {
@@ -20,6 +22,7 @@ const Anamnese: React.FC<AnamneseProps> = ({ paciente }) => {
   const [hasAnamnese, setHasAnamnese] = useState(false);
   const [anamnese, setAnamnese] = useState<Anamnese | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const fetchAnamnese = useCallback(async () => {
     try {
@@ -58,6 +61,13 @@ const Anamnese: React.FC<AnamneseProps> = ({ paciente }) => {
           <div className="anamneseInfo-section">
             <div className="dadosPessoais-formDescriptor-wrapper">
               <FormDescriptor label="Informações de Anamnese" />
+              {role === 'RECEPCIONISTA' && (
+                <ActionButton
+                  text="Editar Anamnese"
+                  className="anamnese-edit-actionButton"
+                  onClick={() => setIsEditModalOpen(true)}
+                />
+              )}
             </div>
             <div className="anamneseInfo-grid">
               <div className="anamneseInfo-item">
@@ -95,6 +105,18 @@ const Anamnese: React.FC<AnamneseProps> = ({ paciente }) => {
           onSuccess={handleSuccess}
         />
       </Modal>
+      {anamnese && (
+        <Modal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+        >
+          <EditarAnamneseForm
+            anamnese={anamnese}
+            onClose={() => setIsEditModalOpen(false)}
+            onSuccess={handleSuccess}
+          />
+        </Modal>
+      )}
     </div>
   );
 };
