@@ -49,7 +49,9 @@ public class SessaoService implements ISessaoService {
             throw new RuntimeException("O horário de início da sessão deve ser anterior ao horário de finalização");
         }
 
-        //if () // A data tem que ser depois de hj
+        if (sessao.getData().isBefore(LocalDate.now())) {
+            throw new RuntimeException("A data da sessão deve ser hoje ou uma data futura");
+        }
 
         if(!verificaHorario(sessao, tratamento)) {
             throw new RuntimeException("Este horário de atendimento não está disponível");
