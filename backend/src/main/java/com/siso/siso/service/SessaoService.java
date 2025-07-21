@@ -69,11 +69,11 @@ public class SessaoService implements ISessaoService {
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
         if (usuario.getRole().equals(Role.RECEPCIONISTA)){
-            return sessaoRepository.findByData(data);
+            return sessaoRepository.findByDataOrderByHora_inicioAsc(data);
         }
 
         else if (usuario.getRole().equals(Role.PROFISSIONAL_DA_SAUDE)){
-            return sessaoRepository.findByDataAndProfissionalId(data, usuario.getId());
+            return sessaoRepository.findByDataAndProfissionalIdOrderByHora_inicioAsc(data, usuario.getId());
         }
 
         else {
